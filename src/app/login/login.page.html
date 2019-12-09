@@ -1,0 +1,44 @@
+<ion-header no-border>
+    <ion-avatar>
+      <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" class="logo" alt="">
+    </ion-avatar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="text-center">
+          <h2>Welcome back!</h2>
+          <h2>Lets get you logged in.</h2>
+        </div>
+        <div>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <ion-item  color="none" class="ion-no-padding">
+              <ion-label position="floating">Email or phone number</ion-label>
+              <ion-input type="text" formControlName="username" required></ion-input>
+            </ion-item>
+            <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && (loginForm.controls['username'].touched 
+                  || loginForm.controls['username'].dirty)">
+             <small>Please enter your email or phone number</small> 
+            </div>
+            <ion-item color="none" class="ion-no-padding">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" formControlName="password" required></ion-input>
+            </ion-item>
+            <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && (loginForm.controls['password'].touched 
+                  || loginForm.controls['password'].dirty)">
+              <small>Please enter your password</small> 
+            </div>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <a href="" class="forgot-pas">Forgot Password?</a>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="onSubmit()" [disabled]="loginForm.invalid">
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

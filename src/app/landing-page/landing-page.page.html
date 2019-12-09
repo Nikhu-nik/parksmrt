@@ -1,0 +1,50 @@
+<ion-content>
+    <ion-grid>
+        <ion-row>
+          <ion-col class="ion-padding">
+            <div class="d-flex justify-content-center">
+              <div>
+                <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" class="logo" alt="">
+              </div>
+            </div>
+            <div style="margin-bottom: 40px;margin-left: 4px; text-align: center;">
+              <h4>You need to sign in or create an account to continue.</h4>
+            </div>
+            <div class="margin">
+              <ion-button class="fb-btn" expand="block" style="text-transform:none;">
+                Continue with Facebook
+                <i class="fa fa-facebook fb-icon" aria-hidden="true"></i>
+              </ion-button>
+            </div>
+    
+            <div class="margin">
+              <ion-button class="google-btn" expand="block" style="text-transform:none;">
+                Continue with Google
+                <img src="https://img.icons8.com/color/48/000000/google-logo.png" class="google-icon">
+              </ion-button>
+            </div>
+    
+            <div class="margin">
+              <ion-button expand="block" fill="outline" color="dark" style="text-transform:none;" [routerLink]="['/login']">
+                Click here to Login
+              </ion-button>
+            </div>
+    
+            <div class="margin">
+              <ion-button expand="block" fill="outline" color="dark" style="text-transform:none;" [routerLink]="['/register']">
+                Click here to Register
+              </ion-button>
+            </div>
+    
+            <div class="margin text-center">
+              <p>By proceeding with creating an account you agree to the <span style="color: teal;">ParkSmart </span> 
+                 <a href="">Terms & conditions</a>
+                and
+                <a href="">Privacy Policy.</a>
+              </p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>
+

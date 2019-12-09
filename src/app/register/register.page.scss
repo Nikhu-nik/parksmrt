@@ -1,0 +1,56 @@
+ion-header {
+  background: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(239, 246, 249, 1) 0%,
+    rgba(206, 239, 253, 1) 90%
+  );
+}
+ion-content {
+    --background: radial-gradient( circle farthest-corner at 10% 20%, rgba(239,246,249,1) 0%, rgba(206,239,253,1) 90% );
+    // --background: radial-gradient( circle farthest-corner at 10% 20%, rgba(216,241,230,0.46) 0.1%, rgba(233,226,226,0.28) 90.1% );
+}
+.logo {
+  height: 50px;
+  width: 50px;
+}
+
+ion-item {
+  --background: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(239, 246, 249, 1) 0%,
+    rgba(206, 239, 253, 1) 90%
+  );
+  padding: 0px 9px;
+}
+h2 {
+  color: midnightblue;
+  margin: 0px;
+  margin-top: 10px;
+  font-size: 22px;
+}
+ion-label {
+  color: midnightblue !important;
+  font-family: "Muli", 'Montserrat' !important;
+  font-size: 14px !important;
+}
+.error {
+  color: crimson;
+  padding: 0px 9px;
+}
+
+ion-col {
+  padding:0px 16px;
+}
+
+ion-fab {
+  position: absolute;
+  left: 50%;
+  top: 107%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (min-height:730px){
+  ion-col{
+    margin-top: 4.5rem;
+  }
+}
