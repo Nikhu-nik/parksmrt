@@ -1,91 +1,94 @@
-<ion-header no-border>
-  <ion-title class="ion-text-center">
-    ParkSmart
-  </ion-title>
-  <ion-avatar>
-    <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" class="logo" alt="">
-  </ion-avatar>
-</ion-header>
-
-<ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <div class="text-center">
-          <h2>Register here to create an account.</h2>
+<ion-app>
+  <ion-header no-border>
+    <ion-toolbar no-border color="none">
+      <div class="d-flex justify-content-center">
+        <div class="">
+          <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" class="logo" alt="">
         </div>
         <div>
-          <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)">
-            <ion-item color="none" class="ion-no-padding">
-              <ion-label position="floating">Full Name</ion-label>
-              <ion-input type="text" formControlName="fullName"></ion-input>
-            </ion-item>
-            <div class="error" *ngIf="registerForm.controls['fullName'].hasError('required') && (registerForm.controls['fullName'].touched 
-                  || registerForm.controls['fullName'].dirty)">
-              <small>Please enter your fullname</small>
-            </div>
-            <ion-item color="none" class="ion-no-padding">
-              <ion-label position="floating">Email</ion-label>
-              <ion-input type="email" formControlName="email"></ion-input>
-            </ion-item>
-            <div class="error" *ngIf="registerForm.controls['email'].hasError('required') && (registerForm.controls['email'].touched 
-                  || registerForm.controls['email'].dirty)">
-              <small>Please enter your email</small>
-            </div>
-            <div class="error" *ngIf="registerForm.controls['email'].hasError('email')">
-              <small>Please enter a valid email</small>
-            </div>
-            <ion-item color="none" class="ion-no-padding">
-              <ion-label position="floating">Mobile Number</ion-label>
-              <ion-input type="text" (keypress)="isInputNumber($event)" formControlName="mobileNumber"></ion-input>
-            </ion-item>
-            <div class="error"
-              *ngIf="registerForm.controls['mobileNumber'].hasError('required') && (registerForm.controls['mobileNumber'].touched || registerForm.controls['email'].dirty)">
-              <small>Please enter your mobile number</small>
-            </div>
-            <div class="error" *ngIf="registerForm.controls['mobileNumber'].hasError('minLength()')">
-              <small>Please enter 10 digit number</small>
-            </div>
-            <ion-item color="none" class="ion-no-padding">
-              <ion-label position="floating">Password</ion-label>
-              <ion-input type="password" formControlName="password"></ion-input>
-            </ion-item>
-            <div class="error"
-              *ngIf="registerForm.controls['password'].hasError('required') && (registerForm.controls['password'].touched || registerForm.controls['email'].dirty)">
-              <small>Please enter your password</small>
-            </div>
-            <div class="error" *ngIf="registerForm.controls['password'].hasError('minLength')">
-              <small>Password must contain minimum 6 character</small>
-            </div>
-            <ion-item color="none" class="ion-no-padding">
-              <ion-label position="floating">Confirm Password</ion-label>
-              <ion-input type="password" formControlName="confirmPassword"></ion-input>
-            </ion-item>
-
-            <div class="error"
-              *ngIf="registerForm.controls['confirmPassword'].hasError('required') && (registerForm.controls['confirmPassword'].touched || registerForm.controls['confirmPassword'].dirty)">
-              <small>Please confirm your password</small>
-            </div>
-            <div class="error" *ngIf="registerForm.controls['confirmPassword'].hasError('MustMatch')">
-              <small>Password mustmatch</small>
-            </div>
-            <ion-item color="none" lines="none" class="mt-3" class="ion-no-padding">
-              <ion-checkbox slot="start" color="danger"></ion-checkbox>
-              <ion-label>I accept terms and conditions</ion-label>
-            </ion-item>
-            <div>
-              <ion-fab>
-                <ion-fab-button (click)="onFormSubmit(registerForm.value)" [disabled]="registerForm.invalid">
-                  <ion-icon name="paper-plane"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
-            </div>
-          </form>
+          <ion-title color="primary"> ParkSmart</ion-title>
         </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      </div>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="text-center">
+            <h2>Register here to create an account.</h2>
+          </div>
+          <div>
+            <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)">
+              <ion-item color="none" class="ion-no-padding">
+                <ion-label position="floating">Full Name</ion-label>
+                <ion-input type="text" formControlName="fullName"></ion-input>
+              </ion-item>
+              <div class="error" *ngIf="registerForm.controls['fullName'].hasError('required') && (registerForm.controls['fullName'].touched 
+                        || registerForm.controls['fullName'].dirty)">
+                <small>Please enter your fullname</small>
+              </div>
+              <ion-item color="none" class="ion-no-padding">
+                <ion-label position="floating">Email</ion-label>
+                <ion-input type="email" formControlName="email"></ion-input>
+              </ion-item>
+              <div class="error" *ngIf="registerForm.controls['email'].hasError('required') && (registerForm.controls['email'].touched 
+                        || registerForm.controls['email'].dirty)">
+                <small>Please enter your email</small>
+              </div>
+              <div class="error" *ngIf="registerForm.controls['email'].hasError('email')">
+                <small>Please enter a valid email</small>
+              </div>
+              <ion-item color="none" class="ion-no-padding">
+                <ion-label position="floating">Mobile Number</ion-label>
+                <ion-input type="text" (keypress)="isInputNumber($event)" formControlName="mobileNumber"></ion-input>
+              </ion-item>
+              <div class="error"
+                *ngIf="registerForm.controls['mobileNumber'].hasError('required') && (registerForm.controls['mobileNumber'].touched || registerForm.controls['email'].dirty)">
+                <small>Please enter your mobile number</small>
+              </div>
+              <div class="error" *ngIf="registerForm.controls['mobileNumber'].hasError('minLength()')">
+                <small>Please enter 10 digit number</small>
+              </div>
+              <ion-item color="none" class="ion-no-padding">
+                <ion-label position="floating">Password</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+              </ion-item>
+              <div class="error"
+                *ngIf="registerForm.controls['password'].hasError('required') && (registerForm.controls['password'].touched || registerForm.controls['email'].dirty)">
+                <small>Please enter your password</small>
+              </div>
+              <div class="error" *ngIf="registerForm.controls['password'].hasError('minLength')">
+                <small>Password must contain minimum 6 character</small>
+              </div>
+              <ion-item color="none" class="ion-no-padding">
+                <ion-label position="floating">Confirm Password</ion-label>
+                <ion-input type="password" formControlName="confirmPassword"></ion-input>
+              </ion-item>
 
-
-</ion-content>
+              <div class="error"
+                *ngIf="registerForm.controls['confirmPassword'].hasError('required') && (registerForm.controls['confirmPassword'].touched || registerForm.controls['confirmPassword'].dirty)">
+                <small>Please confirm your password</small>
+              </div>
+              <div class="error" *ngIf="registerForm.controls['confirmPassword'].hasError('MustMatch')">
+                <small>Password mustmatch</small>
+              </div>
+              <ion-item color="none" lines="none" class="mt-3" class="ion-no-padding">
+                <ion-checkbox slot="start" color="danger"></ion-checkbox>
+                <ion-label>I accept terms and conditions</ion-label>
+              </ion-item>
+              <div>
+                <ion-fab>
+                  <ion-fab-button (click)="onFormSubmit(registerForm.value)" [disabled]="registerForm.invalid">
+                    <ion-icon name="paper-plane"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+              </div>
+            </form>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-app>

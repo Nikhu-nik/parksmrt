@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-// import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup,  } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -7,7 +6,7 @@ import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
 
 
-declare var google: any;
+declare var google;
 
 @Component({
   selector: 'app-home',
@@ -30,7 +29,6 @@ export class HomePage implements OnInit {
 
   constructor(private router: Router, private authService: AuthService,
               private apiService: ApiService,
-              private fb: FormBuilder,
               private geolocation: Geolocation) {
   }
 

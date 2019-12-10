@@ -1,9 +1,11 @@
 <ion-app>
-  <ion-menu side="start" contentId="my-content">
+  <ion-menu side="start" contentId="my-content" >
     <ion-header no-border>
-      <ion-avatar>
-        <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" class="logo" alt="">
-      </ion-avatar>
+      <ion-toolbar mode="ios">
+        <ion-avatar>
+          <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" class="logo" alt="">
+        </ion-avatar>
+      </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
@@ -51,8 +53,8 @@
           <img [src]="[userImg]">
         </ion-avatar>
         <ion-label>
-          <b>{{userName}}</b>
-          <p>{{mobileNumber}}</p>
+          <b>{{userName | titlecase }}</b>
+          <small>My Profile</small>
         </ion-label>
         <ion-icon name="arrow-dropright" slot="end"></ion-icon>
       </ion-item>
@@ -60,17 +62,16 @@
   </ion-menu>
 
   <div class="ion-page" id="my-content">
-    <ion-header no-border>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title class="ion-text-center">
-        Rento Cab
-      </ion-title>
-      <ion-searchbar></ion-searchbar>
-      <ion-searchbar showCancelButton="always"></ion-searchbar>
-      <ion-searchbar showCancelButton="never"></ion-searchbar>
-      <ion-searchbar showCancelButton="focus"></ion-searchbar>
+    <ion-header translucent no-border>
+      <ion-toolbar no-border mode="ios">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title color="primary">
+          ParkSmart
+        </ion-title>
+      </ion-toolbar>
+      <ion-searchbar autocomplete placeholder="Enter location"></ion-searchbar>
     </ion-header>
 
     <ion-content>
