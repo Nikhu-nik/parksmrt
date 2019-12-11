@@ -1,54 +1,55 @@
 <ion-app>
   <ion-menu side="start" contentId="my-content" >
     <ion-header no-border>
-      <ion-toolbar mode="ios">
+      <ion-toolbar no-border class="ion-no-padding"
+       mode="ios">
         <ion-avatar>
           <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" class="logo" alt="">
         </ion-avatar>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item lines="none">
-          <ion-icon name="card" slot="start"></ion-icon>
+    <ion-content >
+      <ion-list class="ion-no-padding">
+        <ion-item lines="none" color="none">
+          <ion-icon name="book" slot="start"></ion-icon>
           <ion-label><a routerLink="/bookparking">Book a parking space</a></ion-label>
         </ion-item>
-        <ion-item lines="none">
+        <ion-item lines="none" color="none">
           <ion-icon name="card" slot="start"></ion-icon>
           <ion-label><a routerLink="/mybookings">My bookings</a> </ion-label>
         </ion-item>
-        <ion-item lines="none">
-          <ion-icon name="time" slot="start"></ion-icon>
+        <ion-item lines="none" color="none">
+          <ion-icon name="mail" slot="start"></ion-icon>
           <ion-label><a routerLink="/messages">Messages</a> </ion-label>
         </ion-item>
-        <ion-item lines="none">
-          <ion-icon name="key" slot="start"></ion-icon>
+        <ion-item lines="none" color="none">
+          <ion-icon name="cash" slot="start"></ion-icon>
           <ion-label><a routerLink="/rentspace">Rent out your space</a> </ion-label>
         </ion-item>
-        <ion-item lines="none">
-          <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+        <ion-item lines="none" color="none">
+          <ion-icon name="pricetag" slot="start"></ion-icon>
           <ion-label><a routerLink="/promocodes">Promo codes</a> </ion-label>
         </ion-item>
-        <ion-item lines="none">
+        <ion-item lines="none" color="none">
           <ion-icon name="filing" slot="start"></ion-icon>
           <ion-label><a routerLink="/tickets&permits">Tickets & Permits</a> </ion-label>
         </ion-item>
-        <ion-item lines="none">
-          <ion-icon name="cash" slot="start"></ion-icon>
+        <ion-item lines="none" color="none">
+          <ion-icon name="contacts" slot="start"></ion-icon>
           <ion-label><a routerLink="/invite">Invite Friends</a> </ion-label>
         </ion-item>
-        <ion-item lines="none">
-          <ion-icon name="wallet" slot="start"></ion-icon>
+        <ion-item lines="none" color="none">
+          <ion-icon name="help-circle" slot="start"></ion-icon>
           <ion-label><a routerLink="/help">Help</a> </ion-label>
         </ion-item>
-        <ion-item lines="none">
-          <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+        <ion-item lines="none" color="none">
+          <ion-icon name="information-circle" slot="start"></ion-icon>
           <ion-label><a routerLink="/about">About</a> </ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
-    <ion-footer>
-      <ion-item routerLink="/user" lines="none">
+    <ion-footer no-border>
+      <ion-item routerLink="/user-details" lines="none" color="none">
         <ion-avatar slot="start">
           <img [src]="[userImg]">
         </ion-avatar>
@@ -56,7 +57,7 @@
           <b>{{userName | titlecase }}</b>
           <small>My Profile</small>
         </ion-label>
-        <ion-icon name="arrow-dropright" slot="end"></ion-icon>
+        <ion-icon name="arrow-dropright" slot="end" mode="ios"></ion-icon>
       </ion-item>
     </ion-footer>
   </ion-menu>
@@ -76,6 +77,11 @@
 
     <ion-content>
       <div #mapElement class="map"></div>
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+        <ion-fab-button color="light" (click)="getLocation()">
+          <ion-icon name="locate"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
     </ion-content>
 
   </div>

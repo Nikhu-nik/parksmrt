@@ -1,6 +1,5 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup,  } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
@@ -23,13 +22,10 @@ export class HomePage implements OnInit {
 
 
   @ViewChild('mapElement', { static: false }) mapNativeElement: ElementRef;
-  directionsService = new google.maps.DirectionsService;
-  directionsDisplay = new google.maps.DirectionsRenderer;
-  directionForm: FormGroup;
 
   constructor(private router: Router, private authService: AuthService,
-              private apiService: ApiService,
-              private geolocation: Geolocation) {
+    private apiService: ApiService,
+    private geolocation: Geolocation) {
   }
 
   ngOnInit() {
@@ -47,9 +43,10 @@ export class HomePage implements OnInit {
       this.longitude = resp.coords.longitude;
       const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
         center: { lat: 12.979316, lng: 77.599773 },
-        zoom: 6
+        zoom: 15,
+        disableDefaultUI: true
       });
-      this.directionsDisplay.setMap(map);
+
       /*location object*/
       const pos = {
         lat: this.latitude,
@@ -57,7 +54,7 @@ export class HomePage implements OnInit {
       };
       map.setCenter(pos);
       const icon = {
-        url: '../assets/images/Map-Marker.png', // image url
+        url: '../assets/images/marker1.svg', // image url
         scaledSize: new google.maps.Size(50, 50), // scaled size
       };
 
@@ -65,15 +62,16 @@ export class HomePage implements OnInit {
         position: pos,
         map: map,
         optimized: false,
-        // title: 'Hello World!',
-        icon: icon
+        icon: icon,
+
       });
+
       const infoWindow = new google.maps.InfoWindow;
       infoWindow.setPosition(pos);
       map.setCenter(pos);
-      marker.addListener('click', function () {
-        infoWindow.open(map, marker);
-      });
+      // marker.addListener('click', function () {
+      //   infoWindow.open(map, marker);
+      // });
 
     }).catch((error) => {
       console.log('Error getting location', error);
@@ -86,6 +84,46 @@ export class HomePage implements OnInit {
     sessionStorage.removeItem('currentUser');
     this.router.navigate(['/login']);
     console.log('Logout Successful.');
+  }
+
+  getLocation() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.latitude = resp.coords.latitude;
+      this.longitude = resp.coords.longitude;
+      const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
+        center: { lat: 12.979316, lng: 77.599773 },
+        zoom: 17,
+        disableDefaultUI: true
+      });
+
+      /*location object*/
+      const pos = {
+        lat: this.latitude,
+        lng: this.longitude
+      };
+      map.setCenter(pos);
+      const icon = {
+        url: '../assets/images/marker1.svg', // image url
+        scaledSize: new google.maps.Size(50, 50), // scaled size
+      };
+
+      const marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        optimized: false,
+        icon: icon
+      });
+
+      const infoWindow = new google.maps.InfoWindow;
+      infoWindow.setPosition(pos);
+      map.setCenter(pos);
+      // marker.addListener('click', function () {
+      //   infoWindow.open(map, marker);
+      // });
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
 }

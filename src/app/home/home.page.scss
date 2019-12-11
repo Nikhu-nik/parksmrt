@@ -1,4 +1,41 @@
-.map{
-    height: 100%;
-    width: 100%;
+a {
+  all: unset;
+}
+.map {
+  height: 100%;
+  width: 100%;
+}
+ion-menu{
+    ion-icon{
+        color: midnightblue;
+    }
+}
+
+ion-menu {
+  ion-toolbar {
+    --background: radial-gradient(
+      circle farthest-corner at 10% 20%,
+      rgba(239, 246, 249, 1) 0%,
+      rgba(206, 239, 253, 1) 90%
+    );
+  }
+  ion-content {
+    --ion-background-color: radial-gradient(
+      circle farthest-corner at 10% 20%,
+      rgba(239, 246, 249, 1) 0%,
+      rgba(206, 239, 253, 1) 90%
+    );
+  }
+  ion-footer {
+    background: radial-gradient(
+      circle farthest-corner at 10% 20%,
+      rgba(239, 246, 249, 1) 0%,
+      rgba(206, 239, 253, 1) 90%
+    );
+  }
+}
+ion-label {
+    a{
+        color: midnightblue;
+    }
 }

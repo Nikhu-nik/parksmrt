@@ -1,5 +1,7 @@
 {
   "name": "ParkSmart",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
