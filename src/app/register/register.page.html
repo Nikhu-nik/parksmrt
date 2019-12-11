@@ -21,59 +21,60 @@
                 <ion-label position="floating">Full Name</ion-label>
                 <ion-input type="text" formControlName="fullName"></ion-input>
               </ion-item>
-              <div class="error" *ngIf="registerForm.controls['fullName'].hasError('required') && (registerForm.controls['fullName'].touched 
-                        || registerForm.controls['fullName'].dirty)">
+              <div class="error" *ngIf="registerForm.get('fullName').hasError('required') && (registerForm.get('fullName').touched 
+                        || registerForm.get('fullName').dirty)">
                 <small>Please enter your fullname</small>
               </div>
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Email</ion-label>
                 <ion-input type="email" formControlName="email"></ion-input>
               </ion-item>
-              <div class="error" *ngIf="registerForm.controls['email'].hasError('required') && (registerForm.controls['email'].touched 
-                        || registerForm.controls['email'].dirty)">
-                <small>Please enter your email</small>
-              </div>
-              <div class="error" *ngIf="registerForm.controls['email'].hasError('email')">
-                <small>Please enter a valid email</small>
-              </div>
+              <ng-container *ngFor="let validation of validation_messages.email">
+                <div class="error"
+                  *ngIf="registerForm.get('email').hasError(validation.type)  && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                  <small>{{ validation.message}}</small>
+                </div>
+              </ng-container>
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Mobile Number</ion-label>
                 <ion-input type="text" (keypress)="isInputNumber($event)" formControlName="mobileNumber"></ion-input>
               </ion-item>
-              <div class="error"
-                *ngIf="registerForm.controls['mobileNumber'].hasError('required') && (registerForm.controls['mobileNumber'].touched || registerForm.controls['email'].dirty)">
-                <small>Please enter your mobile number</small>
-              </div>
-              <div class="error" *ngIf="registerForm.controls['mobileNumber'].hasError('minLength()')">
-                <small>Please enter 10 digit number</small>
-              </div>
+              <ng-container *ngFor="let validation of validation_messages.mobileNumber">
+                <div class="error"
+                  *ngIf="registerForm.get('mobileNumber').hasError(validation.type)  && (registerForm.get('mobileNumber').dirty || registerForm.get('mobileNumber').touched)">
+                  <small>{{ validation.message}}</small>
+                </div>
+              </ng-container>
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Password</ion-label>
                 <ion-input type="password" formControlName="password"></ion-input>
               </ion-item>
-              <div class="error"
-                *ngIf="registerForm.controls['password'].hasError('required') && (registerForm.controls['password'].touched || registerForm.controls['email'].dirty)">
-                <small>Please enter your password</small>
-              </div>
-              <div class="error" *ngIf="registerForm.controls['password'].hasError('minLength')">
-                <small>Password must contain minimum 6 character</small>
-              </div>
+              <ng-container *ngFor="let validation of validation_messages.password">
+                <div class="error"
+                  *ngIf="registerForm.get('password').hasError(validation.type)  && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                  <small>{{ validation.message}}</small>
+                </div>
+              </ng-container>
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Confirm Password</ion-label>
                 <ion-input type="password" formControlName="confirmPassword"></ion-input>
               </ion-item>
-
-              <div class="error"
-                *ngIf="registerForm.controls['confirmPassword'].hasError('required') && (registerForm.controls['confirmPassword'].touched || registerForm.controls['confirmPassword'].dirty)">
-                <small>Please confirm your password</small>
-              </div>
-              <div class="error" *ngIf="registerForm.controls['confirmPassword'].hasError('MustMatch')">
-                <small>Password mustmatch</small>
-              </div>
+              <ng-container *ngFor="let validation of validation_messages.confirmPassword">
+                <div class="error"
+                  *ngIf="registerForm.get('confirmPassword').hasError(validation.type)  && (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)">
+                  <small>{{ validation.message}}</small>
+                </div>
+              </ng-container>
               <ion-item color="none" lines="none" class="mt-3" class="ion-no-padding">
-                <ion-checkbox slot="start" color="danger"></ion-checkbox>
+                <ion-checkbox slot="start" color="danger" formControlName="terms"></ion-checkbox>
                 <ion-label>I accept terms and conditions</ion-label>
               </ion-item>
+              <ng-container *ngFor="let validation of validation_messages.terms">
+                <div class="error"
+                  *ngIf="registerForm.get('terms').hasError(validation.type)  && (registerForm.get('terms').dirty || registerForm.get('terms').touched)">
+                  <small>{{ validation.message}}</small>
+                </div>
+              </ng-container>
               <div>
                 <ion-fab>
                   <ion-fab-button (click)="onFormSubmit(registerForm.value)" [disabled]="registerForm.invalid">

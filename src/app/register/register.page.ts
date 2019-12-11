@@ -1,10 +1,9 @@
 import { Component, OnInit, } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MustMatch } from '../_helpers/must-match.validator';
+import { PasswordValidator } from '../_helpers/must-match.validator';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
-
 
 @Component({
   selector: 'app-register',
@@ -20,16 +19,19 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       fullName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      mobileNumber: ['', [Validators.required, Validators.minLength(10)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]) ],
+      mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+      confirmPassword: ['', Validators.compose([Validators.required, PasswordValidator.areEqual]) ],
+      terms: ['true', Validators.pattern('true')],
       roles: this.formBuilder.array([{ name: 'user' }])
-    },
-      {
-        validator: MustMatch('password', 'confirmPassword')
-      });
+    }),
+
+    (formGroup: FormGroup) => {
+        return PasswordValidator.areEqual(formGroup);
+     } 
   }
+  
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
@@ -53,5 +55,32 @@ export class RegisterPage implements OnInit {
     }
 
   }
+
+  validation_messages = {
+    'email': [
+        { type: 'required', message: 'Please enter your email'},
+        { type: 'pattern', message: 'Please enter a valid email' },
+      ],
+      
+      'mobileNumber': [
+        { type: 'required', message: 'Please enter your mobile number'},
+        { type: 'minlength', message: 'Please enter 10 digit mobile number' },
+      ],
+
+      'password': [
+        { type: 'required', message: 'Please enter your password'},
+        { type: 'minlength', message: 'Password must be 8 characters long' },
+      ],
+
+      'confirmPassword': [
+        { type: 'required', message: 'Please confirm your password'},
+        { type: 'areEqual', message: 'Password must match' },
+      ],
+
+      'terms': [
+        { type: 'pattern', message: 'Please accept terms and condtions' },
+      ],
+ 
+    }
 
 }
