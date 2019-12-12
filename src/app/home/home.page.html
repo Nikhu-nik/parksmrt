@@ -62,7 +62,7 @@
   </ion-menu>
 
   <div class="ion-page" id="my-content">
-    <ion-header translucent no-border>
+    <ion-header no-border>
       <ion-toolbar no-border mode="ios">
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
@@ -71,16 +71,27 @@
           <span style="color: dodgerblue;">Park</span><span style="color: orangered;">Smart</span>
         </ion-title>
       </ion-toolbar>
-      <div style="position: relative">
-        <ion-searchbar debounce=500 (ionChange)="search($event)" [value]="selectedAddress" autocomplete
-          placeholder="Enter location"></ion-searchbar>
-        <div style="position: absolute; width: 100%; z-index: 999;">
-          <ion-list lines="none" *ngIf="addresses.length > 0">
-            <ion-item button *ngFor="let address of addresses" (click)="onSelect(address)">
-              <ion-icon name="pin"></ion-icon>
-              {{ address }}
-            </ion-item>
-          </ion-list>
+      <ion-searchbar autocomplete placeholder="Enter destination location"></ion-searchbar>
+      <div class="d-flex flex-row">
+        <div>
+            <div class="d-flex flex-column">
+              <div>
+                <ion-label>Arriving</ion-label>
+              </div>
+              <div>
+                  <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+              </div>
+            </div>
+        </div>
+        <div class="ml-auto">
+            <div class="d-flex flex-column">
+              <div>
+                <ion-label>Leaving</ion-label>
+              </div>
+              <div>
+                  <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+              </div>
+            </div>
         </div>
       </div>
     </ion-header>

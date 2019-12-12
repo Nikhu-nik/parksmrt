@@ -26,9 +26,10 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat|Muli|Noto+Serif|Raleway|Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oxygen|PT+Sans|Sulphur+Point|Ubuntu&display=swap');
 
 *{
-    font-family: 'Muli';
+    font-family: 'Sulphur Point';
     box-sizing: border-box;
 }
 
@@ -37,5 +38,5 @@
   }
 
   ion-label{
-      font-family: Muli !important;
+      font-family: 'Sulphur Point' !important;
   }
