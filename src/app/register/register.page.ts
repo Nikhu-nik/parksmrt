@@ -1,9 +1,9 @@
 import { Component, OnInit, } from '@angular/core';
 import { NgForm, FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PasswordValidator } from '../_helpers/must-match.validator';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
+import { MustMatch } from '../_helpers/must-match.validator';
 
 @Component({
   selector: 'app-register',
@@ -12,9 +12,39 @@ import { ApiService } from '../service/api.service';
 })
 export class RegisterPage implements OnInit {
 
+  constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router) { }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
+
   registerForm: FormGroup;
 
-  constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router) { }
+  validation_messages = {
+    email: [
+        { type: 'required', message: 'Please enter your email'},
+        { type: 'pattern', message: 'Please enter a valid email' },
+      ],
+
+      mobileNumber: [
+        { type: 'required', message: 'Please enter your mobile number'},
+        { type: 'minlength', message: 'Please enter 10 digit mobile number' },
+      ],
+
+      password: [
+        { type: 'required', message: 'Please enter your password'},
+        { type: 'minlength', message: 'Password must be 8 characters long' },
+      ],
+
+      confirmPassword: [
+        { type: 'required', message: 'Please confirm your password'},
+        { type: 'areEqual', message: 'Password must match' },
+      ],
+
+      terms: [
+        { type: 'pattern', message: 'Please accept terms and condtions' },
+      ],
+
+    };
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -22,18 +52,14 @@ export class RegisterPage implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]) ],
       mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-      confirmPassword: ['', Validators.compose([Validators.required, PasswordValidator.areEqual]) ],
+      confirmPassword: ['', Validators.required],
       terms: ['true', Validators.pattern('true')],
       roles: this.formBuilder.array([{ name: 'user' }])
-    }),
-
-    (formGroup: FormGroup) => {
-        return PasswordValidator.areEqual(formGroup);
-     } 
+    },
+    {
+      validator: MustMatch('password', 'confirmPassword')
+    });
   }
-  
-  // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
 
   onFormSubmit(form: NgForm) {
 
@@ -55,32 +81,5 @@ export class RegisterPage implements OnInit {
     }
 
   }
-
-  validation_messages = {
-    'email': [
-        { type: 'required', message: 'Please enter your email'},
-        { type: 'pattern', message: 'Please enter a valid email' },
-      ],
-      
-      'mobileNumber': [
-        { type: 'required', message: 'Please enter your mobile number'},
-        { type: 'minlength', message: 'Please enter 10 digit mobile number' },
-      ],
-
-      'password': [
-        { type: 'required', message: 'Please enter your password'},
-        { type: 'minlength', message: 'Password must be 8 characters long' },
-      ],
-
-      'confirmPassword': [
-        { type: 'required', message: 'Please confirm your password'},
-        { type: 'areEqual', message: 'Password must match' },
-      ],
-
-      'terms': [
-        { type: 'pattern', message: 'Please accept terms and condtions' },
-      ],
- 
-    }
 
 }

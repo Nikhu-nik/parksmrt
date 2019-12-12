@@ -1,0 +1,25 @@
+ion-header{
+    background: radial-gradient( circle farthest-corner at 10% 20%, rgba(239,246,249,1) 0%, rgba(206,239,253,1) 90% );
+}
+ion-toolbar {
+    --background: radial-gradient(
+      circle farthest-corner at 10% 20%,
+      rgba(239, 246, 249, 1) 0%,
+      rgba(206, 239, 253, 1) 90%
+    );
+}
+ion-col{
+    padding: 0px 16px !important;
+}
+h4{
+    border-bottom: 1px solid gainsboro;
+    line-height: 2;
+}
+ion-icon{
+    color: dodgerblue;
+}
+ion-label{
+    color: dimgray !important;
+    font-family: Muli !important;
+}
+

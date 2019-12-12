@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
+import { GmapAutocompleteService, Feature } from '../service/gmap-autocomplete.service';
 
 
 declare var google;
@@ -14,29 +15,32 @@ declare var google;
 })
 export class HomePage implements OnInit {
   data: any = {};
-  userName = '';
-  mobileNumber = '';
+  fullName = '';
   userImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCEzGoZ6NCvbjg4hJlLL_0TLB61J8R2Xi09hoiSpGxXvVdTRoB';
   latitude: any;
   longitude: any;
+  addresses: string[] = [];
+  selectedAddress = null;
 
-
+  // view child for gmap 
   @ViewChild('mapElement', { static: false }) mapNativeElement: ElementRef;
 
   constructor(private router: Router, private authService: AuthService,
-    private apiService: ApiService,
-    private geolocation: Geolocation) {
+              private apiService: ApiService,
+              private geolocation: Geolocation,
+              private autocomplete: GmapAutocompleteService) {
   }
 
   ngOnInit() {
     this.apiService.getUserDetails()
       .subscribe(data => {
         this.data = data.body;
-        this.userName = data.body.fullName;
+        this.fullName = data.body.fullName;
       });
 
   }
 
+  // geoloaction integration
   ngAfterViewInit(): void {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.latitude = resp.coords.latitude;
@@ -78,7 +82,7 @@ export class HomePage implements OnInit {
     });
 
   }
-
+  // session logout
   logout() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('currentUser');
@@ -86,6 +90,7 @@ export class HomePage implements OnInit {
     console.log('Logout Successful.');
   }
 
+  // getting current location button
   getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.latitude = resp.coords.latitude;
@@ -93,7 +98,7 @@ export class HomePage implements OnInit {
       const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
         center: { lat: 12.979316, lng: 77.599773 },
         zoom: 17,
-        disableDefaultUI: true
+        disableDefaultUI: true,
       });
 
       /*location object*/
@@ -126,6 +131,24 @@ export class HomePage implements OnInit {
     });
   }
 
+  // g-map address autocomplete
+  search(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    if (searchTerm && searchTerm.length > 0) {
+      this.autocomplete
+        .search_word(searchTerm)
+        .subscribe((features: Feature[]) => {
+          this.addresses = features.map(feat => feat.place_name);
+        });
+      } else {
+        this.addresses = [];
+      }
+  }
+
+  onSelect(address: string) {
+    this.selectedAddress = address;
+    this.addresses = [];
+  }
 }
 
 

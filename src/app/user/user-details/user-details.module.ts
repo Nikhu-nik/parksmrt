@@ -8,7 +8,7 @@ import { UserDetailsPageRoutingModule } from './user-details-routing.module';
 
 import { UserDetailsPage } from './user-details.page';
 import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
-import { HideHeaderDirective } from 'src/app/_helpers/hide-header.directive';
+import { ScrollVanishDirective } from 'src/app/directives/scroll-vanish.directive';
 
 @NgModule({
   imports: [
@@ -18,7 +18,6 @@ import { HideHeaderDirective } from 'src/app/_helpers/hide-header.directive';
     IonicHeaderParallaxModule,
     UserDetailsPageRoutingModule
   ],
-  declarations: [UserDetailsPage, HideHeaderDirective],
-  
+  declarations: [UserDetailsPage, ScrollVanishDirective],
 })
 export class UserDetailsPageModule {}

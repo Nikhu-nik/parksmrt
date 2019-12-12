@@ -1,14 +1,13 @@
 <ion-app>
-  <ion-menu side="start" contentId="my-content" >
+  <ion-menu side="start" contentId="my-content">
     <ion-header no-border>
-      <ion-toolbar no-border class="ion-no-padding"
-       mode="ios">
+      <ion-toolbar no-border class="ion-no-padding" mode="ios">
         <ion-avatar>
           <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" class="logo" alt="">
         </ion-avatar>
       </ion-toolbar>
     </ion-header>
-    <ion-content >
+    <ion-content>
       <ion-list class="ion-no-padding">
         <ion-item lines="none" color="none">
           <ion-icon name="book" slot="start"></ion-icon>
@@ -54,7 +53,7 @@
           <img [src]="[userImg]">
         </ion-avatar>
         <ion-label>
-          <b>{{userName | titlecase }}</b>
+          <b>{{fullName | titlecase }}</b>
           <small>My Profile</small>
         </ion-label>
         <ion-icon name="arrow-dropright" slot="end" mode="ios"></ion-icon>
@@ -68,16 +67,27 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title color="primary">
-          ParkSmart
+        <ion-title>
+          <span style="color: dodgerblue;">Park</span><span style="color: orangered;">Smart</span>
         </ion-title>
       </ion-toolbar>
-      <ion-searchbar autocomplete placeholder="Enter location"></ion-searchbar>
+      <div style="position: relative">
+        <ion-searchbar debounce=500 (ionChange)="search($event)" [value]="selectedAddress" autocomplete
+          placeholder="Enter location"></ion-searchbar>
+        <div style="position: absolute; width: 100%; z-index: 999;">
+          <ion-list lines="none" *ngIf="addresses.length > 0">
+            <ion-item button *ngFor="let address of addresses" (click)="onSelect(address)">
+              <ion-icon name="pin"></ion-icon>
+              {{ address }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
     </ion-header>
 
     <ion-content>
       <div #mapElement class="map"></div>
-      <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button color="light" (click)="getLocation()">
           <ion-icon name="locate"></ion-icon>
         </ion-fab-button>
