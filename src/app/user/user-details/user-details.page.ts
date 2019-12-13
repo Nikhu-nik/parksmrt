@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from 'src/app/service/api.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 
 
@@ -20,8 +21,13 @@ export class UserDetailsPage implements OnInit {
   email = '';
   password = '';
 
+  // image picker variables
+  imageResponse: any;
+  options: any;
+
  constructor(private router: Router, private alertController: AlertController,
-             private apiService: ApiService, private authService: AuthService) { }
+             private apiService: ApiService, private authService: AuthService,
+             private imagePicker: ImagePicker) { }
 
  ngOnInit() {
    this.apiService.getUserDetails()
@@ -61,6 +67,26 @@ export class UserDetailsPage implements OnInit {
 
    await alert.present();
  }
+
+
+ getImages() {
+
+  this.options = {
+    maximumImagesCount: 1,
+    width: 200,
+    // height: 200,
+    quality: 100,
+    outputType: 1
+  };
+  this.imageResponse = [];
+  this.imagePicker.getPictures(this.options).then((results) => {
+    for (var i = 0; i < results.length; i++) {
+      this.imageResponse.push('data:image/jpeg;base64,' + results[i]);
+    }
+  }, (err) => {
+    alert(err);
+  });
+}
 
 
 }

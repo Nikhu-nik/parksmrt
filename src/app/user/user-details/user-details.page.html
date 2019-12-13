@@ -7,11 +7,12 @@
       <ion-title>
         Profile
       </ion-title>
+      <ion-icon name="exit" slot="end"  style="padding:0px 12px; font-size: 24px; color: #424242;" (click)="logout()" ></ion-icon>
     </ion-toolbar>
     <div [myScrollVanish]="scrollArea" class="d-flex flex-column align-items-center">
       <div>
         <ion-avatar>
-          <img [src]="userImg" class="center">
+          <img [src]="userImg" (click)="getImages()">
         </ion-avatar>
       </div>
       <div>
@@ -65,10 +66,6 @@
             </ion-item>
             <ion-item lines="none">
               <ion-label>Data Preferences</ion-label>
-            </ion-item>
-            <ion-item lines="none" (click)="logout()">
-              <ion-icon name="exit" slot="start" color="danger"></ion-icon>
-              <ion-label>Logout</ion-label>
             </ion-item>
           </div>
         </ion-col>

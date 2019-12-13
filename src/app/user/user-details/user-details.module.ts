@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { UserDetailsPageRoutingModule } from './user-details-routing.module';
 
 import { UserDetailsPage } from './user-details.page';
-import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
 import { ScrollVanishDirective } from 'src/app/directives/scroll-vanish.directive';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { ScrollVanishDirective } from 'src/app/directives/scroll-vanish.directiv
     CommonModule,
     FormsModule,
     IonicModule,
-    IonicHeaderParallaxModule,
     UserDetailsPageRoutingModule
   ],
   declarations: [UserDetailsPage, ScrollVanishDirective],
