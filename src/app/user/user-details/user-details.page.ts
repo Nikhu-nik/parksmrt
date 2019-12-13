@@ -58,7 +58,7 @@ export class UserDetailsPage implements OnInit {
          cssClass: 'buttonCss',
          handler: () => {
             this.authService.logout();
-            this.router.navigate(['/login']);
+            this.router.navigate(['/landing-page']);
             console.log('Logout Successful.');
          }
        }

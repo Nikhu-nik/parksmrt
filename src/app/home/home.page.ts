@@ -5,7 +5,7 @@ import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
 
 
-declare var google;
+// declare var google;
 
 @Component({
   selector: 'app-home',
