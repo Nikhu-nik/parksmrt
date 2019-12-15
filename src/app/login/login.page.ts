@@ -57,10 +57,7 @@ export class LoginPage implements OnInit {
   onSubmit() {
     if (this.f.username.value === 'user' && this.f.password.value === 'password'){
       this.router.navigate(['/home']);
-    } else {
-      return false;
     }
   }
-
 
 }

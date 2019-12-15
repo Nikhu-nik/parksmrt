@@ -21,6 +21,8 @@ export class UserDetailsPage implements OnInit {
   email = '';
   password = '';
 
+
+
   // image picker variables
   imageResponse: any;
   options: any;
