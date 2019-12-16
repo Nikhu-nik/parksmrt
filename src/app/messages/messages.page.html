@@ -1,29 +1,54 @@
 <ion-header no-border>
-  <ion-toolbar>
+  <ion-toolbar [appHideHeader]="scrollArea" color="secondary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
     <ion-title>Messages</ion-title>
   </ion-toolbar>
+  <ion-segment [(ngModel)]="content" color="secondary" mode="md">
+    <ion-segment-button value="All" mode="md">
+      <ion-icon name="mail-open"></ion-icon>
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Inprogress" mode="md">
+      <ion-icon name="time"></ion-icon>
+      <ion-label>In Progress</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Unread" mode="md">
+      <ion-icon name="mail"></ion-icon>
+      <ion-label>Unread</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
-<ion-content>
-  <ion-tabs>
-    <ion-tab-bar slot="top">
-      <ion-tab-button tab="All">
-        <ion-icon name="mail-open"></ion-icon>
-        <ion-label>All</ion-label>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="InProgress">
-        <ion-icon name="time"></ion-icon>
-        <ion-label>In Progress</ion-label>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="Unread">
-        <ion-icon name="mail"></ion-icon>
-        <ion-label>Unread/Unsaved</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
+<ion-content #scrollArea scrollEvents="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div [ngSwitch]="content">
+          <div *ngSwitchCase="'Unread'">
+
+            <div *ngFor=" let message of messages">
+              <ion-item>
+                <ion-label>
+                  {{message.sender}}
+                </ion-label><br>
+                <div>
+                  <small>{{message.discription}}</small>
+                </div><br>
+                <ion-icon name="trash" slot="end"></ion-icon>
+              </ion-item>
+            </div>
+
+
+
+          </div>
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
 </ion-content>

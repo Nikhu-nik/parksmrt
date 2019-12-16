@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesPage implements OnInit {
 
-  constructor() { }
+  content:string;
+
+  constructor() { 
+    
+  }
 
   ngOnInit() {
   }
+
+  ionViewWillEnter(){
+    this.content="All";
+  }
+
+ messages= [{
+  "sender": "abdul",
+  "discription": "hi how are you",
+  }]
+  
 
 }

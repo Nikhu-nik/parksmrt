@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { MessagesPageRoutingModule } from './messages-routing.module';
 
 import { MessagesPage } from './messages.page';
+import { HideHeaderDirective } from '../directives/hide-header.directive';
+
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { MessagesPage } from './messages.page';
     IonicModule,
     MessagesPageRoutingModule
   ],
-  declarations: [MessagesPage]
+  declarations: [MessagesPage, HideHeaderDirective]
 })
 export class MessagesPageModule {}
