@@ -187,9 +187,9 @@ export class HomePage implements OnInit, AfterViewInit {
               this.nearbyItems.push(near_places[i]);
             }
           });
-        })
+        });
       }
-    })
+    });
   }
 
   // GoTo(){
