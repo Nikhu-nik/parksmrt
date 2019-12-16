@@ -1,0 +1,29 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Messages</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="All">
+        <ion-icon name="mail-open"></ion-icon>
+        <ion-label>All</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="InProgress">
+        <ion-icon name="time"></ion-icon>
+        <ion-label>In Progress</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="Unread">
+        <ion-icon name="mail"></ion-icon>
+        <ion-label>Unread/Unsaved</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

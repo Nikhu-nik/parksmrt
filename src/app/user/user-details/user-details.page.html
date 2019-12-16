@@ -1,13 +1,13 @@
 <ion-app>
   <ion-header no-border>
-    <ion-toolbar>
+    <ion-toolbar color="secondary">
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/home"></ion-back-button>
       </ion-buttons>
       <ion-title>
         Profile
       </ion-title>
-      <ion-icon name="exit" slot="end"  style="padding:0px 12px; font-size: 24px; color: #424242;" (click)="logout()" ></ion-icon>
+      <ion-icon name="exit" slot="end"  style="padding:0px 12px; font-size: 24px; color: white;" (click)="logout()" ></ion-icon>
     </ion-toolbar>
     <div [myScrollVanish]="scrollArea" class="d-flex flex-column align-items-center">
       <div>
@@ -16,12 +16,12 @@
         </ion-avatar>
       </div>
       <div>
-        <ion-label>{{ fullName }}</ion-label>
+        <ion-label class="fullname">{{ fullName }}</ion-label>
       </div>
     </div>
   </ion-header>
 
-  <ion-content #scrollArea scrollEvents="true">
+  <ion-content #scrollArea scrollEvents="true" color="light">
     <ion-grid>
       <ion-row>
         <ion-col>

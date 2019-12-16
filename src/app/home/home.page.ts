@@ -8,7 +8,7 @@ import { LoadingController } from '@ionic/angular';
 declare var google: any;
 
 @Component({
-  selector: 'app-home', 
+  selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
@@ -17,7 +17,7 @@ export class HomePage implements OnInit, AfterViewInit {
   fullName = '';
   userImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCEzGoZ6NCvbjg4hJlLL_0TLB61J8R2Xi09hoiSpGxXvVdTRoB';
   latitude: any;
-  longitude: any; 
+  longitude: any;
 
   // current date object
   myDate = new Date().toISOString();
@@ -26,13 +26,13 @@ export class HomePage implements OnInit, AfterViewInit {
   GoogleAutocomplete;
   autocomplete: { input: string; };
   autocompleteItems: any[];
-  markers: any[]; 
+  markers: any[];
   geocoder;
   nearbyItems: any[];
   GooglePlaces: any;
 
-  // view child for gmap 
-  @ViewChild('mapElement', { static: false }) mapNativeElement: ElementRef;
+  // view child for gmap
+  @ViewChild('mapElement', { static: true }) mapNativeElement: ElementRef;
   placeId: string;
 
   constructor(private router: Router, private authService: AuthService,
@@ -59,7 +59,7 @@ export class HomePage implements OnInit, AfterViewInit {
   // geoloaction integration
   ngAfterViewInit(): void {
     const options = {
-      timeout: 10000,
+      timeout: 25000,
       enableHighAccuracy: true
     };
     this.geolocation.getCurrentPosition(options).then((resp) => {
@@ -69,8 +69,9 @@ export class HomePage implements OnInit, AfterViewInit {
         center: { lat: 12.979316, lng: 77.599773 },
         zoom: 14,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDefaultUI: true
+        disableDefaultUI: true,
       });
+
 
       /*location object*/
       const pos = {
@@ -88,8 +89,9 @@ export class HomePage implements OnInit, AfterViewInit {
         map: map,
         optimized: false,
         icon: icon,
-
+        animation: google.maps.Animation.DROP,
       });
+
 
       const infoWindow = new google.maps.InfoWindow;
       infoWindow.setPosition(pos);
@@ -113,13 +115,18 @@ export class HomePage implements OnInit, AfterViewInit {
 
   // getting current location button
   getLocation() {
-    this.geolocation.getCurrentPosition().then((resp) => {
+    const options = {
+      timeout: 25000,
+      enableHighAccuracy: true
+    };
+    this.geolocation.getCurrentPosition(options).then((resp) => {
       this.latitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;
       const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
         center: { lat: 12.979316, lng: 77.599773 },
         zoom: 16,
         disableDefaultUI: true,
+         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
 
       /*location object*/
@@ -150,6 +157,7 @@ export class HomePage implements OnInit, AfterViewInit {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
+
   }
 
   // gmap autocomplete search
@@ -196,8 +204,5 @@ export class HomePage implements OnInit, AfterViewInit {
   // }
 
 }
-
-
-
 
 

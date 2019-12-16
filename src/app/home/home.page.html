@@ -10,10 +10,6 @@
     <ion-content>
       <ion-list class="ion-no-padding">
         <ion-item lines="none" color="none">
-          <ion-icon name="book" slot="start"></ion-icon>
-          <ion-label><a routerLink="/bookparking">Book a parking space</a></ion-label>
-        </ion-item>
-        <ion-item lines="none" color="none">
           <ion-icon name="card" slot="start"></ion-icon>
           <ion-label><a routerLink="/mybookings">My bookings</a> </ion-label>
         </ion-item>
@@ -56,7 +52,7 @@
           <b>{{fullName | titlecase }}</b>
           <small>My Profile</small>
         </ion-label>
-        <ion-icon name="arrow-dropright" slot="end" ></ion-icon>
+        <ion-icon name="arrow-dropright" slot="end"></ion-icon>
       </ion-item>
     </ion-footer>
   </ion-menu>
@@ -70,8 +66,13 @@
         <ion-title>
           <span style="color: dodgerblue;">Park</span><span style="color: orangered;">Smart</span>
         </ion-title>
+        <ion-buttons slot="end">
+          <ion-icon name="notifications"  class="notification-icon"></ion-icon>
+          <ion-badge color="danger">10</ion-badge>
+        </ion-buttons>
       </ion-toolbar>
-      <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()"  placeholder="Enter destination location"></ion-searchbar>
+      <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()"
+        placeholder="Enter destination location"></ion-searchbar>
       <ion-list [hidden]="autocompleteItems.length == 0">
         <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
           {{ item.description }}
@@ -79,24 +80,24 @@
       </ion-list>
       <div class="d-flex flex-row">
         <div>
-            <div class="d-flex flex-column">
-              <div>
-                <ion-label>Arriving</ion-label>
-              </div>
-              <div>
-                  <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
-              </div>
+          <div class="d-flex flex-column">
+            <div>
+              <ion-label>Arriving</ion-label>
             </div>
+            <div>
+              <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+            </div>
+          </div>
         </div>
         <div class="ml-auto">
-            <div class="d-flex flex-column">
-              <div>
-                <ion-label>Leaving</ion-label>
-              </div>
-              <div>
-                  <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
-              </div>
+          <div class="d-flex flex-column">
+            <div>
+              <ion-label>Leaving</ion-label>
             </div>
+            <div>
+              <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
+            </div>
+          </div>
         </div>
       </div>
       <!-- <ion-button (click)="GoTo()">Goto</ion-button> -->

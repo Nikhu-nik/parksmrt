@@ -24,7 +24,15 @@ const routes: Routes = [
   {
     path: 'user-details',
     loadChildren: () => import('./user/user-details/user-details.module').then( m => m.UserDetailsPageModule)
+  },  {
+    path: 'mybookings',
+    loadChildren: () => import('./mybookings/mybookings.module').then( m => m.MybookingsPageModule)
   },
+  {
+    path: 'messages',
+    loadChildren: () => import('./messages/messages.module').then( m => m.MessagesPageModule)
+  },
+
  
 
 ];

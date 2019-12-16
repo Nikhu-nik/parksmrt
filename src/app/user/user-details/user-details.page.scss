@@ -1,26 +1,25 @@
 ion-header{
-    background: radial-gradient( circle farthest-corner at 10% 20%, rgba(239,246,249,1) 0%, rgba(206,239,253,1) 90% );
+    background:#0cd1e8;
 }
-ion-toolbar {
-    --background: radial-gradient(
-      circle farthest-corner at 10% 20%,
-      rgba(239, 246, 249, 1) 0%,
-      rgba(206, 239, 253, 1) 90%
-    );
-}
+
 ion-col{
     padding: 0px 16px !important;
 }
 h4{
     border-bottom: 1px solid gainsboro;
     line-height: 2;
-    font-size: 17px !important;
+    font-size: 18px !important;
 }
 ion-icon{
-    color: dodgerblue;
+    color: #0cd1e8;
 }
 ion-label{
     color: #424242 !important;
     font-size: 15px !important;
 }
-
+.fullname{
+    color: white !important;
+}
+ion-item{
+    --background: #f4f5f8;
+}

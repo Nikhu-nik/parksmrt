@@ -13,25 +13,14 @@ ion-menu{
 
 ion-menu {
   ion-toolbar {
-    --background: radial-gradient(
-      circle farthest-corner at 10% 20%,
-      rgba(239, 246, 249, 1) 0%,
-      rgba(206, 239, 253, 1) 90%
-    );
+    --background: 
+      rgb(206, 239, 253);
   }
   ion-content {
-    --ion-background-color: radial-gradient(
-      circle farthest-corner at 10% 20%,
-      rgba(239, 246, 249, 1) 0%,
-      rgba(206, 239, 253, 1) 90%
-    );
+    --ion-background-color:  rgb(206, 239, 253);
   }
   ion-footer {
-    background: radial-gradient(
-      circle farthest-corner at 10% 20%,
-      rgba(239, 246, 249, 1) 0%,
-      rgba(206, 239, 253, 1) 90%
-    );
+    background: rgb(206, 239, 253);
   }
 }
 ion-label {
@@ -54,3 +43,15 @@ ion-datetime{
   color: #666666;
 }
 
+.notification-icon{
+  font-size: 24px;
+  padding-right: 8px;
+}
+ion-badge{
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  border-radius: 50%;
+  font-size: 11px;
+  padding: 3px 3px;
+}

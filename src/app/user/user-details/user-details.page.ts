@@ -14,7 +14,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 })
 export class UserDetailsPage implements OnInit {
 
-  userImg = '../../assets/images/user-avatar.svg';
+  userImg = '../../assets/images/user-avatar.png';
   data: any = {};
   fullName = 'Abdur Razack';
   mobileNumber = '';
