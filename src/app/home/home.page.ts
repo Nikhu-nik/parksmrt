@@ -3,13 +3,12 @@ import { Router } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
-import { google } from 'google-maps';
 import { LoadingController } from '@ionic/angular';
 
 declare var google: any;
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home', 
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
@@ -24,11 +23,11 @@ export class HomePage implements OnInit, AfterViewInit {
   myDate = new Date().toISOString();
 
   // gmap autocomplete variables
-  GoogleAutocomplete: google.maps.places.AutocompleteService;
+  GoogleAutocomplete;
   autocomplete: { input: string; };
   autocompleteItems: any[];
   markers: any[]; 
-  geocoder: google.maps.Geocoder;
+  geocoder;
   nearbyItems: any[];
   GooglePlaces: any;
 

@@ -3,11 +3,8 @@ ion-content{
    --background: radial-gradient( circle farthest-corner at 10% 20%, rgba(239,246,249,1) 0%, rgba(206,239,253,1) 90% );
     //--background: radial-gradient( circle farthest-corner at 18.7% 37.8%, rgba(250,250,250,1) 0%, rgba(225,234,238,1) 90% );
 }
-h4{
+h2{
     color: midnightblue;
-    font-size: 24px;
-    margin: 0;
-    
 }
 ion-button{
     height: 40px;
@@ -42,7 +39,7 @@ ion-button{
     border-radius: 50%;
 }
 .margin{
-    margin: 15px 0px;
+    margin: 20px 0px;
 }
 
 p,a{
@@ -52,6 +49,11 @@ a{
     text-decoration: underline;
 }
 
+@media screen and (max-height:568px) {
+    .margin{
+        margin: 16px 0px;
+    }
+}
 
 @media screen and (min-height:569px){
     ion-col{
