@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-msg',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MsgPage implements OnInit {
 
-  constructor() { }
+  email = 'abc@gmail.com';
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.apiService.getUserDetails()
+    .subscribe(data => {
+      this.email = data.body.email;
+    });
   }
 
 }

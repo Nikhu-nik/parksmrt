@@ -13,8 +13,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 
+
 @NgModule({
-  declarations: [AppComponent,  ],
+  declarations: [AppComponent,],
   entryComponents: [],
   imports: [
     BrowserModule,

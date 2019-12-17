@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 
+
 const routes: Routes = [
-  { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
+   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
 
   { path: 'home', 
     //canActivate: [AuthGuard],
@@ -43,10 +44,8 @@ const routes: Routes = [
   },
   {
     path: 'invite',
-    loadChildren: () => import('./invite/invite.module').then( m => m.InvitePageModule)
+    loadChildren: () => import('./invite/invite.module').then( m => m.InvitePageModule),
   },
-
-
 ];
 
 @NgModule({
