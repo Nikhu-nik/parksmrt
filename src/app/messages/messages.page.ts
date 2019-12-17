@@ -7,23 +7,58 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesPage implements OnInit {
 
-  content:string;
+  constructor() {
 
-  constructor() { 
-    
   }
+
+  content: string;
+
+  messages = [{
+    sender: 'Jhon',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Peter',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Hudson',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Adam',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Bill',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Simon',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Mosh',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Pattinson',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Robert',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  }
+
+];
 
   ngOnInit() {
   }
 
-  ionViewWillEnter(){
-    this.content="All";
+  ionViewWillEnter() {
+    this.content = 'All';
   }
 
- messages= [{
-  "sender": "abdul",
-  "discription": "hi how are you",
-  }]
-  
+ 
 
 }

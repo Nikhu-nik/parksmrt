@@ -16,7 +16,7 @@ export class UserDetailsPage implements OnInit {
 
   userImg = '../../assets/images/user-avatar.png';
   data: any = {};
-  fullName = 'Abdur Razack';
+  fullName = 'Username';
   mobileNumber = '';
   email = '';
   password = '';

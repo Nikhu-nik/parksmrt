@@ -24,7 +24,8 @@ const routes: Routes = [
   {
     path: 'user-details',
     loadChildren: () => import('./user/user-details/user-details.module').then( m => m.UserDetailsPageModule)
-  },  {
+  },
+  {
     path: 'mybookings',
     loadChildren: () => import('./mybookings/mybookings.module').then( m => m.MybookingsPageModule)
   },
@@ -32,8 +33,19 @@ const routes: Routes = [
     path: 'messages',
     loadChildren: () => import('./messages/messages.module').then( m => m.MessagesPageModule)
   },
+  {
+    path: 'help',
+    loadChildren: () => import('./help/help.module').then( m => m.HelpPageModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
+  },
+  {
+    path: 'invite',
+    loadChildren: () => import('./invite/invite.module').then( m => m.InvitePageModule)
+  },
 
- 
 
 ];
 

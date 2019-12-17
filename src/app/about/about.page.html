@@ -1,0 +1,24 @@
+<ion-header no-border>
+  <ion-toolbar color="light" >
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>About</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 class="ion-text-center">
+    <span style="color: dodgerblue;">Park</span><span style="color: orangered;">Smart</span>
+  </h1>
+  <div *ngFor="let app of version" class="ion-text-center" style="margin-top: -15px;">
+    <small>App Version: {{ app.version }}</small>
+  </div>
+</ion-content>
+
+<ion-footer no-border>
+  <div style="margin-bottom: 30px;text-align: center;">
+    <p style="color: dodgerblue;" routerLink="/t&c">Terms & Conditons</p>
+    <p style="color: dodgerblue;" routerLink="/privacypolicy">Privacy Policy</p>
+  </div>
+</ion-footer>

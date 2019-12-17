@@ -26,24 +26,19 @@
     <ion-row>
       <ion-col>
         <div [ngSwitch]="content">
-          <div *ngSwitchCase="'Unread'">
-
+          <div *ngSwitchCase="'All'">
             <div *ngFor=" let message of messages">
-              <ion-item>
-                <ion-label>
-                  {{message.sender}}
-                </ion-label><br>
-                <div>
-                  <small>{{message.discription}}</small>
-                </div><br>
-                <ion-icon name="trash" slot="end"></ion-icon>
-              </ion-item>
+              <ion-list class="ion-no-padding">
+                <ion-item lines="full" >
+                  <ion-label>
+                    <h2>{{message.sender }}</h2>
+                    <p>{{message.discription}}</p>
+                  </ion-label>
+                  <ion-icon name="trash" slot="end" color="danger"></ion-icon>
+                </ion-item>
+              </ion-list>
             </div>
-
-
-
           </div>
-
         </div>
       </ion-col>
     </ion-row>
