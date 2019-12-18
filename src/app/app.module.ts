@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -20,6 +21,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(),
     ReactiveFormsModule,
     AppRoutingModule,

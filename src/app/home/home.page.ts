@@ -32,7 +32,7 @@ export class HomePage implements OnInit, AfterViewInit {
   GooglePlaces: any;
 
   // view child for gmap
-  @ViewChild('mapElement', { static: true }) mapNativeElement: ElementRef;
+  @ViewChild('mapElement', { static: false }) mapNativeElement: ElementRef;
   placeId: string;
 
   constructor(private router: Router, private authService: AuthService,
