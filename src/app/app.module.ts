@@ -13,7 +13,6 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-// import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -21,9 +20,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
   declarations: [AppComponent,],
   entryComponents: [],
   imports: [
-    BrowserModule,
+    BrowserModule, 
     HttpClientModule,
-    // MatStepperModule,
     FormsModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(),

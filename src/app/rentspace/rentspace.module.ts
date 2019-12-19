@@ -7,15 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { RentspacePageRoutingModule } from './rentspace-routing.module';
 
 import { RentspacePage } from './rentspace.page';
-// import {MatStepperModule} from '@angular/material/stepper';
 
 
-@NgModule({
+@NgModule({ 
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    // MatStepperModule,
     RentspacePageRoutingModule
   ],
   declarations: [RentspacePage]

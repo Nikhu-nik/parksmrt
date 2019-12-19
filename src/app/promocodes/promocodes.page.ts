@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-promocodes',
@@ -9,10 +9,10 @@ import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-sca
 })
 export class PromocodesPage implements OnInit {
 
-  clear: string;
+  clearInput: string;
   scannedData: {};
 
-  constructor(private barcodeScanner: BarcodeScanner, private router: Router) {
+  constructor (private router: Router, private barcodeScanner: BarcodeScanner ) {
 
   }
 
@@ -32,7 +32,7 @@ export class PromocodesPage implements OnInit {
   }
 
   goHome() {
-    this.clear = '';
+    this.clearInput = '';
     this.router.navigate(['/home']);
   }
 

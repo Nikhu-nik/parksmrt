@@ -7,48 +7,29 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<ion-grid>
-  <ion-row>
-    <ion-col>
+<ion-content color="light">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-padding">
+        <div>
+          <h5>Enter Address of your parking space</h5>
+        </div>
+        <div>
+          <ion-item>
+            <ion-label>Country</ion-label>
+            <ion-select ok-text="Ok" cancel-text="Cancel">
+              <ion-select-option *ngFor="let country of countryList">
+                {{ country.name }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
 
-<!-- 
-      <mat-horizontal-stepper linear #stepper>
-        <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
-          <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <mat-form-field>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-          <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Fill out your address</ng-template>
-            <mat-form-field>
-              <input matInput placeholder="Address" formControlName="secondCtrl" required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          You are now done.
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
-        </mat-step>
-      </mat-horizontal-stepper> -->
-
-
-    </ion-col>
-  </ion-row>
-</ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer no-border color="light">
+  <ion-button expand="full" color="secondary">Continue</ion-button>
+</ion-footer>
