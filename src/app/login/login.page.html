@@ -22,7 +22,7 @@
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Email or phone number</ion-label>
-                <ion-input type="text" formControlName="username" required></ion-input>
+                <ion-input type="text" formControlName="username" ></ion-input>
               </ion-item>
               <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && (loginForm.controls['username'].touched 
                           || loginForm.controls['username'].dirty)">
@@ -30,7 +30,7 @@
               </div>
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Password</ion-label>
-                <ion-input type="password" formControlName="password" required></ion-input>
+                <ion-input type="password" formControlName="password"></ion-input>
               </ion-item>
               <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && (loginForm.controls['password'].touched 
                           || loginForm.controls['password'].dirty)">

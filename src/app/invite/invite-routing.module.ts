@@ -15,19 +15,7 @@ const routes: Routes = [
       {path: 'whatsapp', loadChildren: () => import('./whatsapp/whatsapp.module').then( m => m.WhatsappPageModule)},
     ],
   },
-  
-  // {
-  //   path: 'msg',
-  //   loadChildren: () => import('./msg/msg.module').then( m => m.MsgPageModule)
-  // },
-  // {
-  //   path: 'fb',
-  //   loadChildren: () => import('./fb/fb.module').then( m => m.FbPageModule)
-  // },
-  // {
-  //   path: 'whatsapp',
-  //   loadChildren: () => import('./whatsapp/whatsapp.module').then( m => m.WhatsappPageModule)
-  // }
+ 
 ];
 
 

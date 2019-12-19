@@ -9,7 +9,6 @@ const routes: Routes = [
   { path: 'home', 
     //canActivate: [AuthGuard],
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-    
   {
     path: 'landing-page',
     loadChildren: () => import('./landing-page/landing-page.module').then( m => m.LandingPagePageModule)
@@ -46,6 +45,15 @@ const routes: Routes = [
     path: 'invite',
     loadChildren: () => import('./invite/invite.module').then( m => m.InvitePageModule),
   },
+  {
+    path: 'promocodes',
+    loadChildren: () => import('./promocodes/promocodes.module').then( m => m.PromocodesPageModule)
+  },  {
+    path: 'rentspace',
+    loadChildren: () => import('./rentspace/rentspace.module').then( m => m.RentspacePageModule)
+  },
+
+
 ];
 
 @NgModule({

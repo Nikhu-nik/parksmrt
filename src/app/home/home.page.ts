@@ -4,6 +4,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
 import { LoadingController } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 
 declare var google: any;
 
@@ -33,12 +34,15 @@ export class HomePage implements OnInit, AfterViewInit {
 
   // view child for gmap
   @ViewChild('mapElement', { static: false }) mapNativeElement: ElementRef;
+
   placeId: string;
+  backButtonSubscription: any;
 
   constructor(private router: Router, private authService: AuthService,
               private apiService: ApiService,
               private geolocation: Geolocation,
               public loadingController: LoadingController,
+              private platform: Platform,
               public ngZone: NgZone) {
                 this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
                 this.autocomplete = { input: '' };
@@ -198,6 +202,17 @@ export class HomePage implements OnInit, AfterViewInit {
       }
     });
   }
+    // Back button exit app
+  ionViewDidEnter() {
+    this.backButtonSubscription = this.platform.backButton
+    .subscribe(() => {
+       navigator['app'].exitApp();
+      });
+   }
+
+  ionViewWillLeave() {
+    this.backButtonSubscription.unsubscribe();
+   }
 
   // GoTo(){
   //   return window.location.href = 'https://www.google.com/maps/place/?q=place_id:'+this.placeId;

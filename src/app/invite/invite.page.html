@@ -18,8 +18,8 @@
           <ion-icon name="logo-facebook" color="primary" class="fb-icon" routerLink="/invite/fb"></ion-icon>
           <ion-icon name="logo-whatsapp" color="success" class="w-icon" routerLink="/invite/whatsapp"></ion-icon>
         </div>
-        <div [@routeAnimations]="prepareRoute(outlet)">
-          <router-outlet #outlet="outlet" ></router-outlet>
+        <div>
+          <router-outlet ></router-outlet>
         </div>
       </ion-col>
     </ion-row>

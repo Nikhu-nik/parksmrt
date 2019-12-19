@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -25,23 +25,25 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat|Muli|Noto+Serif|Raleway|Yanone+Kaffeesatz&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Oxygen|PT+Sans|Sulphur+Point|Ubuntu&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat|Muli|Noto+Serif|Raleway|Yanone+Kaffeesatz&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Oxygen|PT+Sans|Sulphur+Point|Ubuntu&display=swap");
 
-*{
-    font-family: 'Sulphur Point';
-    box-sizing: border-box;
+* {
+  font-family: "Sulphur Point";
+  box-sizing: border-box;
 }
 
 .buttonCss {
-    color: red !important;
-  }
+  color: red !important;
+}
 
-  ion-label{
-      font-family: 'Sulphur Point' !important;
-  }
+ion-label {
+  font-family: "Sulphur Point" !important;
+}
+ion-input {
+  font-family: "Sulphur Point";
+}
 
-  .custom-loading{
-      --spinner-color: dodgerblue ;
-  }
-
+.custom-loading {
+  --spinner-color: dodgerblue;
+}

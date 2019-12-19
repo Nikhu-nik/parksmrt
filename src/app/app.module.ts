@@ -8,10 +8,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { HttpClientModule, HttpParams } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+// import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -21,6 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     HttpClientModule,
+    // MatStepperModule,
+    FormsModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(),
     ReactiveFormsModule,
@@ -32,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpParams,
     Geolocation,
     ImagePicker,
+    BarcodeScanner,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
