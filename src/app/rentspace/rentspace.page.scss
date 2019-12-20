@@ -10,10 +10,9 @@ h5{
 }
 
 ion-card{
-    background: white !important;
-    margin: 0px;
-
+    background: white;
 }
+
 
 ion-label{
     font-size: 15px !important;
@@ -21,6 +20,7 @@ ion-label{
 
 
 .map {
-    height: 60vh;
+    height: 50vh;
     width: 100%;
+    margin-bottom: 20px;
   }
