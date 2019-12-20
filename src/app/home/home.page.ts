@@ -185,6 +185,7 @@ export class HomePage implements OnInit, AfterViewInit {
     this.autocompleteItems = [];
     this.geocoder.geocode({ 'placeId': item.place_id }, (results, status) => {
       if (status === 'OK' && results[0]) {
+        
         this.autocompleteItems = [];
         this.GooglePlaces.nearbySearch({
           location: results[0].geometry.location,
@@ -213,6 +214,15 @@ export class HomePage implements OnInit, AfterViewInit {
   ionViewWillLeave() {
     this.backButtonSubscription.unsubscribe();
    }
+
+   clearAutocomplete() {
+    if (this.autocomplete.input !== '' ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
   // GoTo(){
   //   return window.location.href = 'https://www.google.com/maps/place/?q=place_id:'+this.placeId;

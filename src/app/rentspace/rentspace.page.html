@@ -7,24 +7,59 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
+<ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col class="ion-padding">
-        <div>
-          <h5>Enter Address of your parking space</h5>
-        </div>
-        <div>
-          <ion-item>
-            <ion-label>Country</ion-label>
-            <ion-select ok-text="Ok" cancel-text="Cancel">
-              <ion-select-option *ngFor="let country of countryList">
-                {{ country.name }}
-              </ion-select-option>
-            </ion-select>
-          </ion-item>
-        </div>
+      <ion-col>
+        <mat-horizontal-stepper labelPosition="bottom" #stepper>
+          <mat-step label="Address">
+            <ion-card>
+              <div>
+                <h5 style="color: black;">Enter Country</h5>
+              </div>
+              <div>
+                <ion-item lines="none" color="none">
+                  <ion-label style="color: #737373;">Choose your country</ion-label>
+                  <ion-select ok-text="Ok" cancel-text="Cancel">
+                    <ion-select-option *ngFor="let country of countryList">
+                      {{ country.name }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+              <div>
+                <h5 style="color: black;">Enter Address of your parking space</h5>
+              </div>
+              <form [formGroup]="firstFormGroup">
+                <ion-item color="none">
+                  <ion-label position="floating" style="color: #737373;">Enter Address</ion-label>
+                  <ion-input clearInput inputmode="search"  formControlName="address" [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()"></ion-input>
+                </ion-item>
+                <ion-list *ngIf="clearAutocomplete()"  [hidden]="autocompleteItems.length == 0">
+                  <ion-item *ngFor="let item of autocompleteItems" tappable>
+                    {{ item.description }}
+                  </ion-item>
+                </ion-list >
+                <div class="next-btn">
+                  <button mat-raised-button matStepperNext type="button" color="primary">Next</button>
+                </div>
+              </form>
+            </ion-card>
+            
+          </mat-step>
 
+          <mat-step label="Location">
+            <div>
+              <button mat-button matStepperNext type="button">Next</button>
+            </div>
+          </mat-step>
+
+          <mat-step label="Details">
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
       </ion-col>
     </ion-row>
   </ion-grid>
