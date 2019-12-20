@@ -51,18 +51,17 @@ ion-input {
 .mat-step-header{
   padding: 0 !important;
 }
-.mat-stepper-horizontal{
-  background: white;
-}
+
 .mat-horizontal-stepper-header-container {
-  background: white !important;
+  background: #f4f5f9 !important;
   margin-top: 15px !important;
-  margin-bottom: 15px !important;
+  padding-bottom: 15px !important;
 }
 
 .mat-horizontal-content-container{
   padding: 0px !important;
   padding-bottom: 20px !important;
+  background: #f4f5f9 !important;
 }
 
 .mat-horizontal-stepper-content{

@@ -215,6 +215,7 @@ export class HomePage implements OnInit, AfterViewInit {
     this.backButtonSubscription.unsubscribe();
    }
 
+   
    clearAutocomplete() {
     if (this.autocomplete.input !== '' ) {
       return true;

@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="light">
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -18,7 +18,7 @@
                 <h5 style="color: black;">Enter Country</h5>
               </div>
               <div>
-                <ion-item lines="none" color="none">
+                <ion-item lines="none">
                   <ion-label style="color: #737373;">Choose your country</ion-label>
                   <ion-select ok-text="Ok" cancel-text="Cancel">
                     <ion-select-option *ngFor="let country of countryList">
@@ -31,27 +31,46 @@
                 <h5 style="color: black;">Enter Address of your parking space</h5>
               </div>
               <form [formGroup]="firstFormGroup">
-                <ion-item color="none">
+                <ion-item>
                   <ion-label position="floating" style="color: #737373;">Enter Address</ion-label>
-                  <ion-input clearInput inputmode="search"  formControlName="address" [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()"></ion-input>
+                  <ion-input clearInput inputmode="search" formControlName="address" [(ngModel)]="autocomplete.input"
+                    (ionInput)="updateSearchResults()"></ion-input>
                 </ion-item>
-                <ion-list *ngIf="clearAutocomplete()"  [hidden]="autocompleteItems.length == 0">
+                <ion-list *ngIf="clearAutocomplete()" [hidden]="autocompleteItems.length == 0">
                   <ion-item *ngFor="let item of autocompleteItems" tappable>
                     {{ item.description }}
                   </ion-item>
-                </ion-list >
-                <div class="next-btn">
+                </ion-list>
+                <div class="next-btn" style="text-align: end;">
                   <button mat-raised-button matStepperNext type="button" color="primary">Next</button>
                 </div>
               </form>
             </ion-card>
-            
+
           </mat-step>
 
           <mat-step label="Location">
-            <div>
-              <button mat-button matStepperNext type="button">Next</button>
-            </div>
+            <ion-card>
+              <div>
+                <h5 style="color: black; font-size: 16px;"><b>Specify the location of your parking
+                    space</b></h5>
+              </div>
+              <div>
+                <p style="padding:0px 16px; font-size: 14px;">
+                  Drag the pin to the entrance of your space(and not on the top of your building).
+                  Setting this correctly is the key to ensuring people can find your location.
+                </p>
+              </div>
+              <div #mapElement class="map"></div>
+              <div class="d-flex" style="padding: 20px 16px;">
+                <div >
+                  <button mat-raised-button matStepperPrevious type="button" color="primary">Back</button>
+                </div>
+                <div class=" ml-auto" >
+                  <button mat-raised-button matStepperNext type="button" color="primary">Next</button>
+                </div>
+              </div>
+            </ion-card>
           </mat-step>
 
           <mat-step label="Details">
@@ -64,7 +83,3 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-
-<ion-footer no-border color="light">
-  <ion-button expand="full" color="secondary">Continue</ion-button>
-</ion-footer>
