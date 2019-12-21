@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { ApiService } from '../service/api.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingService } from '../service/loading.service';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   constructor(private router: Router, private formBuilder: FormBuilder,
               private authService: AuthService,
               private ApiService: ApiService,
-              public loadingController: LoadingController,
+              public loading: LoadingService,
   ) { }
 
   ngOnInit() {
@@ -56,7 +56,9 @@ export class LoginPage implements OnInit {
 
   onSubmit(error) {
     if (this.f.username.value === 'user' && this.f.password.value === 'password'){
+      this.loading.present();
       this.router.navigate(['/home']);
+      this.loading.dismiss();
     } else {
       alert(error);
     }

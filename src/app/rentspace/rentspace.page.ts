@@ -20,6 +20,7 @@ export class RentspacePage implements OnInit, AfterViewInit {
   GoogleAutocomplete;
   autocomplete: { input: string; };
   autocompleteItems: any[];
+  currentNumber = 0;
 
   constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, public ngZone: NgZone,private geolocation: Geolocation,) { 
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
@@ -115,6 +116,13 @@ export class RentspacePage implements OnInit, AfterViewInit {
     }
   }
 
+   increment() {
+    this.currentNumber++;
+  }
+
+   decrement() {
+    this.currentNumber--;
+  }
 }
 
 
