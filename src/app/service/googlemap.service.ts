@@ -10,6 +10,8 @@ import {
   MyLocationOptions,
   GoogleMapControlOptions,
 } from '@ionic-native/google-maps/ngx';
+import { GpsPermissionService } from './gps-permission.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,7 @@ export class GooglemapService {
 
   map: GoogleMap;
 
-  constructor( public toastCtrl: ToastController, ) {
+  constructor( public toastCtrl: ToastController,private gpsPermissionService: GpsPermissionService ) {
    }
 
    loadMap() {
@@ -39,6 +41,7 @@ export class GooglemapService {
   }
 
   goToMyLocation() {
+    this.gpsPermissionService.checkGPSPermission();
     const option: MyLocationOptions = {
       enableHighAccuracy: true
     };
@@ -62,10 +65,7 @@ export class GooglemapService {
       });
       // show the infoWindow
       marker.showInfoWindow();
-    }).catch(err => {
-      // this.loading.dismiss();
-      this.showToast(err.error_message);
-    });
+    })
   }
   async showToast(message: string) {
     const toast = await this.toastCtrl.create({
@@ -98,9 +98,9 @@ export class GooglemapService {
       });
       // show the infoWindow
       marker.showInfoWindow();
-    }).catch(err => {
+    }).catch(() => {
       // this.loading.dismiss();
-      this.showToast(err.error_message);
+      this.showToast('Please turn On device Gps');
     });
   }
 
