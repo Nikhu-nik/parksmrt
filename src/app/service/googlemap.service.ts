@@ -55,7 +55,7 @@ export class GooglemapService {
       // Move the map camera to the location with animation
       this.map.animateCamera({
         target: location.latLng,
-        zoom: 15,
+        zoom: 13,
         bearing: 0,
         duration: 1000
       });
@@ -80,7 +80,7 @@ export class GooglemapService {
       // Move the map camera to the location with animation
       this.map.animateCamera({
         target: location.latLng,
-        zoom: 17,
+        zoom: 15,
         bearing: 0,
         duration: 1000
       });
