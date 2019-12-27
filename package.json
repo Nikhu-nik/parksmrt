@@ -110,8 +110,8 @@
       "cordova-plugin-android-permissions": {}
     },
     "platforms": [
-      "android",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }

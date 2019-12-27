@@ -5,7 +5,6 @@ import {
   GoogleMap,
   Marker,
   MyLocation,
-  Environment,
   MyLocationOptions,
   GoogleMapControlOptions,
 } from '@ionic-native/google-maps/ngx';
@@ -23,10 +22,6 @@ export class GooglemapService {
   }
 
   loadMap() {
-    Environment.setEnv({
-      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyCgfwBLFmFo-1p0KhTakTZbisHSDI9JMn8',
-      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyCgfwBLFmFo-1p0KhTakTZbisHSDI9JMn8'
-    });
     const mapOptions: GoogleMapControlOptions = {
       compass: false,
       myLocationButton: false,
