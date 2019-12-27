@@ -10,9 +10,9 @@ import { RentspacePage } from './rentspace.page';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
+import { GooglemapService } from '../service/googlemap.service';
 
-
-@NgModule({ 
+@NgModule({
   imports: [
     CommonModule,
     FormsModule,
@@ -24,6 +24,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule,
     RentspacePageRoutingModule
   ],
-  declarations: [RentspacePage]
+  declarations: [RentspacePage],
+  providers: [GooglemapService  ]
 })
 export class RentspacePageModule {}

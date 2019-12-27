@@ -16,8 +16,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
-import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { GooglemapService } from './service/googlemap.service';
+import { ApiService } from './service/api.service';
+import { AuthService } from './service/auth.service';
 
 
 @NgModule({
@@ -43,8 +44,9 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
     Geolocation,
     ImagePicker,
     BarcodeScanner,
-    LocationAccuracy,
-    AndroidPermissions,
+    GooglemapService,
+    ApiService,
+    AuthService,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

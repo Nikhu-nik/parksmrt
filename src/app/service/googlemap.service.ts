@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
-import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import {
   GoogleMaps,
   GoogleMap,
@@ -21,9 +19,7 @@ export class GooglemapService {
   map: GoogleMap;
 
   constructor(
-    public toastCtrl: ToastController,
-    private androidPermissions: AndroidPermissions,
-    private locationAccuracy: LocationAccuracy) {
+    public toastCtrl: ToastController, ) {
   }
 
   loadMap() {
@@ -40,7 +36,6 @@ export class GooglemapService {
       mapToolbar: false
     };
     this.map = GoogleMaps.create('map_canvas', mapOptions);
-    this.checkGPSPermission();
     this.goToMyLocation();
   }
 
@@ -94,48 +89,6 @@ export class GooglemapService {
     }).catch(() => {
       this.showToast('Please Turn ON Device GPS');
     });
-  }
-
-  // Check if application having GPS access permission  
-  checkGPSPermission() {
-    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
-      result => {
-        if (result.hasPermission) {
-
-          // If having permission show 'Turn On GPS' dialogue
-          this.askToTurnOnGPS();
-        } else {
-
-          // If not having permission ask for permission
-          this.requestGPSPermission();
-        }
-      },
-    );
-  }
-
-  requestGPSPermission() {
-    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
-      if (canRequest) {
-      } else {
-        // Show 'GPS Permission Request' dialogue
-        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
-          .then(
-            () => {
-              // call method to turn on GPS
-              this.askToTurnOnGPS();
-            },
-          );
-      }
-    });
-  }
-
-  askToTurnOnGPS() {
-    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-      () => {
-        // When GPS Turned ON call method to get Accurate location coordinates
-        this.goToMyLocation();
-      },
-    );
   }
 
   async showToast(message: string) {
