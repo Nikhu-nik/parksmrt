@@ -1,6 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { NgForm, FormControl } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 import { MustMatch } from '../_helpers/must-match.validator';

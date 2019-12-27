@@ -1,6 +1,7 @@
 import { OnInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-promocodes',
@@ -9,22 +10,29 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 })
 export class PromocodesPage implements OnInit {
 
+  qrCodeForm: FormGroup;
   clearInput: string;
-  scannedData: {};
+  scannedData;
 
-  constructor (private router: Router, private barcodeScanner: BarcodeScanner ) {
-
+  constructor(private router: Router, private barcodeScanner: BarcodeScanner, private formBuilder: FormBuilder) {
+    this.scannedData = {};
   }
 
   ngOnInit() {
+    this.qrCodeForm = this.formBuilder.group({
+      promoCode: ['', Validators.required],
+    });
+  }
+
+  onFormSubmit(form: NgForm) {
+
   }
 
   scanCode() {
     this.barcodeScanner
       .scan()
       .then(barcodeData => {
-        alert('Barcode data ' + JSON.stringify(barcodeData));
-        this.scannedData = barcodeData;
+        this.scannedData = barcodeData.text;
       })
       .catch(err => {
         console.log('Error', err);

@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, OnInit, ElementRef, ViewChild, NgZone} from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Platform } from '@ionic/angular';
+import { GooglemapService } from '../service/googlemap.service';
 
 declare var google: any;
 
@@ -10,27 +11,27 @@ declare var google: any;
   templateUrl: './rentspace.page.html',
   styleUrls: ['./rentspace.page.scss'],
 })
-export class RentspacePage implements OnInit, AfterViewInit {
+export class RentspacePage implements OnInit {
 
-  latitude: any;
-  longitude: any;
   countryList;
   firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
   GoogleAutocomplete;
   autocomplete: { input: string; };
   autocompleteItems: any[];
-  currentNumber = 0;
+  currentNumber = 1;
 
-  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, public ngZone: NgZone,private geolocation: Geolocation,) { 
+  constructor(private httpClient: HttpClient,
+              private formBuilder: FormBuilder,
+              public ngZone: NgZone,
+              private platform: Platform,
+              private googlemapService: GooglemapService, ) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = { input: '' };
     this.autocompleteItems = [];
   }
 
-  @ViewChild('mapElement', { static: false }) mapNativeElement: ElementRef;
 
-  ngOnInit() {
+ async ngOnInit() {
     this.httpClient.get('https://restcountries.eu/rest/v2/all')
       .subscribe((data) => {
         this.countryList = data;
@@ -39,57 +40,8 @@ export class RentspacePage implements OnInit, AfterViewInit {
     this.firstFormGroup = this.formBuilder.group({
       address: ['', Validators.required]
     });
-    this.secondFormGroup = this.formBuilder.group({
-      address: ['', Validators.required]
-    });
-  }
-
-  ngAfterViewInit(): void {
-    const options = {
-      timeout: 25000,
-      enableHighAccuracy: true
-    };
-    this.geolocation.getCurrentPosition(options).then((resp) => {
-      this.latitude = resp.coords.latitude;
-      this.longitude = resp.coords.longitude;
-      const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
-        center: { lat: 12.979316, lng: 77.599773 },
-        zoom: 14,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDefaultUI: true,
-      });
-
-
-      /*location object*/
-      const pos = {
-        lat: this.latitude,
-        lng: this.longitude
-      };
-      map.setCenter(pos);
-      const icon = {
-        url: '../assets/images/marker1.svg', // image url
-        scaledSize: new google.maps.Size(50, 50), // scaled size
-      };
-
-      const marker = new google.maps.Marker({
-        position: pos,
-        map: map,
-        optimized: false,
-        icon: icon,
-        animation: google.maps.Animation.DROP,
-      });
-
-
-      const infoWindow = new google.maps.InfoWindow;
-      infoWindow.setPosition(pos);
-      map.setCenter(pos);
-      // marker.addListener('click', function () {
-      //   infoWindow.open(map, marker);
-      // });
-
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+    await this.platform.ready();
+    await this.googlemapService.loadMap();
   }
 
   updateSearchResults() {
@@ -109,18 +61,18 @@ export class RentspacePage implements OnInit, AfterViewInit {
   }
 
   clearAutocomplete() {
-    if (this.autocomplete.input !== '' ) {
+    if (this.autocomplete.input !== '') {
       return true;
     } else {
       return false;
     }
   }
 
-   increment() {
+  increment() {
     this.currentNumber++;
   }
 
-   decrement() {
+  decrement() {
     this.currentNumber--;
   }
 }

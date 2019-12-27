@@ -16,10 +16,13 @@
             <h2>Enter it below or scan your barcode</h2>
           </div>
           <div>
-            <ion-item color="none" class="ion-no-padding">
-              <ion-input clearInput placeholder="Enter a promo code" [(ngModel)]="clearInput" [(ngModel)]="scannedData"></ion-input>
-              <img src="../assets/images/qr-icon.png" width="32px"  (click)="scanCode()" class="qr-icon">
-            </ion-item>
+            <form [formGroup]="qrCodeForm" (ngSubmit)="onFormSubmit(qrCodeForm.value)">
+              <ion-item color="none" class="ion-no-padding">
+                <ion-input clearInput placeholder="Enter a promo code" [(ngModel)]="clearInput" [value]="scannedData" formControlName="promoCode">
+                </ion-input>
+                <img src="../assets/images/qr-icon.png" width="32px" (click)="scanCode()" class="qr-icon">
+              </ion-item>
+            </form>
           </div>
         </ion-col>
       </ion-row>
@@ -30,7 +33,7 @@
       </ion-fab-button>
     </ion-fab>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="primary">
+      <ion-fab-button color="primary" (click)="onFormSubmit(qrCodeForm.value)">
         <ion-icon name="checkmark"></ion-icon>
       </ion-fab-button>
     </ion-fab>
