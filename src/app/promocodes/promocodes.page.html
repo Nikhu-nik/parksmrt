@@ -18,7 +18,7 @@
           <div>
             <form [formGroup]="qrCodeForm" (ngSubmit)="onFormSubmit(qrCodeForm.value)">
               <ion-item color="none" class="ion-no-padding">
-                <ion-input clearInput placeholder="Enter a promo code" [(ngModel)]="clearInput" [value]="scannedData" formControlName="promoCode">
+                <ion-input clearInput placeholder="Enter a promo code" [(ngModel)]="scannedData" formControlName="promoCode">
                 </ion-input>
                 <img src="../assets/images/qr-icon.png" width="32px" (click)="scanCode()" class="qr-icon">
               </ion-item>

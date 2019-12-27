@@ -11,11 +11,9 @@ import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class PromocodesPage implements OnInit {
 
   qrCodeForm: FormGroup;
-  clearInput: string;
   scannedData;
 
   constructor(private router: Router, private barcodeScanner: BarcodeScanner, private formBuilder: FormBuilder) {
-    this.scannedData = {};
   }
 
   ngOnInit() {
@@ -40,7 +38,7 @@ export class PromocodesPage implements OnInit {
   }
 
   goHome() {
-    this.clearInput = '';
+    this.qrCodeForm.reset();
     this.router.navigate(['/home']);
   }
 

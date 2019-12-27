@@ -57,7 +57,7 @@ export class GooglemapService {
         target: location.latLng,
         zoom: 15,
         bearing: 0,
-        // duration: 1000
+        duration: 1000
       });
 
       // add a marker
@@ -67,7 +67,7 @@ export class GooglemapService {
         animation: 'DROP'
       });
       // show the infoWindow
-      // marker.showInfoWindow();
+      marker.showInfoWindow();
     });
   }
 
@@ -82,7 +82,7 @@ export class GooglemapService {
         target: location.latLng,
         zoom: 17,
         bearing: 0,
-        // duration: 1000
+        duration: 1000
       });
       // add a marker
       const marker: Marker = this.map.addMarkerSync({
@@ -90,9 +90,8 @@ export class GooglemapService {
         position: location.latLng,
       });
       // show the infoWindow
-      // marker.showInfoWindow();
+      marker.showInfoWindow();
     }).catch(() => {
-      // this.loading.dismiss();
       this.showToast('Please Turn ON Device GPS');
     });
   }
