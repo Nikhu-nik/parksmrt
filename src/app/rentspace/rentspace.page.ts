@@ -36,11 +36,10 @@ export class RentspacePage implements OnInit {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = { input: '' };
     this.autocompleteItems = [];
-    this.loadMap();
   }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     this.httpClient.get('https://restcountries.eu/rest/v2/all')
       .subscribe((data) => {
         this.countryList = data;
@@ -49,8 +48,8 @@ export class RentspacePage implements OnInit {
     this.firstFormGroup = this.formBuilder.group({
       address: ['', Validators.required]
     });
-
-    this.loadMap();
+    await this.platform.ready();
+    await this.loadMap();
   }
 
   loadMap() {
@@ -63,7 +62,7 @@ export class RentspacePage implements OnInit {
       mapToolbar: false
     };
     this.map = GoogleMaps.create('map_canvas', mapOptions);
-    // this.goToMyLocation();
+    this.goToMyLocation();
   }
 
   goToMyLocation() {

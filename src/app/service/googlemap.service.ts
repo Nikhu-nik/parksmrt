@@ -65,6 +65,7 @@ export class GooglemapService {
     const option: MyLocationOptions = {
       enableHighAccuracy: true
     };
+    this.map.clear();
     // Get the location of you
     this.map.getMyLocation(option).then((location: MyLocation) => {
       // Move the map camera to the location with animation
