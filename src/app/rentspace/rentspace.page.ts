@@ -29,18 +29,18 @@ export class RentspacePage implements OnInit {
   currentNumber = 1;
 
   constructor(private httpClient: HttpClient,
-              private formBuilder: FormBuilder,
-              public ngZone: NgZone,
-              private platform: Platform,
+    private formBuilder: FormBuilder,
+    public ngZone: NgZone,
+    private platform: Platform,
   ) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = { input: '' };
     this.autocompleteItems = [];
-
+    this.loadMap();
   }
 
 
-  async ngOnInit() {
+  ngOnInit() {
     this.httpClient.get('https://restcountries.eu/rest/v2/all')
       .subscribe((data) => {
         this.countryList = data;
@@ -49,8 +49,8 @@ export class RentspacePage implements OnInit {
     this.firstFormGroup = this.formBuilder.group({
       address: ['', Validators.required]
     });
-    await this.platform.ready();
-    await this.loadMap();
+
+    this.loadMap();
   }
 
   loadMap() {
@@ -63,7 +63,7 @@ export class RentspacePage implements OnInit {
       mapToolbar: false
     };
     this.map = GoogleMaps.create('map_canvas', mapOptions);
-    this.goToMyLocation();
+    // this.goToMyLocation();
   }
 
   goToMyLocation() {
@@ -71,7 +71,6 @@ export class RentspacePage implements OnInit {
       enableHighAccuracy: true
     };
     this.map.clear();
-
     // Get the location of you
     this.map.getMyLocation(option).then((location: MyLocation) => {
       // Move the map camera to the location with animation
