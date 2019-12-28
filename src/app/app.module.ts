@@ -11,11 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
-import { MatButtonModule } from '@angular/material/button';
 import { GooglemapService } from './service/googlemap.service';
 import { ApiService } from './service/api.service';
 import { AuthService } from './service/auth.service';
@@ -28,10 +25,6 @@ import { AuthService } from './service/auth.service';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(),
     ReactiveFormsModule,

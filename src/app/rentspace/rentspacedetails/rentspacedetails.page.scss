@@ -1,0 +1,49 @@
+h5{
+    margin-left: 16px;
+    font-size: 16px;
+}
+
+ion-card{
+    background: white;
+}
+
+
+ion-label{
+    font-size: 15px !important;
+}
+
+
+hr{
+    height: 1px;
+    border-width: 1px;
+    box-sizing: content-box;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ion-list{
+    background: #f4f5f9;
+}
+.space-value{
+    padding: 0px 15px;
+    margin: 0px 15px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+}
+.car-img{
+    width: 80px;
+}
+
+ion-textarea{
+    border: 1px solid darkgrey !important;
+    border-radius: 4px !important;
+    margin-bottom: 20px !important;
+}
+
+.mobile-num{
+    border: 1px solid darkgrey !important;
+    border-radius: 4px !important;
+    margin: 0px 16px !important;
+    margin-bottom: 20px !important;
+}

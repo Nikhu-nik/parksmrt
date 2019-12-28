@@ -7,9 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RentspacePageRoutingModule } from './rentspace-routing.module';
 
 import { RentspacePage } from './rentspace.page';
-import {MatStepperModule} from '@angular/material/stepper';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
-import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   imports: [
@@ -17,10 +15,6 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     RentspacePageRoutingModule
   ],
   declarations: [RentspacePage],

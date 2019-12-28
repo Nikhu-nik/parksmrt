@@ -1,0 +1,136 @@
+<ion-header no-border>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/rentspace"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add your space for rent</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-radio-group>
+    <ion-list-header>
+      <h4 style="font-size: 18px; margin: 0px;">What type of parking do you have?</h4>
+    </ion-list-header>
+
+    <ion-item lines="none" color="none">
+      <ion-label>Driveway</ion-label>
+      <ion-radio slot="start" value="Driveway" checked></ion-radio>
+    </ion-item>
+
+    <ion-item lines="none" color="none">
+      <ion-label>Garage</ion-label>
+      <ion-radio slot="start" value="Garage"></ion-radio>
+    </ion-item>
+
+    <ion-item lines="none" color="none">
+      <ion-label>Car Park</ion-label>
+      <ion-radio slot="start" value="CarPark"></ion-radio>
+    </ion-item>
+
+    <ion-item lines="none" color="none">
+      <ion-label>On-street</ion-label>
+      <ion-radio slot="start" value="OnStreet"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  <hr>
+  <ion-list-header>
+    <h4 style="font-size: 18px; margin: 0px;">How many spaces do you have for rent?</h4>
+  </ion-list-header>
+
+  <ion-item lines="none" color="none">
+    <ion-icon name="remove-circle-outline" (click)=" decrement()"></ion-icon>
+    <div class="space-value">
+      {{currentNumber}}
+    </div>
+    <ion-icon name="add-circle-outline" (click)=" increment()"></ion-icon>
+  </ion-item>
+  <hr>
+  <ion-list-header>
+    <h4 style="font-size: 18px; margin: 0px;">What is the largest vehicle your space can accommodate?</h4>
+  </ion-list-header>
+  <div style="padding: 0px 16px;">
+    <small>Setect the largest vehicle possible that can fit through the entrance and into the space
+      itself.</small>
+  </div>
+  <ion-card style="margin: 20px 0px;">
+    <ion-radio-group>
+      <ion-item>
+        <ion-label>Small</ion-label>
+        <ion-radio slot="start" value="small"></ion-radio>
+        <img src="../assets/images/smallcar.jpg" class="car-img" alt="">
+      </ion-item>
+      <ion-item>
+        <ion-label>Medium</ion-label>
+        <ion-radio slot="start" value="medium"></ion-radio>
+        <img src="../assets/images/mediumcar.jpg" class="car-img" alt="">
+      </ion-item>
+      <ion-item>
+        <ion-label>Large</ion-label>
+        <ion-radio slot="start" value="large"></ion-radio>
+        <img src="../assets/images/largecar.jpg" class="car-img" alt="">
+      </ion-item>
+      <ion-item>
+        <ion-label>Van</ion-label>
+        <ion-radio slot="start" value="van"></ion-radio>
+        <img src="../assets/images/van.png" class="car-img" alt="">
+      </ion-item>
+    </ion-radio-group>
+  </ion-card>
+  <hr>
+  <ion-list-header>
+    <h4 style="font-size: 18px; margin: 0px;">What features does your location offer?</h4>
+  </ion-list-header>
+  <ion-item lines="none" color="none">
+    <ion-label>Covered parking</ion-label>
+    <ion-checkbox slot="start" name="coveredParking"></ion-checkbox>
+  </ion-item>
+  <ion-item lines="none" color="none">
+    <ion-label>CCTV</ion-label>
+    <ion-checkbox slot="start" name="cctv"></ion-checkbox>
+  </ion-item>
+  <ion-item lines="none" color="none">
+    <ion-label>Securely gated</ion-label>
+    <ion-checkbox slot="start" name="securelyGated"></ion-checkbox>
+  </ion-item>
+  <ion-item lines="none" color="none">
+    <ion-label>Disabled access</ion-label>
+    <ion-checkbox slot="start" name="disabledAccess"></ion-checkbox>
+  </ion-item>
+  <ion-item lines="none" color="none">
+    <ion-label>Electric vehicle charging</ion-label>
+    <ion-checkbox slot="start" name="electricCharging"></ion-checkbox>
+  </ion-item>
+  <ion-item lines="none" color="none">
+    <ion-label>Lighting</ion-label>
+    <ion-checkbox slot="start" name="lighting"></ion-checkbox>
+  </ion-item>
+  <ion-item lines="none" color="none">
+    <ion-label>Airport transfers by the space owner</ion-label>
+    <ion-checkbox slot="start" name="airportTransfer"></ion-checkbox>
+  </ion-item>
+  <hr>
+  <ion-list-header>
+    <h4 style="font-size: 18px; margin: 0px;">About your space and local area</h4>
+  </ion-list-header>
+  <div style="padding: 0px 16px;">
+    <small>Write something here to help drivers choose your space.Any selling point e.g how far is it from
+      transport links or neraby attraction (in minutes)? Anything drivers should be aware of before
+      booking.</small>
+  </div>
+  <div style="padding: 0px 16px;">
+    <small>Dont include any contact details or sensitive information here.</small>
+  </div>
+  <div>
+    <ion-item color="none" lines="none">
+      <ion-textarea rows="6" cols="20"></ion-textarea>
+    </ion-item>
+  </div>
+  <hr>
+  <ion-list-header>
+    <h4 style="font-size: 18px; margin: 0px;">What is your mobile number?</h4>
+  </ion-list-header>
+  <ion-item color="none" lines="none" class="mobile-num">
+    <ion-input placeholder="Enter mobile number" clearInput type="tel"></ion-input>
+  </ion-item>
+</ion-content>

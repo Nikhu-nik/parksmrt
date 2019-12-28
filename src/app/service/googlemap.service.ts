@@ -65,7 +65,6 @@ export class GooglemapService {
     const option: MyLocationOptions = {
       enableHighAccuracy: true
     };
-    this.map.clear();
     // Get the location of you
     this.map.getMyLocation(option).then((location: MyLocation) => {
       // Move the map camera to the location with animation
@@ -75,13 +74,6 @@ export class GooglemapService {
         bearing: 0,
         duration: 1000
       });
-      // add a marker
-      const marker: Marker = this.map.addMarkerSync({
-        icon: 'aqua',
-        position: location.latLng,
-      });
-      // show the infoWindow
-      marker.showInfoWindow();
     }).catch(() => {
       this.showToast('Please Turn ON Device GPS');
     });
