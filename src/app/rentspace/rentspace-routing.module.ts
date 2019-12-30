@@ -8,10 +8,6 @@ const routes: Routes = [
     path: '',
     component: RentspacePage
   },
-  {
-    path: 'rentspacedetails',
-    loadChildren: () => import('./rentspacedetails/rentspacedetails.module').then( m => m.RentspacedetailsPageModule)
-  }
 ];
 
 @NgModule({

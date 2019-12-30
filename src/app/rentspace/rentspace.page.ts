@@ -11,7 +11,8 @@ export class RentspacePage implements OnInit{
 
   countryList;
   firstFormGroup: FormGroup;
-
+  locationImage = '';
+  currentNumber = 1;
 
   constructor(private httpClient: HttpClient,
               private formBuilder: FormBuilder,
@@ -27,6 +28,14 @@ export class RentspacePage implements OnInit{
     this.firstFormGroup = this.formBuilder.group({
       address: ['', Validators.required]
     });
+  }
+
+  increment() {
+    this.currentNumber++;
+  }
+
+  decrement() {
+    this.currentNumber--;
   }
 
 }

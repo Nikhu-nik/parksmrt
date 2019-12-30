@@ -34,11 +34,6 @@ export class RegisterPage implements OnInit {
         { type: 'minlength', message: 'Password must be 8 characters long' },
       ],
 
-      confirmPassword: [
-        { type: 'required', message: 'Please confirm your password'},
-        { type: 'areEqual', message: 'Password must match' },
-      ],
-
       terms: [
         { type: 'pattern', message: 'Please accept terms and condtions' },
       ],

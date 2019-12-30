@@ -11,25 +11,22 @@ ion-menu{
     }
 }
 
-ion-menu {
-  ion-toolbar {
-    --background: 
-      rgb(206, 239, 253);
-  }
-  ion-content {
-    --ion-background-color:  rgb(206, 239, 253);
-  }
-  ion-footer {
-    background: rgb(206, 239, 253);
-  }
+// ion-menu {
+//   ion-toolbar {
+//     --background: 
+//       rgb(206, 239, 253);
+//   }
+//   ion-content {
+//     --ion-background-color:  rgb(206, 239, 253);
+//   }
+//   ion-footer {
+//     background: rgb(206, 239, 253);
+//   }
+// }
+.menu-list{
+  font-size: 16px;
+  color: #003366 !important;
 }
-ion-label {
-    a{
-        font-size: 16px;
-        color: #003366;
-    }
-}
-
 ion-label{
   padding: 0px 18px !important;
   font-weight: bold;

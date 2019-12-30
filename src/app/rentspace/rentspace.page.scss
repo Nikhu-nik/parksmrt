@@ -1,14 +1,13 @@
-ion-content{
-    --background: #f8f9fa;
-}
+
 ion-toolbar{
     --background: #f8f9fa;
 }
-ion-card{
+.parking-img{
     background: white;
-    height: 150px;
+    height: 140px;
+    margin: 0px;
 }
-ion-item{
+.input{
     border: 1px solid gainsboro;
 }
 
@@ -20,12 +19,54 @@ hr{
     height: 1px;
     border-width: 1px;
     box-sizing: content-box;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
-ion-icon{
-    font-size: 40px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 100%);
+ion-card{
+    background: white;
+}
+.space-value{
+    padding: 0px 15px;
+    margin: 0px 15px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+}
+.car-img{
+    width: 80px;
+}
+
+ion-textarea{
+    border: 1px solid darkgrey !important;
+    border-radius: 4px !important;
+    margin-bottom: 20px !important;
+}
+
+.mobile-num{
+    border: 1px solid darkgrey !important;
+    border-radius: 4px !important;
+    margin: 0px 16px !important;
+    margin-bottom: 20px !important;
+}
+
+.main-heading{
+    padding: 10px 24px;
+    text-align: center;
+}
+
+.sec-1{
+    padding: 10px 24px;
+}
+ion-grid{
+    padding: 0px 10px;
+}
+.add-btn{
+    margin-top: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.add-btn{
+    ion-button{
+        color: grey;
+    }
 }

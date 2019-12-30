@@ -57,16 +57,6 @@
                   <small>{{ validation.message}}</small>
                 </div>
               </ng-container>
-              <ion-item color="none" class="ion-no-padding">
-                <ion-label position="floating">Confirm Password</ion-label>
-                <ion-input type="password" formControlName="confirmPassword"></ion-input>
-              </ion-item>
-              <ng-container *ngFor="let validation of validation_messages.confirmPassword">
-                <div class="error"
-                  *ngIf="registerForm.get('confirmPassword').hasError(validation.type)  && (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)">
-                  <small>{{ validation.message}}</small>
-                </div>
-              </ng-container>
               <ion-item color="none" lines="none" class="mt-3" class="ion-no-padding">
                 <ion-checkbox slot="start" color="danger" formControlName="terms"></ion-checkbox>
                 <ion-label>I accept terms and conditions</ion-label>

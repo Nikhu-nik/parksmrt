@@ -25,11 +25,9 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-@import url("https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat|Muli|Noto+Serif|Raleway|Yanone+Kaffeesatz&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Oxygen|PT+Sans|Sulphur+Point|Ubuntu&display=swap");
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Poppins|Roboto|Montserrat|Raleway|Sulphur+Point&display=swap');
 * {
-  font-family: "Sulphur Point";
+  font-family: "Poppins";
   box-sizing: border-box;
 }
 
@@ -38,38 +36,39 @@
 }
 
 ion-label {
-  font-family: "Sulphur Point" !important;
+  font-family: "Poppins" !important;
 }
 ion-input {
-  font-family: "Sulphur Point";
+  font-family: "Poppins";
 }
 
 .custom-loading {
   --spinner-color: dodgerblue;
 }
 
-.mat-step-header{
-  padding: 0 !important;
-}
 
-.mat-horizontal-stepper-header-container {
-  background: #f4f5f9 !important;
-  margin-top: 15px !important;
-  padding-bottom: 15px !important;
-}
+// .mat-step-header{
+//   padding: 0 !important;
+// }
 
-.mat-horizontal-content-container{
-  padding: 0px !important;
-  padding-bottom: 20px !important;
-  background: #f4f5f9 !important;
-}
+// .mat-horizontal-stepper-header-container {
+//   background: #f4f5f9 !important;
+//   margin-top: 15px !important;
+//   padding-bottom: 15px !important;
+// }
 
-.mat-horizontal-stepper-content{
-  padding-top: 5px;
-}
-.mat-form-field-wrapper {
-  padding-left: 16px;
-}
-.mat-step-text-label{
-  font-weight: bold;
-}
+// .mat-horizontal-content-container{
+//   padding: 0px !important;
+//   padding-bottom: 20px !important;
+//   background: #f4f5f9 !important;
+// }
+
+// .mat-horizontal-stepper-content{
+//   padding-top: 5px;
+// }
+// .mat-form-field-wrapper {
+//   padding-left: 16px;
+// }
+// .mat-step-text-label{
+//   font-weight: bold;
+// }

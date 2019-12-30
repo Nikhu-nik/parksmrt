@@ -6,8 +6,8 @@ import { AuthGuard } from './guard/auth.guard';
 const routes: Routes = [
    { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
 
-  { path: 'home', 
-    //canActivate: [AuthGuard],
+  { path: 'home',
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   {
     path: 'landing-page',
@@ -21,19 +21,20 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
+  // {
+  //   path: 'user-details',
+  //   loadChildren: () => import('./user/user-details/user-details.module').then( m => m.UserDetailsPageModule)
+  // },
+  // {
+  //   path: 'mybookings',
+  //   loadChildren: () => import('./mybookings/mybookings.module').then( m => m.MybookingsPageModule)
+  // },
+  // {
+  //   path: 'messages',
+  //   loadChildren: () => import('./messages/messages.module').then( m => m.MessagesPageModule)
+  // },
   {
-    path: 'user-details',
-    loadChildren: () => import('./user/user-details/user-details.module').then( m => m.UserDetailsPageModule)
-  },
-  {
-    path: 'mybookings',
-    loadChildren: () => import('./mybookings/mybookings.module').then( m => m.MybookingsPageModule)
-  },
-  {
-    path: 'messages',
-    loadChildren: () => import('./messages/messages.module').then( m => m.MessagesPageModule)
-  },
-  {
+
     path: 'help',
     loadChildren: () => import('./help/help.module').then( m => m.HelpPageModule)
   },
@@ -48,12 +49,16 @@ const routes: Routes = [
   {
     path: 'promocodes',
     loadChildren: () => import('./promocodes/promocodes.module').then( m => m.PromocodesPageModule)
-  },  {
-    path: 'rentspace',
-    loadChildren: () => import('./rentspace/rentspace.module').then( m => m.RentspacePageModule)
+  },
+  {
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
   },
 
-
+  // {
+  //   path: 'rentspace',
+  //   loadChildren: () => import('./rentspace/rentspace.module').then( m => m.RentspacePageModule)
+  // },
 ];
 
 @NgModule({

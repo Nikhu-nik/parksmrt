@@ -9,37 +9,37 @@
     </ion-header>
     <ion-content>
       <ion-list class="ion-no-padding">
-        <ion-item lines="none" color="none" routerLink="/mybookings">
+        <!-- <ion-item lines="none" color="none" routerLink="/mybookings">
           <ion-icon name="card" slot="start"></ion-icon>
-          <ion-label>My bookings</ion-label>
+          <ion-label class="menu-list">My bookings</ion-label>
         </ion-item>
         <ion-item lines="none" color="none" routerLink="/messages">
           <ion-icon name="mail" slot="start"></ion-icon>
-          <ion-label>Messages</ion-label>
+          <ion-label class="menu-list">Messages</ion-label>
         </ion-item>
         <ion-item lines="none" color="none" routerLink="/rentspace">
           <ion-icon name="cash" slot="start"></ion-icon>
-          <ion-label>Rent out your space</ion-label>
-        </ion-item>
+          <ion-label class="menu-list">Rent out your space</ion-label>
+        </ion-item> -->
         <ion-item lines="none" color="none" routerLink="/promocodes">
           <ion-icon name="pricetag" slot="start"></ion-icon>
-          <ion-label>Promo codes</ion-label>
+          <ion-label class="menu-list">Promo codes</ion-label>
         </ion-item>
         <ion-item lines="none" color="none" routerLink="/tickets&permits">
           <ion-icon name="filing" slot="start"></ion-icon>
-          <ion-label>Tickets & Permits</ion-label>
+          <ion-label class="menu-list">Tickets & Permits</ion-label>
         </ion-item>
         <ion-item lines="none" color="none" routerLink="/invite">
           <ion-icon name="contacts" slot="start"></ion-icon>
-          <ion-label>Invite Friends</ion-label>
+          <ion-label class="menu-list">Invite Friends</ion-label>
         </ion-item>
         <ion-item lines="none" color="none" routerLink="/help">
           <ion-icon name="help-circle" slot="start"></ion-icon>
-          <ion-label>Help</ion-label>
+          <ion-label class="menu-list">Help</ion-label>
         </ion-item>
         <ion-item lines="none" color="none" routerLink="/about">
           <ion-icon name="information-circle" slot="start"></ion-icon>
-          <ion-label>About</ion-label>
+          <ion-label class="menu-list">About</ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -49,8 +49,8 @@
           <img [src]="[userImg]">
         </ion-avatar>
         <ion-label>
-          <b>{{fullName | titlecase }}</b><br>
-          <small>My Profile</small>
+          <b style="color: #003366;">{{fullName | titlecase }}</b><br>
+          <small style="color: #003366;">My Profile</small>
         </ion-label>
         <ion-icon name="arrow-dropright" slot="end"></ion-icon>
       </ion-item>
@@ -110,6 +110,5 @@
         </ion-fab-button>
       </ion-fab>
     </ion-content>
-    
   </div>
 </ion-app>
