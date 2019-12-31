@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ImagePickerService } from '../service/image-picker.service';
 
 @Component({
   selector: 'app-rentspace',
@@ -9,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RentspacePage implements OnInit{
 
+  images = [];
   countryList;
   firstFormGroup: FormGroup;
   locationImage = '';
@@ -16,6 +18,7 @@ export class RentspacePage implements OnInit{
 
   constructor(private httpClient: HttpClient,
               private formBuilder: FormBuilder,
+              private imagePickerService: ImagePickerService,
   ) {}
 
 
@@ -36,6 +39,10 @@ export class RentspacePage implements OnInit{
 
   decrement() {
     this.currentNumber--;
+  }
+
+  selectImage() {
+    this.imagePickerService.selectImage();
   }
 
 }
