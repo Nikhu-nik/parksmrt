@@ -1,13 +1,11 @@
-a {
-  all: unset;
-}
+
 #map_canvas{
   height: 100%;
   width: 100%;
 }
 ion-menu{
     ion-icon{
-        color: #003366;
+        color:slategrey;
     }
 }
 
@@ -25,7 +23,7 @@ ion-menu{
 // }
 .menu-list{
   font-size: 16px;
-  color: #003366 !important;
+  color: slategrey !important;
 }
 ion-label{
   padding: 0px 18px !important;

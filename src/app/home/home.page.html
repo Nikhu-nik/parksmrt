@@ -49,8 +49,8 @@
           <img [src]="[userImg]">
         </ion-avatar>
         <ion-label>
-          <b style="color: #003366;">{{fullName | titlecase }}</b><br>
-          <small style="color: #003366;">My Profile</small>
+          <b style="color: slategrey;">{{fullName | titlecase }}</b><br>
+          <small style="color: slategrey;">My Profile</small>
         </ion-label>
         <ion-icon name="arrow-dropright" slot="end"></ion-icon>
       </ion-item>
@@ -67,7 +67,7 @@
           <span style="color: dodgerblue;">Park</span><span style="color: orangered;">Smart</span>
         </ion-title>
         <ion-buttons slot="end">
-          <ion-icon name="notifications"  class="notification-icon" routerLink="/messages"></ion-icon>
+          <ion-icon name="notifications"  class="notification-icon" routerLink="/main/messages"></ion-icon>
           <ion-badge color="danger">10</ion-badge>
         </ion-buttons>
       </ion-toolbar>

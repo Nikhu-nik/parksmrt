@@ -14,17 +14,15 @@ ion-content {
   border: 1px solid gainsboro;
 }
 
+h4,
+h5 {
+  font-weight: bold;
+}
+
 ion-label {
   font-size: 15px !important;
 }
 
-hr {
-  height: 1px;
-  border-width: 1px;
-  box-sizing: content-box;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
 ion-card {
   background: white;
 }

@@ -1,3 +1,10 @@
+ion-toolbar{
+    --background: slategrey;
+    color: white;
+}
+ion-content{
+    --background: #f8f9fa;
+}
 ion-col{
     margin-top: 20px;
 }
@@ -18,3 +25,9 @@ ion-icon{
     border: 1px solid #10dc60;
 }
 
+.declaration{
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    padding: 0px 20px;
+}
