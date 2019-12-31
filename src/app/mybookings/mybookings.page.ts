@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,14 +8,13 @@ import { Router } from '@angular/router';
 })
 export class MybookingsPage implements OnInit {
 
-  constructor(private menuController: MenuController, private router: Router) { }
+  constructor( private router: Router) { }
 
   ngOnInit() {
   }
 
   goHome() {
-    this.menuController.close();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/main/home']);
   }
 
 }

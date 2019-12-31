@@ -48,9 +48,24 @@ export class MessagesPage implements OnInit {
   {
     sender: 'Robert',
     discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Jhonson',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Frankly',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Bruce',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
+  },
+  {
+    sender: 'Hogward',
+    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, vitae consequuntur? Repellat ad culpa aliquid odit est modi aperiam quidem autem voluptates in quisquam explicabo esse officiis, excepturi beatae sapiente.',
   }
-
-];
+  ];
 
   ngOnInit() {
   }
@@ -59,6 +74,6 @@ export class MessagesPage implements OnInit {
     this.content = 'All';
   }
 
- 
+
 
 }

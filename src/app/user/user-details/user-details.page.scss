@@ -1,7 +1,13 @@
 ion-header{
-    background:#0cd1e8;
+    background:slategrey;
 }
-
+ion-toolbar{
+    --background: slategrey;
+    color: white;
+}
+ion-content{
+    --background: white;
+}
 ion-col{
     padding: 0px 16px !important;
 }
@@ -11,7 +17,7 @@ h4{
     font-size: 18px !important;
 }
 ion-icon{
-    color: #0cd1e8;
+    color: slategrey;
 }
 ion-label{
     color: #424242 !important;
@@ -22,4 +28,8 @@ ion-label{
 }
 ion-item{
     --background: #f4f5f8;
+}
+ion-card{
+    margin: 0;
+    background: #f8f9fa;
 }

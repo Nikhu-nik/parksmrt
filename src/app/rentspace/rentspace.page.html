@@ -1,6 +1,6 @@
 <ion-header no-border>
   <ion-toolbar>
-    <ion-title>Add your space for rent</ion-title>
+    <ion-title class="ion-text-center">Add your space for rent</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -31,193 +31,205 @@
       </ion-item>
     </form>
   </div>
-  <hr>
   <div class="sec-2">
     <div>
       <h5 style="padding: 0px 24px;">Add images of your parking space</h5>
     </div>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6">
-          <ion-card mode="ios" class="parking-img">
-            <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
-            <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
-          </ion-card>
-          <div>
-            <ion-card mode="ios" class="add-btn">
-              <ion-button fill="clear" expand="full" >Add Image</ion-button>
+    <div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card mode="ios" class="parking-img">
+              <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
+              <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
             </ion-card>
-          </div>
-        </ion-col> 
-        <ion-col size="6">
-          <ion-card mode="ios" class="parking-img">
-            <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
-            <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
-          </ion-card>
-          <div>
-            <ion-card mode="ios" class="add-btn">
-              <ion-button fill="clear" expand="full" >Add Image</ion-button>
+            <div>
+              <ion-card mode="ios" class="add-btn">
+                <ion-button fill="clear" expand="full">Add Image</ion-button>
+              </ion-card>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <ion-card mode="ios" class="parking-img">
+              <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
+              <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
             </ion-card>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6">
-          <ion-card mode="ios" class="parking-img">
-            <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
-            <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
-          </ion-card>
-          <div>
-            <ion-card mode="ios" class="add-btn">
-              <ion-button fill="clear" expand="full" >Add Image</ion-button>
+            <div>
+              <ion-card mode="ios" class="add-btn">
+                <ion-button fill="clear" expand="full">Add Image</ion-button>
+              </ion-card>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card mode="ios" class="parking-img">
+              <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
+              <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
             </ion-card>
-          </div>
-        </ion-col>
-        <ion-col size="6">
-          <ion-card mode="ios" class="parking-img">
-            <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
-            <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
-          </ion-card>
-          <div>
-            <ion-card mode="ios" class="add-btn">
-              <ion-button fill="clear" expand="full" >Add Image</ion-button>
+            <div>
+              <ion-card mode="ios" class="add-btn">
+                <ion-button fill="clear" expand="full">Add Image</ion-button>
+              </ion-card>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <ion-card mode="ios" class="parking-img">
+              <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
+              <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
             </ion-card>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-  <hr>
-  <ion-radio-group>
-    <ion-list-header>
-      <h5>What type of parking do you have?</h5>
-    </ion-list-header>
-
-    <ion-item lines="none" color="none">
-      <ion-label>Driveway</ion-label>
-      <ion-radio slot="start" value="Driveway" checked></ion-radio>
-    </ion-item>
-
-    <ion-item lines="none" color="none">
-      <ion-label>Garage</ion-label>
-      <ion-radio slot="start" value="Garage"></ion-radio>
-    </ion-item>
-
-    <ion-item lines="none" color="none">
-      <ion-label>Car Park</ion-label>
-      <ion-radio slot="start" value="CarPark"></ion-radio>
-    </ion-item>
-
-    <ion-item lines="none" color="none">
-      <ion-label>On-street</ion-label>
-      <ion-radio slot="start" value="OnStreet"></ion-radio>
-    </ion-item>
-  </ion-radio-group>
-  <hr>
-  <ion-list-header>
-    <h5>How many spaces do you have for rent?</h5>
-  </ion-list-header>
-
-  <ion-item lines="none" color="none">
-    <ion-icon name="remove-circle-outline" (click)=" decrement()"></ion-icon>
-    <div class="space-value">
-      {{currentNumber}}
+            <div>
+              <ion-card mode="ios" class="add-btn">
+                <ion-button fill="clear" expand="full">Add Image</ion-button>
+              </ion-card>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
-    <ion-icon name="add-circle-outline" (click)=" increment()"></ion-icon>
-  </ion-item>
-  <hr>
-  <ion-list-header>
-    <h5>What is the largest vehicle your space can accommodate?</h5>
-  </ion-list-header>
-  <div style="padding: 0px 16px;">
-    <small>Setect the largest vehicle possible that can fit through the entrance and into the space
-      itself.</small>
   </div>
-  <ion-card mode="ios">
+
+  <div class="parking-type">
     <ion-radio-group>
-      <ion-item>
-        <ion-label>Small</ion-label>
-        <ion-radio slot="start" value="small"></ion-radio>
-        <img src="../assets/images/smallcar.jpg" class="car-img" alt="">
+      <ion-list-header>
+        <h5>What type of parking do you have?</h5>
+      </ion-list-header>
+
+      <ion-item lines="none" color="none">
+        <ion-label>Driveway</ion-label>
+        <ion-radio slot="start" value="Driveway" checked></ion-radio>
       </ion-item>
-      <ion-item>
-        <ion-label>Medium</ion-label>
-        <ion-radio slot="start" value="medium"></ion-radio>
-        <img src="../assets/images/mediumcar.jpg" class="car-img" alt="">
+
+      <ion-item lines="none" color="none">
+        <ion-label>Garage</ion-label>
+        <ion-radio slot="start" value="Garage"></ion-radio>
       </ion-item>
-      <ion-item>
-        <ion-label>Large</ion-label>
-        <ion-radio slot="start" value="large"></ion-radio>
-        <img src="../assets/images/largecar.jpg" class="car-img" alt="">
+
+      <ion-item lines="none" color="none">
+        <ion-label>Car Park</ion-label>
+        <ion-radio slot="start" value="CarPark"></ion-radio>
       </ion-item>
-      <ion-item lines="none">
-        <ion-label>Van</ion-label>
-        <ion-radio slot="start" value="van"></ion-radio>
-        <img src="../assets/images/van.png" class="car-img" alt="">
+
+      <ion-item lines="none" color="none">
+        <ion-label>On-street</ion-label>
+        <ion-radio slot="start" value="OnStreet"></ion-radio>
       </ion-item>
     </ion-radio-group>
-  </ion-card>
-  <hr>
-  <ion-list-header>
-    <h5>What features does your location offer?</h5>
-  </ion-list-header>
-  <ion-item lines="none" color="none">
-    <ion-label>Covered parking</ion-label>
-    <ion-checkbox slot="start" name="coveredParking"></ion-checkbox>
-  </ion-item>
-  <ion-item lines="none" color="none">
-    <ion-label>CCTV</ion-label>
-    <ion-checkbox slot="start" name="cctv"></ion-checkbox>
-  </ion-item>
-  <ion-item lines="none" color="none">
-    <ion-label>Securely gated</ion-label>
-    <ion-checkbox slot="start" name="securelyGated"></ion-checkbox>
-  </ion-item>
-  <ion-item lines="none" color="none">
-    <ion-label>Disabled access</ion-label>
-    <ion-checkbox slot="start" name="disabledAccess"></ion-checkbox>
-  </ion-item>
-  <ion-item lines="none" color="none">
-    <ion-label>Electric vehicle charging</ion-label>
-    <ion-checkbox slot="start" name="electricCharging"></ion-checkbox>
-  </ion-item>
-  <ion-item lines="none" color="none">
-    <ion-label>Lighting</ion-label>
-    <ion-checkbox slot="start" name="lighting"></ion-checkbox>
-  </ion-item>
-  <ion-item lines="none" color="none">
-    <ion-label>Airport transfers by the space owner</ion-label>
-    <ion-checkbox slot="start" name="airportTransfer"></ion-checkbox>
-  </ion-item>
-  <hr>
-  <ion-list-header>
-    <h5>About your space and local area</h5>
-  </ion-list-header>
-  <div style="padding: 0px 16px;">
-    <small>Write something here to help drivers choose your space.Any selling point e.g how far is it from
-      transport links or neraby attraction (in minutes)? Anything drivers should be aware of before
-      booking.</small>
   </div>
-  <div style="padding: 0px 16px;">
-    <small>Dont include any contact details or sensitive information here.</small>
-  </div>
-  <div>
-    <ion-item color="none" lines="none">
-      <ion-textarea rows="6" cols="20"></ion-textarea>
+
+  <div class="space-available">
+    <ion-list-header>
+      <h5>How many spaces do you have for rent?</h5>
+    </ion-list-header>
+    <ion-item lines="none" color="none">
+      <ion-icon name="remove-circle-outline" (click)=" decrement()"></ion-icon>
+      <div class="space-value">
+        {{currentNumber}}
+      </div>
+      <ion-icon name="add-circle-outline" (click)=" increment()"></ion-icon>
     </ion-item>
   </div>
-  <hr>
-  <ion-list-header>
-    <h5>What is your mobile number?</h5>
-  </ion-list-header>
-  <ion-item color="none" lines="none" class="mobile-num">
-    <ion-input placeholder="Enter mobile number" clearInput type="tel"></ion-input>
-  </ion-item>
 
+  <div class="vehicle-type">
+    <ion-list-header>
+      <h5>What is the largest vehicle your space can accommodate?</h5>
+    </ion-list-header>
+    <div style="padding: 0px 16px;">
+      <small>Setect the largest vehicle possible that can fit through the entrance and into the space
+        itself.</small>
+    </div>
+    <div>
+      <ion-card mode="ios">
+        <ion-radio-group>
+          <ion-item>
+            <ion-label>Small</ion-label>
+            <ion-radio slot="start" value="small"></ion-radio>
+            <img src="../assets/images/smallcar.jpg" class="car-img" alt="">
+          </ion-item>
+          <ion-item>
+            <ion-label>Medium</ion-label>
+            <ion-radio slot="start" value="medium"></ion-radio>
+            <img src="../assets/images/mediumcar.jpg" class="car-img" alt="">
+          </ion-item>
+          <ion-item>
+            <ion-label>Large</ion-label>
+            <ion-radio slot="start" value="large"></ion-radio>
+            <img src="../assets/images/largecar.jpg" class="car-img" alt="">
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Van</ion-label>
+            <ion-radio slot="start" value="van"></ion-radio>
+            <img src="../assets/images/van.png" class="car-img" alt="">
+          </ion-item>
+        </ion-radio-group>
+      </ion-card>
+    </div>
+  </div>
+
+  <div class="feature-sec">
+    <ion-list-header>
+      <h5>What features does your location offer?</h5>
+    </ion-list-header>
+    <ion-item lines="none" color="none">
+      <ion-label>Covered parking</ion-label>
+      <ion-checkbox slot="start" name="coveredParking"></ion-checkbox>
+    </ion-item>
+    <ion-item lines="none" color="none">
+      <ion-label>CCTV</ion-label>
+      <ion-checkbox slot="start" name="cctv"></ion-checkbox>
+    </ion-item>
+    <ion-item lines="none" color="none">
+      <ion-label>Securely gated</ion-label>
+      <ion-checkbox slot="start" name="securelyGated"></ion-checkbox>
+    </ion-item>
+    <ion-item lines="none" color="none">
+      <ion-label>Disabled access</ion-label>
+      <ion-checkbox slot="start" name="disabledAccess"></ion-checkbox>
+    </ion-item>
+    <ion-item lines="none" color="none">
+      <ion-label>Electric vehicle charging</ion-label>
+      <ion-checkbox slot="start" name="electricCharging"></ion-checkbox>
+    </ion-item>
+    <ion-item lines="none" color="none">
+      <ion-label>Lighting</ion-label>
+      <ion-checkbox slot="start" name="lighting"></ion-checkbox>
+    </ion-item>
+    <ion-item lines="none" color="none">
+      <ion-label>Airport transfers by the space owner</ion-label>
+      <ion-checkbox slot="start" name="airportTransfer"></ion-checkbox>
+    </ion-item>
+  </div>
+
+  <div class="text-area">
+    <ion-list-header>
+      <h5>About your space and local area</h5>
+    </ion-list-header>
+    <div style="padding: 0px 16px;">
+      <small>Write something here to help drivers choose your space.Any selling point e.g how far is it from
+        transport links or neraby attraction (in minutes)? Anything drivers should be aware of before
+        booking.</small>
+    </div>
+    <div style="padding: 0px 16px;">
+      <small>Dont include any contact details or sensitive information here.</small>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <ion-item color="none" lines="none">
+        <ion-textarea rows="6" cols="20"></ion-textarea>
+      </ion-item>
+    </div>
+  </div>
+
+  <div class="mobile-num-sec">
+    <ion-list-header>
+      <h5>What is your mobile number?</h5>
+    </ion-list-header>
+    <ion-item color="none" lines="none" class="mobile-num">
+      <ion-input placeholder="Enter mobile number" clearInput type="tel"></ion-input>
+    </ion-item>
+  </div>
+  <div>
+    <ion-button style="--background: white; --color:slategrey; margin:20px 16px;">Continue</ion-button>
+  </div>
 </ion-content>
-
-<ion-footer no-border>
-  <ion-button expand="full" color="light" style="margin: 0px;height: 45px;">Continue</ion-button>
-</ion-footer>

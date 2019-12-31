@@ -39,7 +39,7 @@ export class PromocodesPage implements OnInit {
 
   goHome() {
     this.qrCodeForm.reset();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/main/home']);
   }
 
 }

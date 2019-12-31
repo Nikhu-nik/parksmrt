@@ -1,72 +1,99 @@
-
-ion-toolbar{
-    --background: #f8f9fa;
+ion-toolbar {
+  --background: slategrey;
+  color: white;
 }
-.parking-img{
-    background: white;
-    height: 140px;
-    margin: 0px;
+ion-content {
+  --background: #f8f9fa;
 }
-.input{
-    border: 1px solid gainsboro;
+.parking-img {
+  background: white;
+  height: 140px;
+  margin: 0px;
 }
-
-ion-label{
-    font-size: 15px !important;
-}
-
-hr{
-    height: 1px;
-    border-width: 1px;
-    box-sizing: content-box;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-ion-card{
-    background: white;
-}
-.space-value{
-    padding: 0px 15px;
-    margin: 0px 15px;
-    background: white;
-    border-radius: 5px;
-    border: 1px solid lightgrey;
-}
-.car-img{
-    width: 80px;
+.input {
+  border: 1px solid gainsboro;
 }
 
-ion-textarea{
-    border: 1px solid darkgrey !important;
-    border-radius: 4px !important;
-    margin-bottom: 20px !important;
+ion-label {
+  font-size: 15px !important;
 }
 
-.mobile-num{
-    border: 1px solid darkgrey !important;
-    border-radius: 4px !important;
-    margin: 0px 16px !important;
-    margin-bottom: 20px !important;
+hr {
+  height: 1px;
+  border-width: 1px;
+  box-sizing: content-box;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+ion-card {
+  background: white;
+}
+.space-value {
+  padding: 0px 15px;
+  margin: 0px 15px;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+}
+.car-img {
+  width: 80px;
 }
 
-.main-heading{
-    padding: 10px 24px;
-    text-align: center;
+ion-textarea {
+  border: 1px solid darkgrey !important;
+  border-radius: 4px !important;
+  margin-bottom: 20px !important;
 }
 
-.sec-1{
-    padding: 10px 24px;
+.mobile-num {
+  border: 1px solid darkgrey !important;
+  border-radius: 4px !important;
+  margin: 0px 16px !important;
+  margin-bottom: 20px !important;
 }
-ion-grid{
-    padding: 0px 10px;
+
+.main-heading {
+  padding: 10px 24px;
+  text-align: center;
 }
-.add-btn{
-    margin-top: 15px;
-    margin-left: 0px;
-    margin-right: 0px;
+
+ion-grid {
+  padding: 0px 10px;
 }
-.add-btn{
-    ion-button{
-        color: grey;
-    }
+.add-btn {
+  margin-top: 15px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.add-btn {
+  ion-button {
+    color: grey;
+  }
+}
+.sec-1 {
+  padding: 10px 24px;
+  background: white;
+}
+.parking-type {
+  background: white;
+}
+.space-available {
+  background: white;
+  margin: 20px 0px;
+}
+.vehicle-type {
+  background: white;
+  padding-bottom: 1px;
+}
+.feature-sec {
+  background: white;
+  margin: 20px 0px;
+}
+.text-area {
+  background: white;
+  margin: 20px 0px;
+}
+.mobile-num-sec {
+  background: white;
+  padding-bottom: 1px;
 }

@@ -6,9 +6,9 @@ import { AuthGuard } from './guard/auth.guard';
 const routes: Routes = [
    { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
 
-  { path: 'home',
-    // canActivate: [AuthGuard],
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  // { path: 'home',
+  //   // canActivate: [AuthGuard],
+  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   {
     path: 'landing-page',
     loadChildren: () => import('./landing-page/landing-page.module').then( m => m.LandingPagePageModule)
@@ -21,10 +21,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
-  // {
-  //   path: 'user-details',
-  //   loadChildren: () => import('./user/user-details/user-details.module').then( m => m.UserDetailsPageModule)
-  // },
+  {
+    path: 'user-details',
+    loadChildren: () => import('./user/user-details/user-details.module').then( m => m.UserDetailsPageModule)
+  },
   // {
   //   path: 'mybookings',
   //   loadChildren: () => import('./mybookings/mybookings.module').then( m => m.MybookingsPageModule)

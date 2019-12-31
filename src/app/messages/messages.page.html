@@ -1,8 +1,8 @@
 <ion-header no-border>
-  <ion-toolbar [appHideHeader]="scrollArea" color="secondary">
-    <ion-title>Messages</ion-title>
+  <ion-toolbar [appHideHeader]="scrollArea" >
+    <ion-title class="ion-text-center">Messages</ion-title>
   </ion-toolbar>
-  <ion-segment [(ngModel)]="content" color="secondary" mode="md">
+  <ion-segment [(ngModel)]="content" mode="md">
     <ion-segment-button value="All" mode="md">
       <ion-icon name="mail-open"></ion-icon>
       <ion-label>All</ion-label>
