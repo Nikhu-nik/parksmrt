@@ -39,14 +39,17 @@ ion-label {
   font-family: "Montserrat" !important;
 }
 ion-input {
-  font-family: "Montserrat";
+  font-family: "Montserrat" !important;
 }
 
 .custom-loading {
   --spinner-color: dodgerblue;
 }
 
-
+.customToast{
+  text-align: center !important;
+  --border-radius: 30px !important;
+}
 // .mat-step-header{
 //   padding: 0 !important;
 // }

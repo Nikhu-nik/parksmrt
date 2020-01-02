@@ -39,10 +39,10 @@
       <ion-grid>
         <ion-row>
           <ion-col size="6">
-            <ion-card mode="ios" class="parking-img">
-              <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
-              <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
-            </ion-card>
+              <ion-card  mode="ios" class="parking-img">
+                <img  [src]="images" *ngIf="imgLoaded()" >
+                <img src="../../assets/images/img-placeholder1.png" >
+              </ion-card>
             <div>
               <ion-card mode="ios" class="add-btn">
                 <ion-button fill="clear" expand="full" (click)="selectImage()">Add Image</ion-button>
@@ -50,13 +50,13 @@
             </div>
           </ion-col>
           <ion-col size="6">
-            <ion-card mode="ios" class="parking-img">
-              <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
-              <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
+            <ion-card  mode="ios" class="parking-img">
+              <img  [src]="images" *ngIf="imgLoaded()" >
+              <img src="../../assets/images/img-placeholder1.png" >
             </ion-card>
             <div>
               <ion-card mode="ios" class="add-btn">
-                <ion-button fill="clear" expand="full">Add Image</ion-button>
+                <ion-button fill="clear" expand="full" (click)="selectImage()">Add Image</ion-button>
               </ion-card>
             </div>
           </ion-col>
@@ -65,24 +65,24 @@
       <ion-grid>
         <ion-row>
           <ion-col size="6">
-            <ion-card mode="ios" class="parking-img">
-              <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
-              <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
+            <ion-card  mode="ios" class="parking-img">
+              <img  [src]="images" *ngIf="imgLoaded()" >
+              <img src="../../assets/images/img-placeholder1.png" >
             </ion-card>
             <div>
               <ion-card mode="ios" class="add-btn">
-                <ion-button fill="clear" expand="full">Add Image</ion-button>
+                <ion-button fill="clear" expand="full" (click)="selectImage()">Add Image</ion-button>
               </ion-card>
             </div>
           </ion-col>
           <ion-col size="6">
-            <ion-card mode="ios" class="parking-img">
-              <img *ngIf="locationImage" [src]="locationImage" alt="" width="100%" height="100%">
-              <img *ngIf="!locationImage" src="./assets/images/img-placeholder1.png" alt="" width="100%" height="100%">
+            <ion-card  mode="ios" class="parking-img">
+              <img  [src]="images" *ngIf="imgLoaded()" >
+              <img src="../../assets/images/img-placeholder1.png" >
             </ion-card>
             <div>
               <ion-card mode="ios" class="add-btn">
-                <ion-button fill="clear" expand="full">Add Image</ion-button>
+                <ion-button fill="clear" expand="full" (click)="selectImage()">Add Image</ion-button>
               </ion-card>
             </div>
           </ion-col>
@@ -230,6 +230,7 @@
     </ion-item>
   </div>
   <div>
-    <ion-button style="--background: white; --color:slategrey; margin:20px 16px;font-weight: bold;">Continue</ion-button>
+    <ion-button style="--background: white; --color:slategrey; margin:20px 16px;font-weight: bold;">Continue
+    </ion-button>
   </div>
 </ion-content>

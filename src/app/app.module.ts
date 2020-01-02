@@ -23,6 +23,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { ImagePickerService } from './service/image-picker.service';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 
 @NgModule({
   declarations: [AppComponent,],
@@ -42,6 +43,7 @@ import { ImagePickerService } from './service/image-picker.service';
     StatusBar,
     HttpParams,
     Geolocation,
+    LocationAccuracy,
     ImagePicker,
     Crop,
     Camera,

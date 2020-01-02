@@ -1,14 +1,14 @@
-ion-header {
-  background: radial-gradient(
-    circle farthest-corner at 10% 20%,
-    rgba(239, 246, 249, 1) 0%,
-    rgba(206, 239, 253, 1) 90%
-  );
-}
-ion-content {
-    --background: radial-gradient( circle farthest-corner at 10% 20%, rgba(239,246,249,1) 0%, rgba(206,239,253,1) 90% );
-    // --background: radial-gradient( circle farthest-corner at 10% 20%, rgba(216,241,230,0.46) 0.1%, rgba(233,226,226,0.28) 90.1% );
-}
+// ion-header {
+//   background: radial-gradient(
+//     circle farthest-corner at 10% 20%,
+//     rgba(239, 246, 249, 1) 0%,
+//     rgba(206, 239, 253, 1) 90%
+//   );
+// }
+// ion-content {
+//     --background: radial-gradient( circle farthest-corner at 10% 20%, rgba(239,246,249,1) 0%, rgba(206,239,253,1) 90% );
+//     // --background: radial-gradient( circle farthest-corner at 10% 20%, rgba(216,241,230,0.46) 0.1%, rgba(233,226,226,0.28) 90.1% );
+// }
 
 
 ion-item {
@@ -23,6 +23,7 @@ h2 {
   color: midnightblue;
   margin-top: 10px;
   font-size: 24px;
+  font-weight: bold;
 }
 ion-label {
   color: midnightblue !important;

@@ -9,18 +9,17 @@ ion-menu{
     }
 }
 
-// ion-menu {
-//   ion-toolbar {
-//     --background: 
-//       rgb(206, 239, 253);
-//   }
-//   ion-content {
-//     --ion-background-color:  rgb(206, 239, 253);
-//   }
-//   ion-footer {
-//     background: rgb(206, 239, 253);
-//   }
-// }
+ion-menu {
+  ion-toolbar {
+    --background: white;
+  }
+  ion-content {
+    --background: white;  
+  }
+  ion-footer {
+    background: white;
+  }
+}
 .menu-list{
   font-size: 16px;
   color: slategrey !important;

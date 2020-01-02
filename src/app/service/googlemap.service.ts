@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import {
   GoogleMaps,
   GoogleMap,
@@ -18,7 +19,8 @@ export class GooglemapService {
   map: GoogleMap;
 
   constructor(
-    public toastCtrl: ToastController, ) {
+    public toastCtrl: ToastController,
+    public locationAccuracy: LocationAccuracy, ) {
   }
 
   loadMap() {
@@ -31,6 +33,7 @@ export class GooglemapService {
       mapToolbar: false
     };
     this.map = GoogleMaps.create('map_canvas', mapOptions);
+    this.requestLocation();
     this.goToMyLocation();
   }
 
@@ -65,6 +68,7 @@ export class GooglemapService {
     const option: MyLocationOptions = {
       enableHighAccuracy: true
     };
+
     // Get the location of you
     this.map.getMyLocation(option).then((location: MyLocation) => {
       // Move the map camera to the location with animation
@@ -73,6 +77,10 @@ export class GooglemapService {
         zoom: 15,
         bearing: 0,
         duration: 1000
+      });
+      const marker: Marker = this.map.addMarkerSync({
+        icon: 'aqua',
+        position: location.latLng,
       });
     }).catch(() => {
       this.showToast('Please Turn ON Device GPS');
@@ -83,10 +91,23 @@ export class GooglemapService {
     const toast = await this.toastCtrl.create({
       message: message,
       duration: 2000,
-      position: 'middle'
+      position: 'middle',
+      cssClass: 'customToast'
     });
     toast.present();
   }
 
+  requestLocation() {
+    // the accuracy option will be ignored by iOS
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+        console.log('Request successful');
+      },
+      error => {
+        console.log('Error requesting location permissions', error);
+      }
+    );
+
+  }
 
 }

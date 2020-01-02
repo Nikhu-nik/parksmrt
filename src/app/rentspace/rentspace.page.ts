@@ -8,21 +8,20 @@ import { ImagePickerService } from '../service/image-picker.service';
   templateUrl: './rentspace.page.html',
   styleUrls: ['./rentspace.page.scss'],
 })
-export class RentspacePage implements OnInit{
+export class RentspacePage implements OnInit {
 
   images = [];
   countryList;
   firstFormGroup: FormGroup;
-  locationImage = '';
   currentNumber = 1;
 
   constructor(private httpClient: HttpClient,
-              private formBuilder: FormBuilder,
-              private imagePickerService: ImagePickerService,
-  ) {}
+    private formBuilder: FormBuilder,
+    private imagePickerService: ImagePickerService,
+  ) { }
 
 
-   ngOnInit() {
+  ngOnInit() {
     this.httpClient.get('https://restcountries.eu/rest/v2/all')
       .subscribe((data) => {
         this.countryList = data;
@@ -43,6 +42,14 @@ export class RentspacePage implements OnInit{
 
   selectImage() {
     this.imagePickerService.selectImage();
+  }
+
+  imgLoaded() {
+    if (this.images != null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }
