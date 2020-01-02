@@ -2,9 +2,6 @@ ion-toolbar {
   --background: slategrey;
   color: white;
 }
-ion-content {
-  --background: #f8f9fa;
-}
 .parking-img {
   background: white;
   height: 140px;
@@ -70,6 +67,7 @@ ion-grid {
 }
 .sec-1 {
   padding: 10px 24px;
+  padding-bottom: 25px;
   background: white;
 }
 .parking-type {

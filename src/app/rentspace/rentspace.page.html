@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="light">
   <div class="main-heading">
     <h4>Enter details of your parking space to make user easy to locate</h4>
   </div>
@@ -97,22 +97,22 @@
         <h5>What type of parking do you have?</h5>
       </ion-list-header>
 
-      <ion-item lines="none" color="none">
+      <ion-item lines="none">
         <ion-label>Driveway</ion-label>
         <ion-radio slot="start" value="Driveway" checked></ion-radio>
       </ion-item>
 
-      <ion-item lines="none" color="none">
+      <ion-item lines="none">
         <ion-label>Garage</ion-label>
         <ion-radio slot="start" value="Garage"></ion-radio>
       </ion-item>
 
-      <ion-item lines="none" color="none">
+      <ion-item lines="none">
         <ion-label>Car Park</ion-label>
         <ion-radio slot="start" value="CarPark"></ion-radio>
       </ion-item>
 
-      <ion-item lines="none" color="none">
+      <ion-item lines="none">
         <ion-label>On-street</ion-label>
         <ion-radio slot="start" value="OnStreet"></ion-radio>
       </ion-item>
@@ -123,7 +123,7 @@
     <ion-list-header>
       <h5>How many spaces do you have for rent?</h5>
     </ion-list-header>
-    <ion-item lines="none" color="none">
+    <ion-item lines="none">
       <ion-icon name="remove-circle-outline" (click)=" decrement()"></ion-icon>
       <div class="space-value">
         {{currentNumber}}
@@ -172,31 +172,31 @@
     <ion-list-header>
       <h5>What features does your location offer?</h5>
     </ion-list-header>
-    <ion-item lines="none" color="none">
+    <ion-item lines="none">
       <ion-label>Covered parking</ion-label>
       <ion-checkbox slot="start" name="coveredParking"></ion-checkbox>
     </ion-item>
-    <ion-item lines="none" color="none">
+    <ion-item lines="none">
       <ion-label>CCTV</ion-label>
       <ion-checkbox slot="start" name="cctv"></ion-checkbox>
     </ion-item>
-    <ion-item lines="none" color="none">
+    <ion-item lines="none">
       <ion-label>Securely gated</ion-label>
       <ion-checkbox slot="start" name="securelyGated"></ion-checkbox>
     </ion-item>
-    <ion-item lines="none" color="none">
+    <ion-item lines="none">
       <ion-label>Disabled access</ion-label>
       <ion-checkbox slot="start" name="disabledAccess"></ion-checkbox>
     </ion-item>
-    <ion-item lines="none" color="none">
+    <ion-item lines="none">
       <ion-label>Electric vehicle charging</ion-label>
       <ion-checkbox slot="start" name="electricCharging"></ion-checkbox>
     </ion-item>
-    <ion-item lines="none" color="none">
+    <ion-item lines="none">
       <ion-label>Lighting</ion-label>
       <ion-checkbox slot="start" name="lighting"></ion-checkbox>
     </ion-item>
-    <ion-item lines="none" color="none">
+    <ion-item lines="none">
       <ion-label>Airport transfers by the space owner</ion-label>
       <ion-checkbox slot="start" name="airportTransfer"></ion-checkbox>
     </ion-item>
@@ -215,7 +215,7 @@
       <small>Dont include any contact details or sensitive information here.</small>
     </div>
     <div style="margin-bottom: 10px;">
-      <ion-item color="none" lines="none">
+      <ion-item  lines="none">
         <ion-textarea rows="6" cols="20"></ion-textarea>
       </ion-item>
     </div>
@@ -225,7 +225,7 @@
     <ion-list-header>
       <h5>What is your mobile number?</h5>
     </ion-list-header>
-    <ion-item color="none" lines="none" class="mobile-num">
+    <ion-item lines="none" class="mobile-num">
       <ion-input placeholder="Enter mobile number" clearInput type="tel"></ion-input>
     </ion-item>
   </div>

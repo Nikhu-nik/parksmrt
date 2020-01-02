@@ -2,7 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
-import {  Platform } from '@ionic/angular';
+import { Platform, AlertController } from '@ionic/angular';
 import { GooglemapService } from '../service/googlemap.service';
 
 
@@ -17,7 +17,6 @@ export class HomePage implements OnInit {
   data: any = {};
   fullName = 'Username';
   userImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCEzGoZ6NCvbjg4hJlLL_0TLB61J8R2Xi09hoiSpGxXvVdTRoB';
-
   // current date object
   myDate = new Date().toISOString();
 
@@ -36,12 +35,14 @@ export class HomePage implements OnInit {
               private apiService: ApiService,
               private platform: Platform,
               private googlemapService: GooglemapService,
+              private alertCtrl: AlertController,
               public ngZone: NgZone) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = { input: '' };
     this.autocompleteItems = [];
     this.geocoder = new google.maps.Geocoder;
     this.markers = [];
+
   }
 
   async ngOnInit() {
@@ -101,8 +102,10 @@ export class HomePage implements OnInit {
   // Back button exit app
   ionViewDidEnter() {
     this.backButtonSubscription = this.platform.backButton
-      .subscribe(() => {
-        navigator['app'].exitApp();
+      .subscribe(async () => {
+        if (this.router.isActive('/menu/home', true) && this.router.url === '/menu/home') {
+          this.confirmExit();
+        }
       });
   }
 
@@ -110,6 +113,27 @@ export class HomePage implements OnInit {
     this.backButtonSubscription.unsubscribe();
   }
 
+  async confirmExit() {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirm Exit',
+      message: 'Are you sure you want to exit?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            navigator['app'].exitApp();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
   clearAutocomplete() {
     if (this.autocomplete.input !== '') {
