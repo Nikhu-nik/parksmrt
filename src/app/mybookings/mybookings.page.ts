@@ -14,7 +14,7 @@ export class MybookingsPage implements OnInit {
   }
 
   goHome() {
-    this.router.navigate(['/main/home']);
+    this.router.navigate(['/main']);
   }
 
 }

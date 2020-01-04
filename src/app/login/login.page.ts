@@ -23,7 +23,6 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.logout();
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -38,16 +37,18 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this.authService.login(this.f.username.value, this.f.password.value)
       .subscribe((loginData) => {
-        if (sessionStorage.getItem('role') === 'ROLE_USER') {
-          this.router.navigate(['/home']);
-        } else if (sessionStorage.getItem('role') === 'ROLE_ADMIN') {
-          this.router.navigate(['/admin']);
-        }
+        // if (localStorage.getItem('role') === 'ROLE_USER') {
+        //   this.router.navigate(['/main/home']);
+        // } else if (localStorage.getItem('role') === 'ROLE_ADMIN') {
+        //   this.router.navigate(['/admin']);
+        // }
+        this.router.navigate(['/main']);
+        
         console.log('Logged in successfully..');
-        this.ApiService.getUserDetails()
-          .subscribe((data) => {
-            console.log(data);
-          });
+        // this.ApiService.getUserDetails()
+        //   .subscribe((data) => {
+        //     console.log(data);
+        //   });
       },
         Error => {
           console.log('Error ' + Error.prototype);

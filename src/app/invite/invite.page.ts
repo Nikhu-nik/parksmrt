@@ -16,10 +16,10 @@ export class InvitePage implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.getUserDetails()
-    .subscribe(data => {
-      this.fullName = data.body.fullName;
-    });
+    // this.apiService.getUserDetails()
+    // .subscribe(data => {
+    //   this.fullName = data.body.fullName;
+    // });
   }
 
 

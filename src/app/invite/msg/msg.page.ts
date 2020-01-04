@@ -13,10 +13,10 @@ export class MsgPage implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.getUserDetails()
-    .subscribe(data => {
-      this.email = data.body.email;
-    });
+    // this.apiService.getUserDetails()
+    // .subscribe(data => {
+    //   this.email = data.body.email;
+    // });
   }
 
 }

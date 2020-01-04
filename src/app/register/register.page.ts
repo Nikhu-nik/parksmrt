@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 import { MustMatch } from '../_helpers/must-match.validator';
@@ -47,11 +47,11 @@ export class RegisterPage implements OnInit {
       mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
       terms: ['true', Validators.pattern('true')],
-      // roles: this.formBuilder.array([{ name: 'user' }])
+      roles: this.formBuilder.array([{ name: 'user' }])
     });
   }
 
-  onFormSubmit(form, error) {
+  onFormSubmit(form) {
 
     if (this.registerForm.invalid) {
       return;
@@ -59,8 +59,9 @@ export class RegisterPage implements OnInit {
     this.apiService.addNewUser(form).subscribe(res => {
       console.log(`${this.f.fullName.value} registered successfully..`);
       this.router.navigate(['/login']);
-    });
-    console.log(error);
+    }, 
+    error => console.log(error)
+    );
   }
 
   isInputNumber(event: any) {

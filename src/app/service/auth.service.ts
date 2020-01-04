@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 
@@ -14,26 +14,26 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   public login(username, password) {
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('token');
     return this.http.post(environment.baseURL + '/login', { email: username, password }, {observe: 'response'})
       .pipe(map((res: any) => {
         if (res.ok) {
-          sessionStorage.setItem('token', res.headers.get('Authorization'));
-          sessionStorage.setItem('currentUser', username);
-          sessionStorage.setItem('role', res.headers.get('role'));
-          // console.log(sessionStorage.getItem('token'));
+          localStorage.setItem('token', res.body.token);
+          localStorage.setItem('role', res.headers.get('role'));
+          const param = new HttpParams().set('email', username);
+          return this.http.get(environment.baseURL + '/getUserDetails',{params: param})
         }
       }));
   }
 
   loggedIn() {
-    return sessionStorage.getItem('token');
+    return localStorage.getItem('token');
   }
 
 logout() {
-  sessionStorage.removeItem('token');
-  sessionStorage.removeItem('currentUser');
-  sessionStorage.removeItem('role');
+  localStorage.removeItem('token');
+  localStorage.removeItem('currentUser');
+  localStorage.removeItem('role');
 }
 
 }
