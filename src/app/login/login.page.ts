@@ -34,34 +34,35 @@ export class LoginPage implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
-  // onSubmit() {
-  //   this.authService.login(this.f.username.value, this.f.password.value)
-  //     .subscribe((loginData) => {
-  //       if (sessionStorage.getItem('role') === 'ROLE_USER') {
-  //         this.router.navigate(['/home']);
-  //       } else if (sessionStorage.getItem('role') === 'ROLE_ADMIN') {
-  //         this.router.navigate(['/admin']);
-  //       }
-  //       console.log('Logged in successfully..');
-  //       this.ApiService.getUserDetails()
-  //         .subscribe((data) => {
-  //           console.log(data);
-  //         });
-  //     },
-  //       Error => {
-  //         console.log('Error ' + Error.prototype);
-  //       }
-  //     );
-  // }
-
-  onSubmit(error) {
-    if (this.f.username.value === 'user' && this.f.password.value === 'password'){
-      this.loading.present();
-      this.router.navigate(['/main/home']);
-      this.loading.dismiss();
-    } else {
-      alert(error);
-    }
+  
+  onSubmit() {
+    this.authService.login(this.f.username.value, this.f.password.value)
+      .subscribe((loginData) => {
+        if (sessionStorage.getItem('role') === 'ROLE_USER') {
+          this.router.navigate(['/home']);
+        } else if (sessionStorage.getItem('role') === 'ROLE_ADMIN') {
+          this.router.navigate(['/admin']);
+        }
+        console.log('Logged in successfully..');
+        this.ApiService.getUserDetails()
+          .subscribe((data) => {
+            console.log(data);
+          });
+      },
+        Error => {
+          console.log('Error ' + Error.prototype);
+        }
+      );
   }
+
+  // onSubmit(error) {
+  //   if (this.f.username.value === 'user' && this.f.password.value === 'password'){
+  //     this.loading.present();
+  //     this.router.navigate(['/main/home']);
+  //     this.loading.dismiss();
+  //   } else {
+  //     alert(error);
+  //   }
+  // }
 
 }

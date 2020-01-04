@@ -29,7 +29,6 @@ export class HomePage implements OnInit {
   nearbyItems: any[];
   GooglePlaces: any;
   placeId: string;
-  backButtonSubscription: any;
 
   constructor(private router: Router, private authService: AuthService,
               private apiService: ApiService,
@@ -97,42 +96,6 @@ export class HomePage implements OnInit {
         });
       }
     });
-  }
-
-  // Back button exit app
-  ionViewDidEnter() {
-    this.backButtonSubscription = this.platform.backButton
-      .subscribe(async () => {
-        if (this.router.isActive('/menu/home', true) && this.router.url === '/menu/home') {
-          this.confirmExit();
-        }
-      });
-  }
-
-  ionViewWillLeave() {
-    this.backButtonSubscription.unsubscribe();
-  }
-
-  async confirmExit() {
-    const alert = await this.alertCtrl.create({
-      header: 'Confirm Exit',
-      message: 'Are you sure you want to exit?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            navigator['app'].exitApp();
-          }
-        }
-      ]
-    });
-    await alert.present();
   }
 
   clearAutocomplete() {
