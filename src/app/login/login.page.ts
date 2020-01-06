@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, NgForm, } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { LoadingService } from '../service/loading.service';
 import { ToastService } from '../service/toast.service';
@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
   login() {
     if (this.f.email.value === 'user' && this.f.password.value === 'password') {
       this.loading.present();
-      this.toastService.showToast('Login Successfull');
+      this.toastService.showToast('Login Successfull..!!');
       this.router.navigate(['/main']);
       this.loading.dismiss();
     } else {
