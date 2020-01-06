@@ -19,14 +19,14 @@
             <h2 style="margin-bottom: 20px;">Lets get you logged in.</h2>
           </div>
           <div>
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
               <ion-item color="none" class="ion-no-padding">
-                <ion-label position="floating">Email or phone number</ion-label>
-                <ion-input type="text" formControlName="username" ></ion-input>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input type="email" formControlName="email" ></ion-input>
               </ion-item>
-              <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && (loginForm.controls['username'].touched 
-                          || loginForm.controls['username'].dirty)">
-                <small>Please enter your email or phone number</small>
+              <div class="error" *ngIf="loginForm.controls['email'].hasError('required') && (loginForm.controls['email'].touched 
+                          || loginForm.controls['email'].dirty)">
+                <small>Please enter your email</small>
               </div>
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Password</ion-label>
@@ -43,7 +43,7 @@
     </ion-grid>
     <a href="" class="forgot-pas">Forgot Password?</a>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="onSubmit()" [disabled]="loginForm.invalid">
+      <ion-fab-button  (click)="login()" [disabled]="loginForm.invalid">
         <ion-icon name="checkmark"></ion-icon>
       </ion-fab-button>
     </ion-fab>

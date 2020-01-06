@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm, } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { ApiService } from '../service/api.service';
 import { LoadingService } from '../service/loading.service';
@@ -17,14 +17,14 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder,
-              private authService: AuthService,
-              private ApiService: ApiService,
-              public loading: LoadingService,
+    private authService: AuthService,
+    private ApiService: ApiService,
+    public loading: LoadingService,
   ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
 
@@ -33,28 +33,26 @@ export class LoginPage implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
-  
-  onSubmit() {
-    this.authService.login(this.f.username.value, this.f.password.value)
-      .subscribe((loginData) => {
+
+  login() {
+    this.authService.login(this.f.email.value, this.f.password.value)
+      .subscribe(
+        (res) => {
+          console.log('Login Successfull');
+          localStorage.setItem('token', res.body.token);
+          this.router.navigate(['/main']);
+        },
+        (error) => {
+          console.log(error);
+        }
         // if (localStorage.getItem('role') === 'ROLE_USER') {
         //   this.router.navigate(['/main/home']);
         // } else if (localStorage.getItem('role') === 'ROLE_ADMIN') {
         //   this.router.navigate(['/admin']);
         // }
-        this.router.navigate(['/main']);
-        
-        console.log('Logged in successfully..');
-        // this.ApiService.getUserDetails()
-        //   .subscribe((data) => {
-        //     console.log(data);
-        //   });
-      },
-        Error => {
-          console.log('Error ' + Error.prototype);
-        }
       );
   }
+
 
   // onSubmit(error) {
   //   if (this.f.username.value === 'user' && this.f.password.value === 'password'){

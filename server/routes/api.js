@@ -22,7 +22,7 @@ router.post("/register", (req, res) => {
     if (error) {
       console.log(error);
     } else {
-      res.status(200);
+      res.status(200).send(registeredUser.fullName + ' ' + 'registered successfully');
     }
   });
 });
@@ -42,7 +42,7 @@ router.post("/login", (req, res) => {
         } else {
           let payload = { subject: user._id }
           let token = jwt.sign(payload, 'secretKey')
-          res.status(200).send(token);
+          res.status(200).send({token});
         }
       }
     }

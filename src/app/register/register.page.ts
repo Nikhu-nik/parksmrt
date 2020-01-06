@@ -56,11 +56,14 @@ export class RegisterPage implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.apiService.addNewUser(form).subscribe(res => {
-      console.log(`${this.f.fullName.value} registered successfully..`);
-      this.router.navigate(['/login']);
-    }, 
-    error => console.log(error)
+    this.apiService.addNewUser(form).subscribe(
+      (res) => {
+        console.log(res);
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   }
 
