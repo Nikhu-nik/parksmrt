@@ -34,36 +34,37 @@ export class LoginPage implements OnInit {
     return this.loginForm.controls;
   }
 
-  login() {
-    this.authService.login(this.f.email.value, this.f.password.value)
-      .subscribe(
-        (res) => {
-          this.toastService.showToast('Login Successfull');
-          console.log('Login Successfull');
-          localStorage.setItem('token', res.body.token);
-          this.router.navigate(['/main']);
-        },
-        (error) => {
-          this.toastService.showToast('Enter valid credentials');
-          console.log(error);
-        }
-        // if (localStorage.getItem('role') === 'ROLE_USER') {
-        //   this.router.navigate(['/main/home']);
-        // } else if (localStorage.getItem('role') === 'ROLE_ADMIN') {
-        //   this.router.navigate(['/admin']);
-        // }
-      );
-  }
-
-
-  // onSubmit(error) {
-  //   if (this.f.username.value === 'user' && this.f.password.value === 'password'){
-  //     this.loading.present();
-  //     this.router.navigate(['/main/home']);
-  //     this.loading.dismiss();
-  //   } else {
-  //     alert(error);
-  //   }
+  // login() {
+  //   this.authService.login(this.f.email.value, this.f.password.value)
+  //     .subscribe(
+  //       (res) => {
+  //         this.toastService.showToast('Login Successfull');
+  //         console.log('Login Successfull');
+  //         localStorage.setItem('token', res.body.token);
+  //         this.router.navigate(['/main']);
+  //       },
+  //       (error) => {
+  //         this.toastService.showToast('Enter valid credentials');
+  //         console.log(error);
+  //       }
+  //       // if (localStorage.getItem('role') === 'ROLE_USER') {
+  //       //   this.router.navigate(['/main/home']);
+  //       // } else if (localStorage.getItem('role') === 'ROLE_ADMIN') {
+  //       //   this.router.navigate(['/admin']);
+  //       // }
+  //     );
   // }
+
+
+  login() {
+    if (this.f.email.value === 'user' && this.f.password.value === 'password') {
+      this.loading.present();
+      this.toastService.showToast('Login Successfull');
+      this.router.navigate(['/main']);
+      this.loading.dismiss();
+    } else {
+      alert('Invalid email or password');
+    }
+  }
 
 }
