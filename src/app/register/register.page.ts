@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 import { MustMatch } from '../_helpers/must-match.validator';
+import { ToastService } from '../service/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,10 @@ import { MustMatch } from '../_helpers/must-match.validator';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private apiService: ApiService,
+              private formBuilder: FormBuilder,
+              private router: Router,
+              public toastService: ToastService) { }
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
@@ -58,9 +62,11 @@ export class RegisterPage implements OnInit {
     this.apiService.addNewUser(form).subscribe(
       (res) => {
         console.log(res);
+        this.toastService.showToast('Registered Successfully');
         this.router.navigate(['/login']);
       },
       (error) => {
+        this.toastService.showToast('Enter all fields with valid information');
         console.log(error);
       }
     );

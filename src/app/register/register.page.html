@@ -39,7 +39,8 @@
               </ng-container>
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Mobile Number</ion-label>
-                <ion-input type="tel" inputmode="tel" (keypress)="isInputNumber($event)" formControlName="mobileNumber"></ion-input>
+                <ion-input type="tel" inputmode="tel" (keypress)="isInputNumber($event)" formControlName="mobileNumber">
+                </ion-input>
               </ion-item>
               <ng-container *ngFor="let validation of validation_messages.mobileNumber">
                 <div class="error"
@@ -69,7 +70,7 @@
               </ng-container>
               <div>
                 <ion-fab>
-                  <ion-fab-button (click)="register(registerForm.value)" >
+                  <ion-fab-button (click)="register(registerForm.value)">
                     <ion-icon name="paper-plane"></ion-icon>
                   </ion-fab-button>
                 </ion-fab>

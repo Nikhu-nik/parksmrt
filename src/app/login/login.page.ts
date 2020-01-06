@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, NgForm, } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
-import { ApiService } from '../service/api.service';
 import { LoadingService } from '../service/loading.service';
+import { ToastService } from '../service/toast.service';
 
 
 @Component({
@@ -17,9 +17,9 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private ApiService: ApiService,
-    public loading: LoadingService,
+              private authService: AuthService,
+              public loading: LoadingService,
+              public toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -38,11 +38,13 @@ export class LoginPage implements OnInit {
     this.authService.login(this.f.email.value, this.f.password.value)
       .subscribe(
         (res) => {
+          this.toastService.showToast('Login Successfull');
           console.log('Login Successfull');
           localStorage.setItem('token', res.body.token);
           this.router.navigate(['/main']);
         },
         (error) => {
+          this.toastService.showToast('Enter valid credentials');
           console.log(error);
         }
         // if (localStorage.getItem('role') === 'ROLE_USER') {
