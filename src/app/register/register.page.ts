@@ -51,8 +51,7 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  onFormSubmit(form) {
-
+  register(form) {
     if (this.registerForm.invalid) {
       return;
     }
