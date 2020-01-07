@@ -21,8 +21,14 @@ export class RegisterPage implements OnInit {
   get f() { return this.registerForm.controls; }
 
   registerForm: FormGroup;
-
+  submitted = false;
   validation_messages = {
+
+    fullName: [
+      { type: 'required', message: 'Please enter your full name' },
+      { type: 'pattern', message: 'Name should not contain special character ' },
+    ],
+
     email: [
       { type: 'required', message: 'Please enter your email' },
       { type: 'pattern', message: 'Please enter a valid email' },
@@ -31,6 +37,7 @@ export class RegisterPage implements OnInit {
     mobileNumber: [
       { type: 'required', message: 'Please enter your mobile number' },
       { type: 'minlength', message: 'Please enter 10 digit mobile number' },
+      { type: 'maxlength', message: 'Please enter only 10 digit mobile number' },
     ],
 
     password: [
@@ -48,7 +55,7 @@ export class RegisterPage implements OnInit {
     this.registerForm = this.formBuilder.group({
       fullName: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
-      mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
+      mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
       terms: ['true', Validators.pattern('true')],
       roles: this.formBuilder.array([{ name: 'user' }])
@@ -56,6 +63,7 @@ export class RegisterPage implements OnInit {
   }
 
   register(form) {
+    this.submitted = true;
     if (this.registerForm.invalid) {
       return;
     }
@@ -66,8 +74,8 @@ export class RegisterPage implements OnInit {
         this.router.navigate(['/login']);
       },
       (error) => {
-        this.toastService.showToast('Enter all fields with valid information');
-        console.log(error);
+        // this.toastService.showToast('Enter all fields with valid information');
+        console.log(error.message);
       }
     );
   }

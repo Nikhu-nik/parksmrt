@@ -24,16 +24,14 @@
                 <ion-label position="floating">Email</ion-label>
                 <ion-input type="email" formControlName="email" ></ion-input>
               </ion-item>
-              <div class="error" *ngIf="loginForm.controls['email'].hasError('required') && (loginForm.controls['email'].touched 
-                          || loginForm.controls['email'].dirty)">
+              <div class="error" *ngIf="submitted && loginForm.controls['email'].hasError('required')">
                 <small>Please enter your email</small>
               </div>
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Password</ion-label>
                 <ion-input type="password" formControlName="password"></ion-input>
               </ion-item>
-              <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && (loginForm.controls['password'].touched 
-                          || loginForm.controls['password'].dirty)">
+              <div class="error" *ngIf="submitted && loginForm.controls['password'].hasError('required')">
                 <small>Please enter your password</small>
               </div>
             </form>
@@ -43,7 +41,7 @@
     </ion-grid>
     <a href="" class="forgot-pas">Forgot Password?</a>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button  (click)="login()" [disabled]="loginForm.invalid">
+      <ion-fab-button  (click)="login()">
         <ion-icon name="checkmark"></ion-icon>
       </ion-fab-button>
     </ion-fab>

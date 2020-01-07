@@ -14,12 +14,13 @@ import { ToastService } from '../service/toast.service';
 
 export class LoginPage implements OnInit {
 
+  submitted = false;
   loginForm: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder,
-              private authService: AuthService,
-              public loading: LoadingService,
-              public toastService: ToastService
+    private authService: AuthService,
+    public loading: LoadingService,
+    public toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -35,16 +36,20 @@ export class LoginPage implements OnInit {
   }
 
   // login() {
+  //   this.submitted = true;
+  //   if (this.loginForm.invalid) {
+  //     return;
+  //   }
   //   this.authService.login(this.f.email.value, this.f.password.value)
   //     .subscribe(
   //       (res) => {
-  //         this.toastService.showToast('Login Successfull');
   //         console.log('Login Successfull');
   //         localStorage.setItem('token', res.body.token);
+  //         this.loading.present();
   //         this.router.navigate(['/main']);
+  //         this.loading.dismiss();
   //       },
   //       (error) => {
-  //         this.toastService.showToast('Enter valid credentials');
   //         console.log(error);
   //       }
   //       // if (localStorage.getItem('role') === 'ROLE_USER') {
@@ -59,9 +64,10 @@ export class LoginPage implements OnInit {
   login() {
     if (this.f.email.value === 'user' && this.f.password.value === 'password') {
       this.loading.present();
-      this.toastService.showToast('Login Successfull..!!');
       this.router.navigate(['/main']);
       this.loading.dismiss();
+    } else if (this.loginForm.controls.email.value === '' || this.loginForm.controls.password.value === '') {
+      alert('Enter all required fields');
     } else {
       alert('Invalid email or password');
     }

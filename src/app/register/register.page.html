@@ -23,17 +23,19 @@
                 <ion-label position="floating">Full Name</ion-label>
                 <ion-input type="text" formControlName="fullName"></ion-input>
               </ion-item>
-              <div class="error" *ngIf="registerForm.get('fullName').hasError('required') && (registerForm.get('fullName').touched 
-                        || registerForm.get('fullName').dirty)">
-                <small>Please enter your fullname</small>
-              </div>
+              <ng-container *ngFor="let validation of validation_messages.fullName">
+                <div class="error"
+                  *ngIf="submitted && registerForm.get('fullName').hasError(validation.type)">
+                  <small>{{ validation.message}}</small>
+                </div>
+              </ng-container>
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Email</ion-label>
                 <ion-input type="email" formControlName="email"></ion-input>
               </ion-item>
               <ng-container *ngFor="let validation of validation_messages.email">
                 <div class="error"
-                  *ngIf="registerForm.get('email').hasError(validation.type)  && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                  *ngIf="submitted && registerForm.get('email').hasError(validation.type)">
                   <small>{{ validation.message}}</small>
                 </div>
               </ng-container>
@@ -44,7 +46,7 @@
               </ion-item>
               <ng-container *ngFor="let validation of validation_messages.mobileNumber">
                 <div class="error"
-                  *ngIf="registerForm.get('mobileNumber').hasError(validation.type)  && (registerForm.get('mobileNumber').dirty || registerForm.get('mobileNumber').touched)">
+                  *ngIf="submitted && registerForm.get('mobileNumber').hasError(validation.type)">
                   <small>{{ validation.message}}</small>
                 </div>
               </ng-container>
@@ -54,7 +56,7 @@
               </ion-item>
               <ng-container *ngFor="let validation of validation_messages.password">
                 <div class="error"
-                  *ngIf="registerForm.get('password').hasError(validation.type)  && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                  *ngIf="submitted && registerForm.get('password').hasError(validation.type)">
                   <small>{{ validation.message}}</small>
                 </div>
               </ng-container>
@@ -64,7 +66,7 @@
               </ion-item>
               <ng-container *ngFor="let validation of validation_messages.terms">
                 <div class="error"
-                  *ngIf="registerForm.get('terms').hasError(validation.type)  && (registerForm.get('terms').dirty || registerForm.get('terms').touched)">
+                  *ngIf="submitted && registerForm.get('terms').hasError(validation.type)">
                   <small>{{ validation.message}}</small>
                 </div>
               </ng-container>

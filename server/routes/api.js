@@ -17,14 +17,21 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, error 
 // register api
 router.post("/register", (req, res) => {
   let userData = req.body;
-  let user = new User(userData);
-  user.save((error, registeredUser) => {
-    if (error) {
-      console.log(error);
-    } else {
-      res.status(200).send(registeredUser.fullName + ' ' + 'registered successfully');
+  let newUser = new User(userData);
+  User.findOne({ email: userData.email },(err, user) => {
+    if(err) {
+       console.log(err);
+       res.send(err);
     }
-  });
+    //if a user was found, that means the user's email matches the entered email
+    if (user) {
+        res.status(400).send('This email has already been registered')
+    } else {
+        newUser.save((err,registeredUser) => {
+          res.status(200).send(registeredUser.fullName + ' ' + 'registered successfully');
+        })
+    }
+ }); 
 });
 
 // login api
