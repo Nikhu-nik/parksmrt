@@ -18,20 +18,20 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, error 
 router.post("/register", (req, res) => {
   let userData = req.body;
   let newUser = new User(userData);
-  User.findOne({ email: userData.email },(err, user) => {
-    if(err) {
-       console.log(err);
-       res.send(err);
+  User.findOne({ email: userData.email }, (err, user) => {
+    if (err) {
+      console.log(err);
+      res.send(err);
     }
     //if a user was found, that means the user's email matches the entered email
     if (user) {
-        res.status(400).send('This email has already been registered')
+      res.status(400).send('This email has already been registered')
     } else {
-        newUser.save((err,registeredUser) => {
-          res.status(200).send(registeredUser.fullName + ' ' + 'registered successfully');
-        })
+      newUser.save((err, registeredUser) => {
+        res.status(200).send(registeredUser.fullName + ' ' + 'registered successfully');
+      })
     }
- }); 
+  });
 });
 
 // login api
@@ -44,25 +44,22 @@ router.post("/login", (req, res) => {
       if (!user) {
         res.status(401).send("Invalid Email");
       } else {
-        if (user.password != userData.password) {
-          res.status(401).send("Invalid Password");
-        } else {
-          let payload = { subject: user._id }
-          let token = jwt.sign(payload, 'secretKey')
-          res.status(200).send({token});
-        }
+        let payload = { subject: user._id }
+        let token = jwt.sign(payload, 'secretKey')
+        res.status(200).send({ token });
       }
+
     }
   });
 });
 
 // Getting user details api
-router.get("/getUserDetails", (req, res) =>{
+router.get("/getUserDetails", (req, res) => {
   let email = req.params.email;
-  User.findOne({email:email}, (error,user) => {
+  User.findOne({ email: email }, (error, user) => {
     if (error) {
       res.status(404).send('User Not Found')
-    }else{
+    } else {
       res.status(200).send(user);
     }
   });
