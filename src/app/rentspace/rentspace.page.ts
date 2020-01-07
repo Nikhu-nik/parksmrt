@@ -16,18 +16,18 @@ export class RentspacePage implements OnInit {
   currentNumber = 1;
 
   constructor(private httpClient: HttpClient,
-    private formBuilder: FormBuilder,
-    private imagePickerService: ImagePickerService,
+              private formBuilder: FormBuilder,
+              private imagePickerService: ImagePickerService,
   ) { }
 
 
   ngOnInit() {
-    this.httpClient.get('https://restcountries.eu/rest/v2/all')
-      .subscribe((data) => {
-        this.countryList = data;
+     this.httpClient.get<any>('https://restcountries.eu/rest/v2/all')
+      .subscribe((res) => {
+       this.countryList = res;
       });
 
-    this.firstFormGroup = this.formBuilder.group({
+     this.firstFormGroup = this.formBuilder.group({
       address: ['', Validators.required]
     });
   }
@@ -37,7 +37,11 @@ export class RentspacePage implements OnInit {
   }
 
   decrement() {
-    this.currentNumber--;
+    if (this.currentNumber <= 1) {
+      return;
+    } else {
+      this.currentNumber--;
+    }
   }
 
   selectImage() {

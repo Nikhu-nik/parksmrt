@@ -38,7 +38,7 @@ export class HideHeaderDirective {
       this.renderer.setStyle(
         this.element.nativeElement,
         'transition',
-        '0.3s linear'
+        '0.2s linear'
       );
       this.renderer.setStyle(this.element.nativeElement, 'height', '56px');
     });

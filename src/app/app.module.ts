@@ -56,7 +56,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
     AuthService,
     ImagePickerService,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

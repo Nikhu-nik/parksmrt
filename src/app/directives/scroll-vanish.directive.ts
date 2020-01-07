@@ -38,7 +38,7 @@ export class ScrollVanishDirective implements OnInit {
       this.renderer.setStyle(
         this.element.nativeElement,
         'transition',
-        '0.3s linear'
+        '0.2s linear'
       );
       this.renderer.setStyle(this.element.nativeElement, 'height', '92px');
     });

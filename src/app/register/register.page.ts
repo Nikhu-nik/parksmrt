@@ -74,8 +74,10 @@ export class RegisterPage implements OnInit {
         this.router.navigate(['/login']);
       },
       (error) => {
-        // this.toastService.showToast('Enter all fields with valid information');
-        console.log(error.message);
+        if (error.status == 400 ) {
+          this.toastService.showToast('This email has already been registered');
+        }
+        console.log(error);
       }
     );
   }
