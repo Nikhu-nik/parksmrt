@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require("../models/user");
 const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs');
 const db = "mongodb+srv://Abdurrazack:Abdurrazack@cluster0-qfh8b.mongodb.net/ParksmardDB?retryWrites=true&w=majority";
 
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }, error => {
@@ -27,9 +28,16 @@ router.post("/register", (req, res) => {
     if (user) {
       res.status(400).send('This email has already been registered')
     } else {
-      newUser.save((err, registeredUser) => {
-        res.status(200).send(registeredUser.fullName + ' ' + 'registered successfully');
-      })
+      bcrypt.hash(userData.password, 10, (err, hash) => {
+        newUser.password = hash
+        newUser.save((err, registeredUser) => {
+          if (err) {
+            res.status(500).send('Error in registering new user')
+          } else {
+            res.status(200).send(registeredUser.fullName + ' ' + 'registered successfully');
+          }
+        })
+      });
     }
   });
 });
@@ -44,11 +52,15 @@ router.post("/login", (req, res) => {
       if (!user) {
         res.status(401).send("Invalid Email");
       } else {
-        let payload = { subject: user._id }
-        let token = jwt.sign(payload, 'secretKey')
-        res.status(200).send({ token });
+      bcrypt.compare(userData.password, user.password,(err,loggedIn)=>{
+        if(loggedIn){
+          let payload = { subject: user._id }
+          let token = jwt.sign(payload, 'secretKey')
+          res.status(200).send({ token });
+        }else{
+          res.sendStatus(403)
+        }}) 
       }
-
     }
   });
 });
@@ -67,3 +79,5 @@ router.get("/getUserDetails", (req, res) => {
 
 
 module.exports = router;
+
+

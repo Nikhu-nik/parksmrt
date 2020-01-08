@@ -9,20 +9,20 @@ const userSchema = new Schema({
     password: String
 });
 
-userSchema.pre('save', function (next) {
-    if (!this.isNew) {
-      return next();
-    }
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(this.password, salt, (err, hash) => {
-        if (err) {
-          next(err);
-        } else {
-          this.password = hash;
-          return next();
-        }
-      });
-    });
-  });
+// userSchema.pre('save', function (next) {
+//     if (!this.isNew) {
+//       return next();
+//     }
+//     bcrypt.genSalt(10, (err, salt) => {
+//       bcrypt.hash(this.password, salt, (err, hash) => {
+//         if (err) {
+//           next(err);
+//         } else {
+//           this.password = hash;
+//           return next();
+//         }
+//       });
+//     });
+//   });
 
 module.exports = mongoose.model('user', userSchema,'users');

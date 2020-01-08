@@ -15,6 +15,7 @@ import { ToastService } from '../service/toast.service';
 export class LoginPage implements OnInit {
 
   submitted = false;
+  loginError = false;
   loginForm: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder,
@@ -43,14 +44,20 @@ export class LoginPage implements OnInit {
     this.authService.login(this.f.email.value, this.f.password.value)
       .subscribe(
         (res) => {
-          console.log('Login Successfull');
-          localStorage.setItem('token', res.body.token);
-          this.loading.present();
-          this.router.navigate(['/main']);
-          this.loading.dismiss();
+            console.log('Login Successfull');
+            localStorage.setItem('token', res.body.token);
+            this.loading.present();
+            this.router.navigate(['/main']);
+            this.loading.dismiss();
         },
         (error) => {
-          console.log(error);
+          if(error.status==401){
+            console.log('wrong email')
+          }else{
+            console.log('wrong password');
+          }
+          
+          
         }
         // if (localStorage.getItem('role') === 'ROLE_USER') {
         //   this.router.navigate(['/main/home']);
