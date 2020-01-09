@@ -53,7 +53,11 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
+  },  {
+    path: 'dashboard',
+    loadChildren: () => import('./Admin/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
+
 
   // {
   //   path: 'rentspace',

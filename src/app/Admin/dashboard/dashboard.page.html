@@ -1,0 +1,72 @@
+<ion-app>
+  <ion-menu side="start" contentId="my-content" type="push">
+    <ion-header no-border>
+      <ion-toolbar class="ion-no-padding ion-text-center" mode="ios">
+        <span style="color: white; font-size: 24px;font-weight: bold;">Park</span><span style="color: white;font-size: 24px;font-weight: bold;">Smart</span>
+      </ion-toolbar>
+      <ion-avatar class="avatar">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMyiXYD1CwGJvsSeE_i_1jEAsb_rm8rclwjfAu9mNHzhijHEui&s"
+          alt="">
+      </ion-avatar>
+      <div style="text-align: center;margin-top: 15px;margin-bottom: 30px;">
+        <b style="color: white;">{{fullName | titlecase }}</b><br>
+      </div>
+      <hr>
+    </ion-header>
+    <ion-content>
+      <ion-list class="ion-no-padding">
+        <ion-item lines="none" color="none" routerLink="/usermanagement">
+          <ion-icon name="person" slot="start"></ion-icon>
+          <ion-label class="menu-list">User Management</ion-label>
+        </ion-item>
+        <ion-item lines="none" color="none" routerLink="/spacemanagement">
+          <ion-icon name="filing" slot="start"></ion-icon>
+          <ion-label class="menu-list">Space Management</ion-label>
+        </ion-item>
+        <ion-item lines="none" color="none" routerLink="/promocodegen">
+          <ion-icon name="pricetag" slot="start"></ion-icon>
+          <ion-label class="menu-list">Promo Code Generate</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <div class="ion-page" id="my-content">
+    <ion-header no-border>
+      <ion-toolbar no-border mode="ios">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-icon name="notifications" class="notification-icon" routerLink=""></ion-icon>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-icon name="chatbubbles" class="chat-icon" routerLink=""></ion-icon>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-icon name="more" class="more-icon" routerLink=""></ion-icon>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <div class="ion-padding">
+        <h4 style="font-weight: bold;">Dashboard</h4>
+        <p style="color: dimgrey;">Welcome aboard, {{ fullName | titlecase }} </p>
+      </div>
+      <ion-grid>
+        <ion-row>
+
+        </ion-row>
+        <ion-row>
+          <ion-col size-lg="3">
+            <ion-card>
+
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+  </div>
+</ion-app>
