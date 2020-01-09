@@ -17,6 +17,8 @@ export class LoginPage implements OnInit {
   submitted = false;
   loginError = false;
   loginForm: FormGroup;
+  incorrectEmail: any;
+  incorrectPassword: string;
 
   constructor(private router: Router, private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -51,13 +53,13 @@ export class LoginPage implements OnInit {
             this.loading.dismiss();
         },
         (error) => {
-          if(error.status==401){
-            console.log('wrong email')
-          }else{
+          if (error.status == 401) {
+            console.log(error.error);
+            this.incorrectEmail = error.error;
+          } else {
             console.log('wrong password');
+            this.incorrectPassword = 'Incorrect password';
           }
-          
-          
         }
         // if (localStorage.getItem('role') === 'ROLE_USER') {
         //   this.router.navigate(['/main/home']);

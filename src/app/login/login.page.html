@@ -27,12 +27,18 @@
               <div class="error" *ngIf="submitted && loginForm.controls['email'].hasError('required')">
                 <small>Please enter your email</small>
               </div>
+              <div class="error" *ngIf="submitted && incorrectEmail">
+                <small>Email you have entered is incorrect</small>
+              </div>
               <ion-item color="none" class="ion-no-padding">
                 <ion-label position="floating">Password</ion-label>
                 <ion-input type="password" formControlName="password"></ion-input>
               </ion-item>
               <div class="error" *ngIf="submitted && loginForm.controls['password'].hasError('required')">
                 <small>Please enter your password</small>
+              </div>
+              <div class="error" *ngIf="submitted && incorrectPassword">
+                <small>{{ incorrectPassword }}</small>
               </div>
             </form>
           </div>

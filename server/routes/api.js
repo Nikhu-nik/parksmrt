@@ -50,7 +50,7 @@ router.post("/login", (req, res) => {
       console.log(error);
     } else {
       if (!user) {
-        res.status(401).send("Invalid Email");
+        res.status(401).send("Email you have entered is incorrect");
       } else {
       bcrypt.compare(userData.password, user.password,(err,loggedIn)=>{
         if(loggedIn){
