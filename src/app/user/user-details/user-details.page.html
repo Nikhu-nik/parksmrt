@@ -12,7 +12,8 @@
     <div [myScrollVanish]="scrollArea" class="d-flex flex-column align-items-center">
       <div>
         <ion-avatar>
-          <img [src]="userImg" (click)="getImages()">
+          <img *ngIf="imageResponse" [src]="imageResponse" (click)="getImages()">
+          <img src="../../assets/images/user-avatar.png" alt="">
         </ion-avatar>
       </div>
       <div>

@@ -10,7 +10,7 @@ import { ImagePickerService } from '../service/image-picker.service';
 })
 export class RentspacePage implements OnInit {
 
-  images = [];
+  images;
   countryList;
   firstFormGroup: FormGroup;
   currentNumber = 1;
@@ -45,7 +45,9 @@ export class RentspacePage implements OnInit {
   }
 
   selectImage() {
-    this.imagePickerService.selectImage();
+    this.imagePickerService.selectImage().then(data => {
+      this.images = data ;
+    });
   }
 
   imgLoaded() {
