@@ -1,22 +1,21 @@
-
-ion-menu{
-    ion-icon{
-        color:white;
-    }
+ion-menu {
+  ion-icon {
+    color: slategrey;
+  }
 }
 
 ion-menu {
   ion-toolbar {
-    --background: #3880ff;
+    --background: white;
   }
   ion-header {
-    background: #3880ff;
+    background: white;
   }
   ion-content {
-    --background: #3880ff;  
+    --background: white;
   }
-  ion-item{
-      background: #3880ff;
+  ion-item {
+    background: white;
   }
 }
 .avatar {
@@ -24,32 +23,39 @@ ion-menu {
   margin-top: 40px;
 }
 hr {
+  border: 0;
   height: 1px;
-  border: none;
-  background-color: white;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
   width: 85%;
 }
 
-.menu-list{
-    color: white !important;
-    font-weight: bold;
-  }
-.notification-icon{
-    font-size: 24px;
-    padding: 0px 10px;
-    color: slategrey;
+.menu-list {
+  color: slategrey !important;
+  font-weight: bold;
 }
-.chat-icon{
-    font-size: 24px;
-    padding: 0px 10px;
-    color: slategrey;
+.notification-icon {
+  font-size: 24px;
+  padding: 0px 10px;
+  color: #383a3e;
 }
-.more-icon{
-    font-size: 24px;
-    padding: 0px 10px;
-    color: slategrey;
+.chat-icon {
+  font-size: 24px;
+  padding: 0px 10px;
+  color: #383a3e;
+}
+.more-icon {
+  font-size: 24px;
+  padding: 0px 10px;
+  color: #383a3e;
 }
 
-ion-content{
-    --background: #f8f9fa;
+ion-content {
+  --background: #f8f9fa;
 }
+
+h6,h5{
+  color: black;
+  font-weight: bold;
+}
+

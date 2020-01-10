@@ -57,6 +57,10 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./Admin/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
+  {
+    path: 'usermanagement',
+    loadChildren: () => import('./Admin/usermanagement/usermanagement.module').then( m => m.UsermanagementPageModule)
+  },
 
 
   // {
