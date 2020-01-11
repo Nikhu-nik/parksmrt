@@ -45,11 +45,10 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
-    // this.apiService.getUserDetails()
-    //   .subscribe(data => {
-    //     this.data = data.body;
-    //     this.fullName = data.body.fullName;
-    //   });
+    this.apiService.getUserDetails()
+      .subscribe((data: any) => {
+        this.fullName = data.fullName;
+      });
     await this.platform.ready();
     await this.googlemapService.loadMap();
   }

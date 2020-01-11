@@ -66,7 +66,7 @@ router.post("/login", (req, res) => {
 });
 
 // Getting user details api
-router.get("/getUserDetails", (req, res) => {
+router.get("/getUserDetails/:email", (req, res) => {
   let email = req.params.email;
   User.findOne({ email: email }, (error, user) => {
     if (error) {
@@ -75,6 +75,16 @@ router.get("/getUserDetails", (req, res) => {
       res.status(200).send(user);
     }
   });
+})
+
+router.get("/getAllUsers", (req, res) => {
+  User.find({}, (err, users) =>{
+    var userMap = {};
+    users.forEach((user) => {
+      userMap = user;
+    });
+    res.send(userMap);  
+  })
 })
 
 

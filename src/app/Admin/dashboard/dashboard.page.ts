@@ -20,13 +20,10 @@ export class DashboardPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
-  }
-
-  ionViewDidEnter() {
     this.createBarChart();
     this.createPieChart();
   }
+
 
   createBarChart() {
     this.line = new Chart(this.lineChart.nativeElement, {

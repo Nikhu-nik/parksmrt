@@ -53,13 +53,18 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
-  },  {
-    path: 'dashboard',
-    loadChildren: () => import('./Admin/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
+  // {
+  //   path: 'dashboard',
+  //   loadChildren: () => import('./Admin/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  // },
+  // {
+  //   path: 'usermanagement',
+  //   loadChildren: () => import('./Admin/usermanagement/usermanagement.module').then( m => m.UsermanagementPageModule)
+  // },
   {
-    path: 'usermanagement',
-    loadChildren: () => import('./Admin/usermanagement/usermanagement.module').then( m => m.UsermanagementPageModule)
+    path: 'adminpanel',
+    loadChildren: () => import('./Admin/adminpanel/adminpanel.module').then( m => m.AdminpanelPageModule)
   },
 
 

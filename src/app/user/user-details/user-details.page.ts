@@ -14,11 +14,10 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 })
 export class UserDetailsPage implements OnInit {
 
-  data: any = {};
   fullName = 'Username';
   mobileNumber = '';
   email = '';
-  password = '';
+  password = '********';
 
 
 
@@ -31,14 +30,12 @@ export class UserDetailsPage implements OnInit {
               private imagePicker: ImagePicker) { }
 
   ngOnInit() {
-    //  this.apiService.getUserDetails()
-    //  .subscribe(data => {
-    //    this.data = data.body;
-    //    this.fullName = data.body.fullName;
-    //    this.mobileNumber = data.body.mobileNumber;
-    //    this.email = data.body.email;
-    //    this.password = data.body.password;
-    //  });
+    this.apiService.getUserDetails()
+    .subscribe((data: any) => {
+      this.fullName = data.fullName;
+      this.email = data.email;
+      this.mobileNumber = data.mobileNumber;
+    });
 
   }
 

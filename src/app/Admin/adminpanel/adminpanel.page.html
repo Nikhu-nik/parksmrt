@@ -1,0 +1,60 @@
+<ion-menu side="start" contentId="my-content">
+  <ion-header no-border>
+    <ion-toolbar class="ion-no-padding ion-text-center" mode="ios">
+      <span style="color: dodgerblue; font-size: 24px;font-weight: bold;">Park</span><span
+        style="color: orangered;font-size: 24px;font-weight: bold;">Smart</span>
+    </ion-toolbar>
+    <ion-avatar class="avatar">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMyiXYD1CwGJvsSeE_i_1jEAsb_rm8rclwjfAu9mNHzhijHEui&s"
+        alt="">
+    </ion-avatar>
+    <div style="text-align: center;margin-top: 15px;margin-bottom: 30px;">
+      <b>{{fullName | titlecase }}</b><br>
+    </div>
+    <hr>
+  </ion-header>
+  <ion-content>
+    <ion-list class="ion-no-padding">
+      <ion-item lines="none" color="none" routerLink="/adminpanel/dashboard">
+        <ion-icon name="browsers" slot="start" mode="ios"></ion-icon>
+        <ion-label class="menu-list">Dashboard</ion-label>
+      </ion-item>
+      <ion-item lines="none" color="none" routerLink="/adminpanel/usermanagement">
+        <ion-icon name="person" slot="start"></ion-icon>
+        <ion-label class="menu-list">User Management</ion-label>
+      </ion-item>
+      <ion-item lines="none" color="none" routerLink="/adminpanel/spacemanagement">
+        <ion-icon name="filing" slot="start"></ion-icon>
+        <ion-label class="menu-list">Space Management</ion-label>
+      </ion-item>
+      <ion-item lines="none" color="none" routerLink="/adminpanel/promocodegen">
+        <ion-icon name="pricetag" slot="start"></ion-icon>
+        <ion-label class="menu-list">Promo Code Generate</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="my-content">
+  <ion-header no-border>
+    <ion-toolbar no-border mode="ios">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-icon name="notifications" class="notification-icon" routerLink=""></ion-icon>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-icon name="chatbubbles" class="chat-icon" routerLink=""></ion-icon>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-icon name="more" class="more-icon" routerLink=""></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+      <router-outlet></router-outlet>
+  </ion-content>
+</div>

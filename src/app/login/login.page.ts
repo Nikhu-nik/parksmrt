@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { LoadingService } from '../service/loading.service';
 import { ToastService } from '../service/toast.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class LoginPage implements OnInit {
   constructor(private router: Router, private formBuilder: FormBuilder,
               private authService: AuthService,
               public loading: LoadingService,
-              public toastService: ToastService
+              public toastService: ToastService,
+              public httpClient: HttpClient,
   ) { }
 
   ngOnInit() {
@@ -46,11 +48,12 @@ export class LoginPage implements OnInit {
     this.authService.login(this.f.email.value, this.f.password.value)
       .subscribe(
         (res) => {
-            console.log('Login Successfull');
-            localStorage.setItem('token', res.body.token);
-            this.loading.present();
-            this.router.navigate(['/main']);
-            this.loading.dismiss();
+          console.log('Login Successfull');
+          localStorage.setItem('token', res.body.token);
+          localStorage.setItem('currentUser', this.f.email.value);
+          this.loading.present();
+          this.router.navigate(['/main']);
+          this.loading.dismiss();
         },
         (error) => {
           if (error.status == 401) {

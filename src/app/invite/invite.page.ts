@@ -8,18 +8,15 @@ import { ApiService } from '../service/api.service';
 })
 export class InvitePage implements OnInit {
 
-
-
   fullName = 'Username';
-
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    // this.apiService.getUserDetails()
-    // .subscribe(data => {
-    //   this.fullName = data.body.fullName;
-    // });
+    this.apiService.getUserDetails()
+      .subscribe((data: any) => {
+        this.fullName = data.fullName;
+      });
   }
 
 
