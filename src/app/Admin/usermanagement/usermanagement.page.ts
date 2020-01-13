@@ -20,8 +20,8 @@ export class UsermanagementPage implements OnInit {
     });
   }
 
-  deleteUser(){
-   return this.httpClient.delete(environment.baseURL + '/deleteUser/' + '5e1609c323987e18bcfecf39')
+  deleteUser(users) {
+   return this.httpClient.delete(environment.baseURL + '/deleteUser/' + users._id)
    .subscribe(res => {
      console.log('user deleted');
    });
