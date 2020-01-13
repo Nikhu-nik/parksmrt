@@ -2,7 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
-import { Platform, AlertController } from '@ionic/angular';
+import { Platform, AlertController, MenuController } from '@ionic/angular';
 import { GooglemapService } from '../service/googlemap.service';
 
 
@@ -35,6 +35,7 @@ export class HomePage implements OnInit {
               private platform: Platform,
               private googlemapService: GooglemapService,
               private alertCtrl: AlertController,
+              private menuController: MenuController,
               public ngZone: NgZone) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = { input: '' };
@@ -103,6 +104,11 @@ export class HomePage implements OnInit {
     } else {
       return false;
     }
+  }
+
+  
+  closeMenu(){
+    this.menuController.close();
   }
 
 }

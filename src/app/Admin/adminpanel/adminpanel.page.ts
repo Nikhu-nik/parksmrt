@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-adminpanel',
@@ -10,9 +11,12 @@ export class AdminpanelPage implements OnInit {
   fullName = 'Jhon';
 
   
-  constructor() { }
+  constructor(private menuController: MenuController) { }
 
   ngOnInit() {
   }
 
+  closeMenu(){
+    this.menuController.close();
+  }
 }

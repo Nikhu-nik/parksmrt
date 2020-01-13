@@ -1,0 +1,26 @@
+ion-card-header{
+    padding: 5px 0px ;
+}
+
+.search-icon{
+    background:gainsboro; 
+    border-radius:50%;
+    padding: 7px;
+}
+
+@media screen and (max-width: 415px){
+    td{
+        padding: 8px 5px;
+        vertical-align: middle;
+        font-size: 12px;
+    }
+    th{
+        padding: 10px 5px;
+    }
+    ion-card-content{
+        padding: 0;
+    }
+    ion-card-header{
+        padding: 5px 0px ;
+    }
+}

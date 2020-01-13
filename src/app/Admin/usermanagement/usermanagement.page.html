@@ -2,34 +2,34 @@
   <ion-grid>
     <ion-row>
       <ion-col>
+        <ion-item class="ion-no-padding mb-3" lines="none" style=" --ion-safe-area-right: 0;">
+          <ion-searchbar class="ion-no-padding" placeholder="Search" mode="ios" autocomplete="true" searchIcon></ion-searchbar>
+          <ion-icon name="search" slot="end" color="dark" class="search-icon" ></ion-icon>
+        </ion-item>
         <ion-card mode="ios" class="ion-no-margin">
           <ion-card-header>
             <ion-item lines="none">
               <ion-card-title>Manage User</ion-card-title><br>
-              <ion-icon name="add" slot="end"></ion-icon>
-              <ion-icon name="trash" slot="end" color="danger"></ion-icon>
+              <ion-icon name="trash" slot="end" color="danger" (click)="deleteUser()"></ion-icon>
             </ion-item>
           </ion-card-header>
           <ion-card-content>
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">Sl.no</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Mobile Number</th>
+                  <th>Sl.no</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Mobile Number</th>
                 </tr>
               </thead>
               <tbody>
-                <div *ngFor="let user of users">
-                  <tr>
-                    <th scope="row">1</th>
+                  <tr *ngFor="let user of users; let i = index">
+                    <td>{{i + 1}}</td>
                     <td>{{ user.fullName}}</td>
                     <td>{{ user.email}}</td>
                     <td>{{ user.mobileNumber}}</td>
                   </tr>
-                </div>
-
               </tbody>
             </table>
           </ion-card-content>

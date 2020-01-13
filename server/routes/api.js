@@ -79,14 +79,19 @@ router.get("/getUserDetails/:email", (req, res) => {
 
 router.get("/getAllUsers", (req, res) => {
   User.find({}, (err, users) =>{
-    var userMap = {};
-    users.forEach((user) => {
-      userMap = user;
-    });
-    res.send(userMap);  
+    res.status(200).send(users);
   })
 })
 
+router.delete('/deleteUser/:id', (req, res) =>{
+  userId = req.params.id;
+  User.findByIdAndRemove({_id: userId}, (err) =>{
+    if (err) {
+      res.status(500).send();
+    }
+    return res.status(200).send();
+  })
+})
 
 module.exports = router;
 
