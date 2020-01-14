@@ -3,14 +3,18 @@
     <ion-row>
       <ion-col>
         <ion-item class="ion-no-padding mb-3" lines="none" style=" --ion-safe-area-right: 0;">
-          <ion-searchbar class="ion-no-padding" placeholder="Search" mode="ios" autocomplete="true" searchIcon></ion-searchbar>
-          <ion-icon name="search" slot="end" color="dark" class="search-icon" ></ion-icon>
+          <ion-searchbar class="ion-no-padding" placeholder="Search" mode="ios" autocomplete="true" searchIcon>
+          </ion-searchbar>
+          <ion-icon name="search" slot="end" color="dark" class="search-icon"></ion-icon>
         </ion-item>
         <ion-card mode="ios" class="ion-no-margin">
           <ion-card-header>
             <ion-item lines="none">
-              <ion-card-title>Manage User</ion-card-title><br>
-              <ion-icon name="trash" slot="end" color="danger" (click)="deleteUser()"></ion-icon>
+              <ion-card-title>Manage User</ion-card-title>
+              
+                <ion-icon  name="trash" slot="end" color="danger" style="padding:0px 8px;"
+                  (click)="deleteSelectedUser(selectedIDs)"></ion-icon>
+            
             </ion-item>
           </ion-card-header>
           <ion-card-content>
@@ -20,16 +24,23 @@
                   <th>Sl.no</th>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Mobile Number</th>
+                  <th>Mobile.No</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let user of users; let i = index">
-                    <td>{{i + 1}}</td>
-                    <td>{{ user.fullName}}</td>
-                    <td>{{ user.email}}</td>
-                    <td>{{ user.mobileNumber}}</td>
-                  </tr>
+                <tr *ngFor="let user of users; let i = index">
+                  <td>{{i + 1}}</td>
+                  <td>{{ user.fullName}}</td>
+                  <td>{{ user.email}}</td>
+                  <td>{{ user.mobileNumber}}</td>
+                  <td>
+                    <ion-icon name="trash" slot="end" color="danger" (click)="deleteUser(user._id)"></ion-icon>
+                  </td>
+                  <td>
+                    <ion-checkbox *ngIf="selectUser" color="primary" (click)="selectDelete(user._id)"></ion-checkbox>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </ion-card-content>

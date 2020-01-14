@@ -52,6 +52,20 @@ ion-input {
   text-align: center !important;
   --border-radius: 30px !important;
 }
+
+.errorToast{
+  --background: #383a3e;
+  --color: white;
+  text-align: center !important;
+  --border-radius: 30px !important;
+  font-size: 12px;
+  height: 94%;
+  width: 80%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 // .mat-step-header{
 //   padding: 0 !important;
 // }

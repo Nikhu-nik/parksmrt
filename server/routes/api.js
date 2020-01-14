@@ -84,8 +84,7 @@ router.get("/getAllUsers", (req, res) => {
 })
 
 router.delete('/deleteUser/:id', (req, res) =>{
-  userId = req.params.id;
-  User.findByIdAndRemove({_id: userId}, (err) =>{
+  User.findByIdAndRemove(req.params.id, (err) =>{
     if (err) {
       res.status(500).send();
     }

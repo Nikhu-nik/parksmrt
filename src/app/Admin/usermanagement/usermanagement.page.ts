@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/service/api.service';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { UserModel } from '../../models/userModel';
+import { AdminApiService } from 'src/app/service/admin-api.service';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-usermanagement',
@@ -10,21 +11,67 @@ import { environment } from 'src/environments/environment';
 })
 export class UsermanagementPage implements OnInit {
 
-  users = [];
+  users: UserModel[];
+  selectedIDs: any[];
+  selectUser = false;
 
-  constructor( private apiService: ApiService, private httpClient: HttpClient) { }
+  constructor(private adminApiService: AdminApiService, private alertController: AlertController) { }
 
   ngOnInit() {
-    this.apiService.getAllUsers().subscribe((data) => {
+    this.getAllUsers();
+  }
+
+  getAllUsers(): void {
+    this.adminApiService.getAllUsers().subscribe((data) => {
       this.users = data;
     });
   }
 
-  deleteUser(users) {
-   return this.httpClient.delete(environment.baseURL + '/deleteUser/' + users._id)
-   .subscribe(res => {
-     console.log('user deleted');
-   });
+  deleteSelectedUser(userId) {
+    this.selectUser = true;
+    if (this.selectedIDs == null) {
+      return;
+    } else {
+      this.adminApiService.deleteUser(userId).subscribe(data => {
+        this.getAllUsers();
+      });
+    }
   }
+
+  selectDelete(id) {
+    this.selectedIDs = id;
+  }
+
+  deleteUser(id) {
+    this.deleteAlert(id);
+  }
+
+  async deleteAlert(id) {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure you want to delete?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: (res) => {
+
+          }
+        },
+        {
+          text: 'OK',
+          cssClass: 'buttonCss',
+          handler: () => {
+            this.adminApiService.deleteUser(id).subscribe(data => {
+              this.getAllUsers();
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 
 }

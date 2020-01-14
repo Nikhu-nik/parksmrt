@@ -22,8 +22,4 @@ export class ApiService {
     return this.httpClient.get(environment.baseURL + '/getUserDetails/' + email);
   }
 
-  getAllUsers(): Observable<any> {
-    return this.httpClient.get(environment.baseURL + '/getAllUsers');
-  }
-
 }

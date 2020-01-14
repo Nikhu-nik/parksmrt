@@ -70,12 +70,12 @@ export class RegisterPage implements OnInit {
     this.apiService.addNewUser(form).subscribe(
       (res) => {
         console.log(res);
-        this.toastService.showToast('Registered Successfully', 'top');
+        this.toastService.showToast('Registered Successfully');
         this.router.navigate(['/login']);
       },
       (error) => {
         if (error.status == 400 ) {
-          this.toastService.showToast('This email has already been registered', 'top');
+          this.toastService.showToast('This email has already been registered');
         }
         console.log(error);
       }
