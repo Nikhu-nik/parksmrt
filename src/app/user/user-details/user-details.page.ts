@@ -41,6 +41,7 @@ export class UserDetailsPage implements OnInit {
 
   async logout() {
     const alert = await this.alertController.create({
+      mode: 'ios',
       header: 'Logout',
       message: 'Are you sure you want to logout?',
       buttons: [

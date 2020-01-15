@@ -14,7 +14,7 @@ export class AdminApiService {
     return this.httpClient.get(environment.baseURL + '/getAllUsers');
   }
 
-  deleteUser(id: string) {
+  deleteUser(id) {
     return this.httpClient.delete(environment.baseURL + '/deleteUser/' + id );
   }
 }

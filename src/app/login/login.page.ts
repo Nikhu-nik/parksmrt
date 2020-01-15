@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { LoadingService } from '../service/loading.service';
 import { ToastService } from '../service/toast.service';
 import { HttpClient } from '@angular/common/http';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -21,11 +21,12 @@ export class LoginPage implements OnInit {
   incorrectEmail: any;
   incorrectPassword: string;
 
-  constructor(private router: Router, private formBuilder: FormBuilder,
+  constructor( private formBuilder: FormBuilder,
               private authService: AuthService,
               public loading: LoadingService,
               public toastService: ToastService,
               public httpClient: HttpClient,
+              public navCtrl: NavController,
   ) { }
 
   ngOnInit() {
@@ -52,7 +53,7 @@ export class LoginPage implements OnInit {
           localStorage.setItem('token', res.body.token);
           localStorage.setItem('currentUser', this.f.email.value);
           this.loading.present();
-          this.router.navigate(['/main']);
+          this.navCtrl.navigateRoot('/main');
           this.loading.dismiss();
         },
         (error) => {
@@ -76,7 +77,7 @@ export class LoginPage implements OnInit {
   // login() {
   //   if (this.f.email.value === 'user' && this.f.password.value === 'password') {
   //     this.loading.present();
-  //     this.router.navigate(['/main']);
+  //     this.navCtrl.push('/main');
   //     this.loading.dismiss();
   //   } else if (this.loginForm.controls.email.value === '' || this.loginForm.controls.password.value === '') {
   //     alert('Enter all required fields');

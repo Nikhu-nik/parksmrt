@@ -12,8 +12,6 @@ import { AlertController } from '@ionic/angular';
 export class UsermanagementPage implements OnInit {
 
   users: UserModel[];
-  selectedIDs: any[];
-  selectUser = false;
 
   constructor(private adminApiService: AdminApiService, private alertController: AlertController) { }
 
@@ -27,20 +25,7 @@ export class UsermanagementPage implements OnInit {
     });
   }
 
-  deleteSelectedUser(userId) {
-    this.selectUser = true;
-    if (this.selectedIDs == null) {
-      return;
-    } else {
-      this.adminApiService.deleteUser(userId).subscribe(data => {
-        this.getAllUsers();
-      });
-    }
-  }
 
-  selectDelete(id) {
-    this.selectedIDs = id;
-  }
 
   deleteUser(id) {
     this.deleteAlert(id);
@@ -48,6 +33,7 @@ export class UsermanagementPage implements OnInit {
 
   async deleteAlert(id) {
     const alert = await this.alertController.create({
+      mode: 'ios',
       header: 'Confirm',
       message: 'Are you sure you want to delete?',
       buttons: [

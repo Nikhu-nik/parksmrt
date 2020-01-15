@@ -11,10 +11,6 @@
           <ion-card-header>
             <ion-item lines="none">
               <ion-card-title>Manage User</ion-card-title>
-              
-                <ion-icon  name="trash" slot="end" color="danger" style="padding:0px 8px;"
-                  (click)="deleteSelectedUser(selectedIDs)"></ion-icon>
-            
             </ion-item>
           </ion-card-header>
           <ion-card-content>
@@ -36,9 +32,6 @@
                   <td>{{ user.mobileNumber}}</td>
                   <td>
                     <ion-icon name="trash" slot="end" color="danger" (click)="deleteUser(user._id)"></ion-icon>
-                  </td>
-                  <td>
-                    <ion-checkbox *ngIf="selectUser" color="primary" (click)="selectDelete(user._id)"></ion-checkbox>
                   </td>
                 </tr>
               </tbody>
