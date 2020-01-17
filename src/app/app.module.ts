@@ -5,7 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { HttpClientModule, HttpParams } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -41,7 +41,6 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
   ],
   providers: [
     StatusBar,
-    HttpParams,
     Geolocation,
     LocationAccuracy,
     ImagePicker,

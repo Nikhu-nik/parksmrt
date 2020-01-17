@@ -11,10 +11,10 @@ export class AdminApiService {
   constructor(private httpClient: HttpClient) { }
 
   getAllUsers(): Observable<any> {
-    return this.httpClient.get(environment.baseURL + '/getAllUsers');
+    return this.httpClient.get(environment.baseURL.url + '/getAllUsers');
   }
 
   deleteUser(id) {
-    return this.httpClient.delete(environment.baseURL + '/deleteUser/' + id );
+    return this.httpClient.delete(environment.baseURL.url + '/deleteUser/' + id );
   }
 }

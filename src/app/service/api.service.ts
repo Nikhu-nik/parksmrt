@@ -14,12 +14,12 @@ export class ApiService {
   ) { }
 
   addNewUser(form) {
-    return this.httpClient.post(environment.baseURL + '/register', form, { responseType: 'text' as 'json' });
+    return this.httpClient.post(environment.baseURL.url + '/register', form, { responseType: 'text' as 'json' });
   }
 
   getUserDetails(): Observable<any> {
     const email = localStorage.getItem('currentUser');
-    return this.httpClient.get(environment.baseURL + '/getUserDetails/' + email);
+    return this.httpClient.get(environment.baseURL.url + '/getUserDetails/' + email);
   }
 
 }
