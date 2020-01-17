@@ -65,7 +65,11 @@ const routes: Routes = [
   {
     path: 'adminpanel',
     loadChildren: () => import('./Admin/adminpanel/adminpanel.module').then( m => m.AdminpanelPageModule)
+  },  {
+    path: 'tickets-permits',
+    loadChildren: () => import('./tickets-permits/tickets-permits.module').then( m => m.TicketsPermitsPageModule)
   },
+
 
 
   // {

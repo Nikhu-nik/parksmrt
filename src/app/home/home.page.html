@@ -21,30 +21,30 @@
           <ion-icon name="cash" slot="start"></ion-icon>
           <ion-label class="menu-list">Rent out your space</ion-label>
         </ion-item> -->
-        <ion-item lines="none" color="none" routerLink="/promocodes" (click)="closeMenu()">
+        <ion-item lines="none" color="none" routerLink="/promocodes" routerDirection="forward" (click)="closeMenu()">
           <ion-icon name="pricetag" slot="start"></ion-icon>
           <ion-label class="menu-list">Promo codes</ion-label>
         </ion-item>
-        <ion-item lines="none" color="none" routerLink="/tickets&permits" (click)="closeMenu()">
+        <ion-item lines="none" color="none" routerLink="/tickets-permits" routerDirection="forward" (click)="closeMenu()">
           <ion-icon name="filing" slot="start"></ion-icon>
           <ion-label class="menu-list">Tickets & Permits</ion-label>
         </ion-item>
-        <ion-item lines="none" color="none" routerLink="/invite" (click)="closeMenu()">
+        <ion-item lines="none" color="none" routerLink="/invite" routerDirection="forward" (click)="closeMenu()">
           <ion-icon name="contacts" slot="start"></ion-icon>
           <ion-label class="menu-list">Invite Friends</ion-label>
         </ion-item>
-        <ion-item lines="none" color="none" routerLink="/help" (click)="closeMenu()">
+        <ion-item lines="none" color="none" routerLink="/help" routerDirection="forward" (click)="closeMenu()">
           <ion-icon name="help-circle" slot="start"></ion-icon>
           <ion-label class="menu-list">Help</ion-label>
         </ion-item>
-        <ion-item lines="none" color="none" routerLink="/about" (click)="closeMenu()">
+        <ion-item lines="none" color="none" routerLink="/about" routerDirection="forward" (click)="closeMenu()">
           <ion-icon name="information-circle" slot="start"></ion-icon>
           <ion-label class="menu-list">About</ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
     <ion-footer no-border>
-      <ion-item routerLink="/user-details" lines="none" color="none">
+      <ion-item routerLink="/user-details" routerDirection="forward" lines="none" color="none">
         <ion-avatar slot="start">
           <img [src]="[userImg]">
         </ion-avatar>

@@ -1,0 +1,21 @@
+ion-toolbar{
+    --background: slategrey;
+    color: white;
+}
+ion-content{
+    --background: #f8f9fa;
+}
+.center{
+    text-align: center;
+    text-align: -webkit-center;
+}
+small{
+    line-height: 2;
+}
+
+ion-col{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
