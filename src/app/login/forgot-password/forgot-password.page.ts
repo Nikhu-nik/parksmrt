@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
-import { AlertController, NavController } from '@ionic/angular';
-
+import { AuthService } from 'src/app/service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,17 +11,21 @@ import { AlertController, NavController } from '@ionic/angular';
 export class ForgotPasswordPage implements OnInit {
 
   resetPasswordForm: FormGroup;
+  forbiddenEmails: any;
+  errorMessage: string;
+  successMessage: string;
+  IsvalidForm = true;
   submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    public alertCtrl: AlertController,
-    public navCtrl: NavController
+    private authService: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
     this.resetPasswordForm = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.required, Validators.email, this.forbiddenEmails],
     });
   }
 
@@ -30,33 +34,30 @@ export class ForgotPasswordPage implements OnInit {
   }
 
 
-  resetPassword() {
-    // if (!this.resetPasswordForm.valid){
-    //   console.log(this.resetPasswordForm.value);
-    // } else {
-    //   this.authProvider.resetPassword(this.resetPasswordForm.value.email)
-    //   .then(async (user) => {
-    //     const alert = await this.alertCtrl.create({
-    //       message: 'We just sent you a reset link to your email',
-    //       buttons: [
-    //         {
-    //           text: 'Ok',
-    //           role: 'cancel',
-    //           handler: () => { this.navCtrl.pop(); }
-    //         }
-    //       ]
-    //     });
-    //     alert.present();
+  resetPassword(form) {
+    console.log(form)
+    if (form.valid) {
+      this.IsvalidForm = true;
+      this.authService.requestReset(this.resetPasswordForm.value).subscribe(
+        data => {
+          this.resetPasswordForm.reset();
+          this.successMessage = "Reset password link send to email sucessfully.";
+          setTimeout(() => {
+            this.successMessage = null;
+            this.router.navigate(['sign-in']);
+          }, 3000);
+        },
+        err => {
 
-    //   }, async (error) => {
-    //     const errorMessage: string = error.message;
-    //     const errorAlert = await this.alertCtrl.create({
-    //       message: errorMessage,
-    //       buttons: [{ text: 'Ok', role: 'cancel' }]
-    //     });
-    //     errorAlert.present();
-    //   });
-    // }
+          if (err.error.message) {
+            this.errorMessage = err.error.message;
+          }
+        }
+      );
+    } else {
+      this.IsvalidForm = false;
+    }
   }
+
 
 }

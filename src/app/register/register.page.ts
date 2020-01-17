@@ -22,6 +22,7 @@ export class RegisterPage implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
+  
   validation_messages = {
 
     fullName: [
