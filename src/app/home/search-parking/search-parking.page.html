@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ionic Google map js</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="allMuseumMap()">
+        <ion-icon name="pin"></ion-icon>All Museum
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div >
+    <ion-item>
+      <ion-input type="text" placeholder="Search Museum..." (input)="searchMaps($event)"></ion-input>
+    </ion-item>
+
+    <ion-list *ngIf="!isfiltered">
+      <ion-item *ngFor="let museum of museumData" (click)="getMuseumDetails(museum)">
+        <ion-icon name="pin"></ion-icon>{{ museum.name }}
+        <p>State name: {{ museum.state }}</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="isfiltered">
+      <ion-item *ngFor="let museum of filteredMuseum" (click)="getMuseumDetails(museum)">
+        <h2>
+          <ion-icon name="pin"></ion-icon>{{ museum.name }}
+        </h2>
+        <p>State name: {{ museum.state }}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

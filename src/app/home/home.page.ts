@@ -4,6 +4,7 @@ import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
 import { Platform, AlertController, MenuController } from '@ionic/angular';
 import { GooglemapService } from '../service/googlemap.service';
+import { MuseumDataService } from '../service/museum-data.service';
 
 
 declare var google: any;
@@ -17,6 +18,7 @@ export class HomePage implements OnInit {
   data: any = {};
   fullName = 'Username';
   userImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCEzGoZ6NCvbjg4hJlLL_0TLB61J8R2Xi09hoiSpGxXvVdTRoB';
+  
   // current date object
   myDate = new Date().toISOString();
 
@@ -30,12 +32,14 @@ export class HomePage implements OnInit {
   GooglePlaces: any;
   placeId: string;
 
+
   constructor(private router: Router, private authService: AuthService,
               private apiService: ApiService,
               private platform: Platform,
               private googlemapService: GooglemapService,
               private alertCtrl: AlertController,
               private menuController: MenuController,
+              private museumSerivice: MuseumDataService,
               public ngZone: NgZone) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = { input: '' };
@@ -44,6 +48,7 @@ export class HomePage implements OnInit {
     this.markers = [];
 
   }
+
 
   async ngOnInit() {
     this.apiService.getUserDetails()
@@ -77,9 +82,11 @@ export class HomePage implements OnInit {
 
   selectSearchResult(item) {
     this.autocompleteItems = [];
-    this.geocoder.geocode({ 'placeId': item.place_id }, (results, status) => {
+    console.log(item);
+    /*this.geocoder.geocode({ 'placeId': item.place_id }, (results, status) => {
       if (status === 'OK' && results[0]) {
 
+        console.log( results[0].geometry.location);
         this.autocompleteItems = [];
         this.GooglePlaces.nearbySearch({
           location: results[0].geometry.location,
@@ -94,8 +101,16 @@ export class HomePage implements OnInit {
             }
           });
         });
+
+
       }
     });
+    */
+
+   //13.034968, 77.604024
+
+   //create parking locations in DB
+   //
   }
 
   clearAutocomplete() {

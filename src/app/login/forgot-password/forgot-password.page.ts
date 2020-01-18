@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
+import { FormGroup, Validators, FormControl, } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 
@@ -18,14 +18,13 @@ export class ForgotPasswordPage implements OnInit {
   submitted = false;
 
   constructor(
-    private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
   ) { }
 
   ngOnInit() {
-    this.resetPasswordForm = this.formBuilder.group({
-      email: ['', Validators.required, Validators.email, this.forbiddenEmails],
+    this.resetPasswordForm = new FormGroup({
+      'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails),
     });
   }
 
@@ -38,17 +37,16 @@ export class ForgotPasswordPage implements OnInit {
     console.log(form)
     if (form.valid) {
       this.IsvalidForm = true;
-      this.authService.requestReset(this.resetPasswordForm.value).subscribe(
+      this.authService.requestReset(this.f.email.value).subscribe(
         data => {
           this.resetPasswordForm.reset();
           this.successMessage = "Reset password link send to email sucessfully.";
           setTimeout(() => {
             this.successMessage = null;
-            this.router.navigate(['sign-in']);
+            this.router.navigate(['/login']);
           }, 3000);
         },
         err => {
-
           if (err.error.message) {
             this.errorMessage = err.error.message;
           }

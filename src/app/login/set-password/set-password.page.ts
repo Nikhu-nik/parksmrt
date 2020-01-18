@@ -10,19 +10,11 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class SetPasswordPage implements OnInit {
 
-  setPasswordForm: FormGroup;
-  errorMessage: string;
-  successMessage: string;
-  resetToken: null;
-  CurrentState: any;
-  IsResetFormValid = true;
-  submitted = false;
-
   constructor(
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder ) {
+    private formBuilder: FormBuilder) {
 
     this.CurrentState = 'Wait';
     this.route.params.subscribe(params => {
@@ -32,11 +24,13 @@ export class SetPasswordPage implements OnInit {
     });
   }
 
-
-  ngOnInit() {
-
-    this.Init();
-  }
+  setPasswordForm: FormGroup;
+  errorMessage: string;
+  successMessage: string;
+  resetToken: null;
+  CurrentState: any;
+  IsResetFormValid = true;
+  submitted = false;
 
   validation_messages = {
 
@@ -46,6 +40,12 @@ export class SetPasswordPage implements OnInit {
     ],
 
   };
+
+
+  ngOnInit() {
+
+    this.Init();
+  }
 
   VerifyToken() {
     this.authService.ValidPasswordToken({ resettoken: this.resetToken }).subscribe(
@@ -67,19 +67,19 @@ export class SetPasswordPage implements OnInit {
     );
   }
 
-  
+
   setPassword(form) {
     this.submitted = true;
     console.log(form.get('confirmPassword'));
     if (form.valid) {
       this.IsResetFormValid = true;
-      this.authService.newPassword(this.setPasswordForm.value).subscribe(
+      this.authService.newPassword(this.setPasswordForm.controls.newPassword.value).subscribe(
         data => {
           this.setPasswordForm.reset();
           this.successMessage = data.message;
           setTimeout(() => {
             this.successMessage = null;
-            this.router.navigate(['sign-in']);
+            this.router.navigate(['/login']);
           }, 3000);
         },
         err => {
@@ -88,7 +88,9 @@ export class SetPasswordPage implements OnInit {
           }
         }
       );
-    } else { this.IsResetFormValid = false; }
+    } else {
+      this.IsResetFormValid = false;
+    }
   }
 
 }

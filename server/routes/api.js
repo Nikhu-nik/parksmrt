@@ -102,7 +102,7 @@ router.delete("/deleteUser/:id", (req, res) => {
   });
 });
 
-router.post("/req-reset-password", (req, res) => {
+ router.post("/req-reset-password", (req, res) => {
   if (!req.body.email) {
     return res.status(500).json({ message: "Email is required" });
   }
@@ -134,11 +134,11 @@ router.post("/req-reset-password", (req, res) => {
       var mailOptions = {
         to: user.email,
         from: "abdurrazack13@gmail.com",
-        subject: " Password Reset",
+        subject: "Password Reset",
         text:
           "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
           "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
-          "http://localhost:8100/login/new/" +
+          "http://localhost:8100/login/set-password/" +
           resettoken.resettoken +
           "\n\n" +
           "If you did not request this, please ignore this email and your password will remain unchanged.\n"
@@ -152,7 +152,7 @@ router.post("/valid-password-token", (req, res) =>{
   if (!req.body.resettoken) {
     return res.status(500).json({ message: 'Token is required' });
     }
-    const user = await passwordResetToken.findOne({
+    const user = passwordResetToken.findOne({
     resettoken: req.body.resettoken
     });
     if (!user) {

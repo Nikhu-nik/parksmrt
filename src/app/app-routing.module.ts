@@ -69,6 +69,10 @@ const routes: Routes = [
     path: 'tickets-permits',
     loadChildren: () => import('./tickets-permits/tickets-permits.module').then( m => m.TicketsPermitsPageModule)
   },
+  {
+    path: 'search-parking',
+    loadChildren: () => import('./home/search-parking/search-parking.module').then( m => m.SearchParkingPageModule)
+  },
 
 
 

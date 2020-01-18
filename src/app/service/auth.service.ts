@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   newPassword(body: any): Observable<any> {
-    return this.http.post(environment.baseURL.url +'/new-password', body);
+    return this.http.post(environment.baseURL.url + '/new-password', body);
   }
 
 }

@@ -3,7 +3,7 @@
     <ion-header no-border>
       <ion-toolbar class="ion-no-padding">
         <ion-avatar>
-          <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png"  alt="logo">
+          <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" alt="logo">
         </ion-avatar>
       </ion-toolbar>
     </ion-header>
@@ -25,7 +25,8 @@
           <ion-icon name="pricetag" slot="start"></ion-icon>
           <ion-label class="menu-list">Promo codes</ion-label>
         </ion-item>
-        <ion-item lines="none" color="none" routerLink="/tickets-permits" routerDirection="forward" (click)="closeMenu()">
+        <ion-item lines="none" color="none" routerLink="/tickets-permits" routerDirection="forward"
+          (click)="closeMenu()">
           <ion-icon name="filing" slot="start"></ion-icon>
           <ion-label class="menu-list">Tickets & Permits</ion-label>
         </ion-item>
@@ -67,12 +68,13 @@
           <span style="color: dodgerblue;">Park</span><span style="color: orangered;">Smart</span>
         </ion-title>
         <ion-buttons slot="end">
-          <ion-icon name="notifications"  class="notification-icon" routerLink="/main/messages"></ion-icon>
+          <ion-icon name="notifications" class="notification-icon" routerLink="/main/messages"></ion-icon>
           <ion-badge color="danger">10</ion-badge>
         </ion-buttons>
       </ion-toolbar>
       <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()"
-        placeholder="Enter destination location"></ion-searchbar>
+        placeholder="Enter destination location" ></ion-searchbar>
+      
       <ion-list *ngIf="clearAutocomplete()" [hidden]="autocompleteItems.length == 0">
         <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
           {{ item.description }}

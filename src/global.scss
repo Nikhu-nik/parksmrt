@@ -25,10 +25,27 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Poppins|Roboto|Montserrat|Raleway|Sulphur+Point&display=swap');
-* {
+@font-face {
   font-family: "Montserrat";
+  src: url('./assets/fonts/Montserrat-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url('./assets/fonts/OpenSans-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  font-family: 'Montserrat','Open Sans';
   box-sizing: border-box;
+}
+
+body{
+  font-family: 'Montserrat','Open Sans';
 }
 
 .buttonCss {
@@ -36,10 +53,10 @@
 }
 
 ion-label {
-  font-family: "Montserrat" !important;
+  font-family: 'Montserrat' !important;
 }
 ion-input {
-  font-family: "Montserrat" !important;
+  font-family: 'Montserrat' !important;
 }
 
 .custom-loading {
