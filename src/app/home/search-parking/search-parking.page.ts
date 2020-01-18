@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MuseumDataService } from 'src/app/service/museum-data.service';
-import { Router } from '@angular/router';
+import { Component, OnInit, NgZone } from '@angular/core';
+
+
+declare var google: any;
 
 @Component({
   selector: 'app-search-parking',
@@ -9,45 +10,86 @@ import { Router } from '@angular/router';
 })
 export class SearchParkingPage implements OnInit {
 
-  museumData = [];
-  filteredMuseum = [];
-  isfiltered: boolean;
+  // gmap autocomplete variables
+  GoogleAutocomplete;
+  autocomplete: { input: string; };
+  autocompleteItems: any[];
+  markers: any[];
+  geocoder;
+  nearbyItems: any[];
+  GooglePlaces: any;
+  placeId: string;
 
 
-  constructor(private router: Router,
-    private museumSerivice: MuseumDataService, ) {
 
-    fetch('./assets/museum.json').then(res => res.json())
-      .then(data => {
-        this.museumData = data.museums;
-        this.museumSerivice.setMuseums(this.museumData);
-      });
+  constructor(public ngZone: NgZone) {
+
+    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+    this.autocomplete = { input: '' };
+    this.autocompleteItems = [];
+    this.geocoder = new google.maps.Geocoder;
+    this.markers = [];
+
   }
 
   ngOnInit() {
   }
 
-  searchMaps(event) {
-    if (event.target.value.length > 2) {
-      const filteredJson = this.museumData.filter((row) => {
-        if (row.state.indexOf(event.target.value) !== -1) {
-          return true;
-        } else {
-          return false;
-        }
+  // gmap autocomplete search
+  updateSearchResults() {
+    if (this.autocomplete.input == '') {
+      this.autocompleteItems = [];
+      return;
+    }
+    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input },
+      (predictions, status) => {
+        this.autocompleteItems = [];
+        this.ngZone.run(() => {
+          predictions.forEach((prediction) => {
+            this.autocompleteItems.push(prediction);
+          });
+        });
       });
-      this.isfiltered = true;
-      this.filteredMuseum = filteredJson;
+  }
+
+  selectSearchResult(item) {
+    this.autocompleteItems = [];
+    console.log(item);
+    /*this.geocoder.geocode({ 'placeId': item.place_id }, (results, status) => {
+      if (status === 'OK' && results[0]) {
+
+        console.log( results[0].geometry.location);
+        this.autocompleteItems = [];
+        this.GooglePlaces.nearbySearch({
+          location: results[0].geometry.location,
+          radius: '500',
+          types: ['parking'],
+          key: 'AIzaSyCgfwBLFmFo-1p0KhTakTZbisHSDI9JMn8'
+        }, (near_places) => {
+          this.ngZone.run(() => {
+            this.nearbyItems = [];
+            for (var i = 0; i < near_places.length; i++) {
+              this.nearbyItems.push(near_places[i]);
+            }
+          });
+        });
+
+
+      }
+    });
+    */
+
+    //13.034968, 77.604024
+
+    //create parking locations in DB
+    //
+  }
+
+  clearAutocomplete() {
+    if (this.autocomplete.input !== '') {
+      return true;
+    } else {
+      return false;
     }
   }
-
-  getMuseumDetails(museum) {
-    this.museumSerivice.setMuseum(museum);
-    this.router.navigate(['/main/home']);
-  }
-
-  allMuseumMap() {
-    this.router.navigate(['/all-museum']);
-  }
-
 }

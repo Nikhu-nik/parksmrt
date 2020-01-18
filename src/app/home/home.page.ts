@@ -1,13 +1,17 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../service/api.service';
-import { AuthService } from '../service/auth.service';
-import { Platform, AlertController, MenuController } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { GooglemapService } from '../service/googlemap.service';
-import { MuseumDataService } from '../service/museum-data.service';
-
-
-declare var google: any;
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { HttpClient } from '@angular/common/http';
+import {
+  GoogleMaps,
+  GoogleMap,
+  Marker,
+  MyLocation,
+  MyLocationOptions,
+  GoogleMapControlOptions,
+} from '@ionic-native/google-maps/ngx';
 
 @Component({
   selector: 'app-home',
@@ -15,114 +19,101 @@ declare var google: any;
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  data: any = {};
+
+  map: GoogleMap;
   fullName = 'Username';
   userImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCEzGoZ6NCvbjg4hJlLL_0TLB61J8R2Xi09hoiSpGxXvVdTRoB';
-  
+
   // current date object
   myDate = new Date().toISOString();
 
-  // gmap autocomplete variables
-  GoogleAutocomplete;
-  autocomplete: { input: string; };
-  autocompleteItems: any[];
-  markers: any[];
-  geocoder;
-  nearbyItems: any[];
-  GooglePlaces: any;
-  placeId: string;
 
 
-  constructor(private router: Router, private authService: AuthService,
-              private apiService: ApiService,
-              private platform: Platform,
-              private googlemapService: GooglemapService,
-              private alertCtrl: AlertController,
-              private menuController: MenuController,
-              private museumSerivice: MuseumDataService,
-              public ngZone: NgZone) {
-    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
-    this.autocomplete = { input: '' };
-    this.autocompleteItems = [];
-    this.geocoder = new google.maps.Geocoder;
-    this.markers = [];
+
+  constructor(
+    private apiService: ApiService,
+    private platform: Platform,
+    private googlemapService: GooglemapService,
+    private menuController: MenuController,
+    private locationAccuracy: LocationAccuracy,
+    private httpClient: HttpClient,
+  ) {
 
   }
 
 
   async ngOnInit() {
+    this.httpClient.get('./assets/museum.json').subscribe((data:any)=>{
+      console.log(data.museums[0]);
+    });
     this.apiService.getUserDetails()
       .subscribe((data: any) => {
         this.fullName = data.fullName;
       });
     await this.platform.ready();
-    await this.googlemapService.loadMap();
+    this.loadMap();
+    this.requestLocation();
+  }
+
+  loadMap() {
+    const mapOptions: GoogleMapControlOptions = {
+      compass: false,
+      myLocationButton: false,
+      myLocation: false,
+      indoorPicker: false,
+      zoom: false,
+      mapToolbar: false
+    };
+    this.map = GoogleMaps.create('map_canvas', mapOptions);
+    this.goToMyLocation();
+  }
+
+  goToMyLocation() {
+    const option: MyLocationOptions = {
+      enableHighAccuracy: true
+    };
+    this.map.clear();
+
+    // Get the location of you
+    this.map.getMyLocation(option).then((location: MyLocation) => {
+      // Move the map camera to the location with animation
+      this.map.animateCamera({
+        target: location.latLng,
+        zoom: 13,
+        bearing: 0,
+        duration: 1000
+      });
+
+      // add a marker
+      const marker: Marker = this.map.addMarkerSync({
+        icon: 'aqua',
+        position: location.latLng,
+        animation: 'DROP'
+      });
+      // show the infoWindow
+      marker.showInfoWindow();
+    });
   }
 
   getCurrentLocation() {
     this.googlemapService.getCurrentLocation();
   }
 
-  // gmap autocomplete search
-  updateSearchResults() {
-    if (this.autocomplete.input == '') {
-      this.autocompleteItems = [];
-      return;
-    }
-    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input },
-      (predictions, status) => {
-        this.autocompleteItems = [];
-        this.ngZone.run(() => {
-          predictions.forEach((prediction) => {
-            this.autocompleteItems.push(prediction);
-          });
-        });
-      });
-  }
 
-  selectSearchResult(item) {
-    this.autocompleteItems = [];
-    console.log(item);
-    /*this.geocoder.geocode({ 'placeId': item.place_id }, (results, status) => {
-      if (status === 'OK' && results[0]) {
-
-        console.log( results[0].geometry.location);
-        this.autocompleteItems = [];
-        this.GooglePlaces.nearbySearch({
-          location: results[0].geometry.location,
-          radius: '500',
-          types: ['parking'],
-          key: 'AIzaSyCgfwBLFmFo-1p0KhTakTZbisHSDI9JMn8'
-        }, (near_places) => {
-          this.ngZone.run(() => {
-            this.nearbyItems = [];
-            for (var i = 0; i < near_places.length; i++) {
-              this.nearbyItems.push(near_places[i]);
-            }
-          });
-        });
-
-
+  requestLocation() {
+    // the accuracy option will be ignored by iOS
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+        console.log('Request successful');
+      },
+      error => {
+        console.log('Error requesting location permissions', error);
       }
-    });
-    */
+    );
 
-   //13.034968, 77.604024
-
-   //create parking locations in DB
-   //
   }
 
-  clearAutocomplete() {
-    if (this.autocomplete.input !== '') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  
-  closeMenu(){
+  closeMenu() {
     this.menuController.close();
   }
 

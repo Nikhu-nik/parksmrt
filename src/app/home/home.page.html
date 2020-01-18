@@ -72,14 +72,7 @@
           <ion-badge color="danger">10</ion-badge>
         </ion-buttons>
       </ion-toolbar>
-      <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()"
-        placeholder="Enter destination location" ></ion-searchbar>
-      
-      <ion-list *ngIf="clearAutocomplete()" [hidden]="autocompleteItems.length == 0">
-        <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
-          {{ item.description }}
-        </ion-item>
-      </ion-list>
+      <ion-searchbar placeholder="Enter destination location" routerLink="/search-parking" ></ion-searchbar>
       <div class="d-flex flex-row">
         <div>
           <div class="d-flex flex-column">
