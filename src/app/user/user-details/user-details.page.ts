@@ -1,5 +1,5 @@
-import { Component, OnInit, } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from 'src/app/service/api.service';
 import { AuthService } from 'src/app/service/auth.service';
@@ -17,7 +17,6 @@ export class UserDetailsPage implements OnInit {
   fullName = 'Username';
   mobileNumber = '';
   email = '';
-  password = '********';
 
 
 
@@ -26,17 +25,28 @@ export class UserDetailsPage implements OnInit {
   options: any;
 
   constructor(private router: Router, private alertController: AlertController,
-              private apiService: ApiService, private authService: AuthService,
-              private imagePicker: ImagePicker) { }
+              private apiService: ApiService,
+              private authService: AuthService,
+              private activatedRoute: ActivatedRoute,
+              private imagePicker: ImagePicker) {
 
-  ngOnInit() {
-    this.apiService.getUserDetails()
-    .subscribe((data: any) => {
-      this.fullName = data.fullName;
-      this.email = data.email;
-      this.mobileNumber = data.mobileNumber;
+    this.activatedRoute.params.subscribe(() => {
+      this.getUserDetails();
     });
 
+  }
+
+  ngOnInit() {
+    this.getUserDetails();
+  }
+
+  getUserDetails() {
+    this.apiService.getUserDetails()
+      .subscribe((data: any) => {
+        this.fullName = data.fullName;
+        this.email = data.email;
+        this.mobileNumber = data.mobileNumber;
+      });
   }
 
   async logout() {

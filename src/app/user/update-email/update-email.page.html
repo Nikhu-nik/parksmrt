@@ -1,0 +1,35 @@
+<ion-app>
+  <ion-header no-border>
+    <ion-toolbar no-border color="none" mode="ios">
+      <ion-avatar>
+        <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" alt="">
+      </ion-avatar>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div style="padding: 9px;">
+            <h3>What's your email?</h3>
+          </div>
+          <div>
+            <form [formGroup]="updateEmailForm">
+              <ion-item color="none" class="ion-no-padding">
+                <ion-input type="text" placeholder="Enter email"  formControlName="email"></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of validation_messages.email">
+                <div class="error"
+                  *ngIf="submitted && updateEmailForm.get('email').hasError(validation.type)">
+                  <small>{{ validation.message}}</small>
+                </div>
+              </ng-container><br>
+              <ion-button expand="block" color="primary" (click)="updateUserDetails(updateEmailForm.value)">Update</ion-button>
+            </form>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-app>

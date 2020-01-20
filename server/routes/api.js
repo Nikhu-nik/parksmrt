@@ -75,6 +75,21 @@ router.post("/login", (req, res) => {
   });
 });
 
+ router.put('/updateUser', (req, res) => {
+  var token = req.headers['x-access-token'];
+  if (!token) return res.status(401).send({auth:false, message:'No token provided'});
+  jwt.verify(token, 'secretKey', function(err,decoded){
+    if(err) return res.status(500).send({auth:false, message:'failed to auth token'});
+    User.findByIdAndUpdate({_id: decoded.subject}, req.body, (err, updatedUser) => {
+      if (err){
+        res.send(err);
+      }else{
+        res.json(updatedUser);
+      }
+    });
+  })
+});
+
 // Getting user details api
 router.get("/getUserDetails/:email", (req, res) => {
   let email = req.params.email;
@@ -94,7 +109,7 @@ router.get("/getAllUsers", (req, res) => {
 });
 
 router.delete("/deleteUser/:id", (req, res) => {
-  User.findByIdAndRemove(req.params.id, err => {
+  User. findByIdAndRemove(req.params.id, err => {
     if (err) {
       res.status(500).send();
     }

@@ -1,0 +1,27 @@
+a {
+  all: unset;
+}
+
+ion-col {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  padding: 0px 16px;
+}
+ion-item {
+  padding: 0px 9px;
+}
+h3 {
+  color: #383a3e;
+  font-weight: bold;
+}
+ion-label {
+  color: midnightblue !important;
+  font-size: 15px !important;
+}
+
+.error {
+  color: crimson;
+  padding: 0px 9px;
+}

@@ -24,6 +24,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { ImagePickerService } from './service/image-picker.service';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [AppComponent,],
@@ -32,6 +33,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    Ng2SearchPipeModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(),
     ReactiveFormsModule,
@@ -57,6 +59,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
+ 

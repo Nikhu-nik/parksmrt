@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
@@ -21,5 +21,11 @@ export class ApiService {
     const email = localStorage.getItem('currentUser');
     return this.httpClient.get(environment.baseURL.url + '/getUserDetails/' + email);
   }
+
+  updateUser(form): Observable<any> {
+    const header = new HttpHeaders().set('x-access-token', localStorage.getItem('token'));
+    return this.httpClient.put(environment.baseURL.url + '/updateUser', form, { headers: header });
+  }
+
 
 }

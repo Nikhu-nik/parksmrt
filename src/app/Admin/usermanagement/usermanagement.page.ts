@@ -12,6 +12,7 @@ import { AlertController } from '@ionic/angular';
 export class UsermanagementPage implements OnInit {
 
   users: UserModel[];
+  searchText;
 
   constructor(private adminApiService: AdminApiService, private alertController: AlertController) { }
 
@@ -45,7 +46,7 @@ export class UsermanagementPage implements OnInit {
           }
         },
         {
-          text: 'OK',
+          text: 'Ok',
           cssClass: 'buttonCss',
           handler: () => {
             this.adminApiService.deleteUser(id).subscribe(data => {

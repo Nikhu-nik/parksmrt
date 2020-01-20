@@ -1,13 +1,13 @@
 <ion-header no-border >
     <ion-searchbar animated="true" autocomplete="on" [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()"
       placeholder="Enter destination location"></ion-searchbar>
-    <ion-list *ngIf="clearAutocomplete()" [hidden]="autocompleteItems.length == 0">
-      <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
-        {{ item.description }}
-      </ion-item>
-    </ion-list>
+   
 </ion-header>
 
 <ion-content>
-  
+  <ion-list *ngIf="clearAutocomplete()" >
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
 </ion-content>

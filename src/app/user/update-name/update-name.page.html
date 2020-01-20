@@ -1,0 +1,32 @@
+<ion-app>
+  <ion-header no-border>
+    <ion-toolbar no-border color="none" mode="ios">
+      <ion-avatar>
+        <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" alt="">
+      </ion-avatar>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div style="padding: 9px;">
+            <h3>What's your full name?</h3>
+          </div>
+          <div>
+            <form [formGroup]="updateNameForm">
+              <ion-item color="none" class="ion-no-padding">
+                <ion-input type="text" placeholder="Enter full name"  formControlName="fullName"></ion-input>
+              </ion-item>
+              <div class="error" *ngIf="submitted && updateNameForm.controls['fullName'].hasError('required')">
+                <small>Please enter your full name</small>
+              </div><br>
+              <ion-button expand="block" color="primary" (click)="updateUserDetails(updateNameForm.value)">Update</ion-button>
+            </form>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-app>

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { UsermanagementPageRoutingModule } from './usermanagement-routing.module';
 
 import { UsermanagementPage } from './usermanagement.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    Ng2SearchPipeModule,
     IonicModule,
     UsermanagementPageRoutingModule
   ],
-  declarations: [UsermanagementPage]
+  declarations: [UsermanagementPage,]
 })
 export class UsermanagementPageModule {}

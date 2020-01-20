@@ -65,7 +65,8 @@ const routes: Routes = [
   {
     path: 'adminpanel',
     loadChildren: () => import('./Admin/adminpanel/adminpanel.module').then( m => m.AdminpanelPageModule)
-  },  {
+  },
+  {
     path: 'tickets-permits',
     loadChildren: () => import('./tickets-permits/tickets-permits.module').then( m => m.TicketsPermitsPageModule)
   },
@@ -73,6 +74,19 @@ const routes: Routes = [
     path: 'search-parking',
     loadChildren: () => import('./home/search-parking/search-parking.module').then( m => m.SearchParkingPageModule)
   },
+  {
+    path: 'update-name',
+    loadChildren: () => import('./user/update-name/update-name.module').then( m => m.UpdateNamePageModule)
+  },
+  {
+    path: 'update-email',
+    loadChildren: () => import('./user/update-email/update-email.module').then( m => m.UpdateEmailPageModule)
+  },
+  {
+    path: 'update-mob-number',
+    loadChildren: () => import('./user/update-mob-number/update-mob-number.module').then( m => m.UpdateMobNumberPageModule)
+  },
+
 
 
 
