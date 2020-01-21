@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { HomePage } from './home.page';
-import { GooglemapService } from '../service/googlemap.service';
 
 @NgModule({
   imports: [
@@ -54,6 +53,6 @@ import { GooglemapService } from '../service/googlemap.service';
     ])
   ],
   declarations: [HomePage],
-  providers: [Geolocation, GooglemapService ]
+  providers: [Geolocation ]
 })
 export class HomePageModule {}

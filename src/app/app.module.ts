@@ -15,7 +15,6 @@ import { Crop } from '@ionic-native/crop/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { GooglemapService } from './service/googlemap.service';
 import { ApiService } from './service/api.service';
 import { AuthService } from './service/auth.service';
 import { File } from '@ionic-native/File/ngx';
@@ -52,7 +51,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     WebView,
     FilePath,
     BarcodeScanner,
-    GooglemapService,
     ApiService,
     AuthService,
     ImagePickerService,

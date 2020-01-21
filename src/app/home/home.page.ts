@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../service/api.service';
-import { Platform, MenuController } from '@ionic/angular';
-import { GooglemapService } from '../service/googlemap.service';
+import { Platform, MenuController, ToastController } from '@ionic/angular';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -26,22 +25,23 @@ export class HomePage implements OnInit {
 
   // current date object
   myDate = new Date().toISOString();
+  myDateTime = new Date().toISOString();
 
 
   constructor(
     private apiService: ApiService,
     private platform: Platform,
-    private googlemapService: GooglemapService,
     private menuController: MenuController,
     private locationAccuracy: LocationAccuracy,
     private httpClient: HttpClient,
+    public toastCtrl: ToastController,
   ) {
 
   }
 
 
   async ngOnInit() {
-    this.httpClient.get('./assets/museum.json').subscribe((data:any)=>{
+    this.httpClient.get('./assets/museum.json').subscribe((data: any) => {
       console.log(data.museums[0]);
     });
     this.apiService.getUserDetails()
@@ -49,8 +49,9 @@ export class HomePage implements OnInit {
         this.fullName = data.fullName;
       });
     await this.platform.ready();
-    this.loadMap();
+    await this.loadMap();
     this.requestLocation();
+    this.goToMyLocation();
   }
 
   loadMap() {
@@ -78,21 +79,49 @@ export class HomePage implements OnInit {
         zoom: 13,
         bearing: 0,
         duration: 1000
-      }).then(() => {
-        // add a marker
-        const marker: Marker = this.map.addMarkerSync({
-          icon: 'aqua',
-          position: location.latLng,
-          animation: 'DROP'
-        });
-        marker.showInfoWindow();
       });
+      const marker: Marker = this.map.addMarkerSync({
+        icon: 'aqua',
+        position: location.latLng,
+        animation: 'DROP'
+      });
+      marker.showInfoWindow();
     });
   }
 
   getCurrentLocation() {
-    this.googlemapService.getCurrentLocation();
+    // Get the location of you
+    this.map.getMyLocation().then((location: MyLocation) => {
+
+      // Move the map camera to the location with animation
+      this.map.animateCamera({
+        target: location.latLng,
+        zoom: 15,
+        bearing: 0,
+        duration: 1000
+      });
+      // add a marker
+      const marker: Marker = this.map.addMarkerSync({
+        icon: 'aqua',
+        position: location.latLng,
+      });
+      // show the infoWindow
+      marker.showInfoWindow();
+    }).catch(err => {
+        this.showToast('Please Turn ON GPS');
+      });
   }
+
+  async showToast(message: string) {
+    const toast = await this.toastCtrl.create({
+      message: message,
+      duration: 2000,
+      position: 'middle',
+      cssClass: 'customToast'
+    });
+    toast.present();
+  }
+
 
 
   requestLocation() {
