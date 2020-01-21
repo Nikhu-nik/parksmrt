@@ -2,11 +2,13 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const parking = require("../models/parking-areas");
 const passwordResetToken = require("../models/resettoken");
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const fs = require("fs");
 const db =
   "mongodb+srv://Abdurrazack:Abdurrazack@cluster0-qfh8b.mongodb.net/ParksmardDB?retryWrites=true&w=majority";
 
@@ -89,6 +91,19 @@ router.post("/login", (req, res) => {
     });
   })
 });
+
+router.post("/parking-area",(req,res) => {
+  var newItem = new parking();
+  newItem.img.data = fs.readFileSync(req.files.userPhoto.path)
+  newItem.img.contentType = 'image/png';
+  newItem.save((err, newImg) => {
+    if (err) {
+      throw err
+    }else{
+      res.status(200).send(newImg);
+    }
+  });
+ });
 
 // Getting user details api
 router.get("/getUserDetails/:email", (req, res) => {

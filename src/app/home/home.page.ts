@@ -28,8 +28,6 @@ export class HomePage implements OnInit {
   myDate = new Date().toISOString();
 
 
-
-
   constructor(
     private apiService: ApiService,
     private platform: Platform,
@@ -72,8 +70,6 @@ export class HomePage implements OnInit {
     const option: MyLocationOptions = {
       enableHighAccuracy: true
     };
-    this.map.clear();
-
     // Get the location of you
     this.map.getMyLocation(option).then((location: MyLocation) => {
       // Move the map camera to the location with animation
@@ -82,16 +78,15 @@ export class HomePage implements OnInit {
         zoom: 13,
         bearing: 0,
         duration: 1000
+      }).then(() => {
+        // add a marker
+        const marker: Marker = this.map.addMarkerSync({
+          icon: 'aqua',
+          position: location.latLng,
+          animation: 'DROP'
+        });
+        marker.showInfoWindow();
       });
-
-      // add a marker
-      const marker: Marker = this.map.addMarkerSync({
-        icon: 'aqua',
-        position: location.latLng,
-        animation: 'DROP'
-      });
-      // show the infoWindow
-      marker.showInfoWindow();
     });
   }
 

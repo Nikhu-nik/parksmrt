@@ -22,10 +22,10 @@ export class GooglemapService {
   }
 
   getCurrentLocation() {
+    this.map.clear();
     const option: MyLocationOptions = {
       enableHighAccuracy: true
     };
-
     // Get the location of you
     this.map.getMyLocation(option).then((location: MyLocation) => {
       // Move the map camera to the location with animation
@@ -34,10 +34,13 @@ export class GooglemapService {
         zoom: 15,
         bearing: 0,
         duration: 1000
-      });
-      const marker: Marker = this.map.addMarkerSync({
-        icon: 'aqua',
-        position: location.latLng,
+      }).then(() => {
+        // add a marker
+        const marker: Marker = this.map.addMarkerSync({
+          icon: 'aqua',
+          position: location.latLng,
+        });
+        marker.showInfoWindow();
       });
     }).catch(() => {
       this.showToast('Please Turn ON Device GPS');
@@ -54,6 +57,6 @@ export class GooglemapService {
     toast.present();
   }
 
-  
+
 
 }
