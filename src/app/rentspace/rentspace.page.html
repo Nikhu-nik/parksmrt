@@ -26,7 +26,7 @@
       <h6 style="font-weight: bold; margin-bottom: 15px;">Enter Address of your parking space</h6>
     </div>
     <form [formGroup]="firstFormGroup">
-      <ion-item class="input">
+      <ion-item class="input" lines="none">
         <ion-input clearInput type="text" formControlName="address" placeholder="Enter Address"></ion-input>
       </ion-item>
     </form>
@@ -39,10 +39,10 @@
       <ion-grid>
         <ion-row>
           <ion-col size="6">
-              <ion-card  mode="ios" class="parking-img">
-                <img  [src]="images" *ngIf="images">
-                <img src="../../assets/images/img-placeholder1.png" >
-              </ion-card>
+            <ion-card mode="ios" class="parking-img">
+              <img [src]="images" *ngIf="images">
+              <img src="../../assets/images/img-placeholder1.png">
+            </ion-card>
             <div>
               <ion-card mode="ios" class="add-btn">
                 <ion-button fill="clear" expand="full" (click)="selectImage()">Add Image</ion-button>
@@ -50,9 +50,9 @@
             </div>
           </ion-col>
           <ion-col size="6">
-            <ion-card  mode="ios" class="parking-img">
-              <img  [src]="images" *ngIf="images" >
-              <img src="../../assets/images/img-placeholder1.png" >
+            <ion-card mode="ios" class="parking-img">
+              <img [src]="images" *ngIf="images">
+              <img src="../../assets/images/img-placeholder1.png">
             </ion-card>
             <div>
               <ion-card mode="ios" class="add-btn">
@@ -65,9 +65,9 @@
       <ion-grid>
         <ion-row>
           <ion-col size="6">
-            <ion-card  mode="ios" class="parking-img">
-              <img  [src]="images" *ngIf="images" >
-              <img src="../../assets/images/img-placeholder1.png" >
+            <ion-card mode="ios" class="parking-img">
+              <img [src]="images" *ngIf="images">
+              <img src="../../assets/images/img-placeholder1.png">
             </ion-card>
             <div>
               <ion-card mode="ios" class="add-btn">
@@ -76,9 +76,9 @@
             </div>
           </ion-col>
           <ion-col size="6">
-            <ion-card  mode="ios" class="parking-img">
-              <img  [src]="images" *ngIf="images" >
-              <img src="../../assets/images/img-placeholder1.png" >
+            <ion-card mode="ios" class="parking-img">
+              <img [src]="images" *ngIf="images">
+              <img src="../../assets/images/img-placeholder1.png">
             </ion-card>
             <div>
               <ion-card mode="ios" class="add-btn">
@@ -124,11 +124,15 @@
       <h5>How many spaces do you have for rent?</h5>
     </ion-list-header>
     <ion-item lines="none">
-      <ion-icon name="remove-circle-outline" (click)=" decrement()"></ion-icon>
+      <ion-button color="danger" (click)=" decrement()">
+        <ion-icon name="remove"></ion-icon>
+      </ion-button>
       <div class="space-value">
         {{currentNumber}}
       </div>
-      <ion-icon name="add-circle-outline" (click)=" increment()"></ion-icon>
+      <ion-button color="primary" (click)=" increment()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
     </ion-item>
   </div>
 
@@ -215,7 +219,7 @@
       <small>Dont include any contact details or sensitive information here.</small>
     </div>
     <div style="margin-bottom: 10px;">
-      <ion-item  lines="none">
+      <ion-item lines="none">
         <ion-textarea rows="6" cols="20"></ion-textarea>
       </ion-item>
     </div>

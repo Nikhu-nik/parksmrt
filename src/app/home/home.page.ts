@@ -64,12 +64,11 @@ export class HomePage implements OnInit {
       mapToolbar: false
     };
     this.map = GoogleMaps.create('map_canvas', mapOptions);
-    this.goToMyLocation();
   }
 
   goToMyLocation() {
     const option: MyLocationOptions = {
-      enableHighAccuracy: true
+      enableHighAccuracy: true,
     };
     // Get the location of you
     this.map.getMyLocation(option).then((location: MyLocation) => {
@@ -80,8 +79,9 @@ export class HomePage implements OnInit {
         bearing: 0,
         duration: 1000
       });
+      let mapPin = '../assets/images/marker3.png'
       const marker: Marker = this.map.addMarkerSync({
-        icon: 'aqua',
+        icon: mapPin,
         position: location.latLng,
         animation: 'DROP'
       });
@@ -90,26 +90,30 @@ export class HomePage implements OnInit {
   }
 
   getCurrentLocation() {
+    const option: MyLocationOptions = {
+      enableHighAccuracy: true,
+    };
     // Get the location of you
-    this.map.getMyLocation().then((location: MyLocation) => {
+    this.map.getMyLocation(option).then((location: MyLocation) => {
 
       // Move the map camera to the location with animation
       this.map.animateCamera({
         target: location.latLng,
-        zoom: 15,
+        zoom: 16,
         bearing: 0,
         duration: 1000
       });
+      let mapPin = '../assets/images/marker3.png'
       // add a marker
       const marker: Marker = this.map.addMarkerSync({
-        icon: 'aqua',
+        icon: mapPin,
         position: location.latLng,
       });
       // show the infoWindow
       marker.showInfoWindow();
     }).catch(err => {
-        this.showToast('Please Turn ON GPS');
-      });
+      this.showToast('Please Turn ON GPS');
+    });
   }
 
   async showToast(message: string) {

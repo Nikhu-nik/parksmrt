@@ -16,8 +16,11 @@ ion-menu {
   ion-content {
     --background: white;  
   }
-  ion-footer {
-    background: white;
+  ion-toolbar{
+    border-bottom: 1px solid gainsboro;
+  }
+  ion-list{
+    margin-top: 25px;
   }
 }
 .menu-list{
@@ -25,7 +28,6 @@ ion-menu {
   color: slategrey !important;
 }
 ion-label{
-  padding: 0px 18px !important;
   font-weight: bold;
   font-size: 15px;
 }
