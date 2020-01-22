@@ -2,6 +2,9 @@
   <ion-menu side="start" contentId="my-content">
     <ion-header no-border>
       <ion-toolbar class="ion-no-padding">
+        <!-- <ion-avatar>
+          <img src="https://i.pinimg.com/originals/d8/fc/1b/d8fc1b977f9eacac2940a3372917c75f.png" alt="logo">
+        </ion-avatar> -->
         <ion-item routerLink="/user-details" routerDirection="forward" lines="none" color="none">
           <ion-avatar slot="start">
             <img [src]="[userImg]">
@@ -10,7 +13,7 @@
             <b style="color: slategrey;">{{fullName | titlecase }}</b><br>
             <small style="color: slategrey;">My Profile</small>
           </ion-label>
-          <ion-icon name="arrow-forward" mode="ios" slot="end"></ion-icon>
+          <ion-icon name="arrow-forward" slot="end" mode="ios"></ion-icon>
         </ion-item>
       </ion-toolbar>
     </ion-header>
@@ -41,6 +44,7 @@
           <ion-icon name="help-circle" slot="start"></ion-icon>
           <ion-label class="menu-list">Help</ion-label>
         </ion-item>
+
       </ion-list>
     </ion-content>
   </ion-menu>
@@ -64,7 +68,7 @@
         <div>
           <div class="d-flex flex-column">
             <div>
-              <ion-label style=" padding: 0px 18px;">Check-In</ion-label>
+              <ion-label style="padding-left: 18px;">Check-In</ion-label>
             </div>
             <div>
               <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"></ion-datetime>
@@ -74,7 +78,7 @@
         <div class="ml-auto">
           <div class="d-flex flex-column">
             <div>
-              <ion-label style=" padding: 0px 18px;">Check-Out</ion-label>
+              <ion-label style="padding-left: 18px;">Check-Out</ion-label>
             </div>
             <div>
               <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDateTime"></ion-datetime>

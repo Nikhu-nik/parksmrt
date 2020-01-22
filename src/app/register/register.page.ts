@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 import { MustMatch } from '../_helpers/must-match.validator';
-import { ToastService } from '../service/toast.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -15,14 +15,14 @@ export class RegisterPage implements OnInit {
   constructor(private apiService: ApiService,
               private formBuilder: FormBuilder,
               private router: Router,
-              public toastService: ToastService) { }
+              private alertController: AlertController) { }
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
   registerForm: FormGroup;
   submitted = false;
-  
+
   validation_messages = {
 
     fullName: [
@@ -71,26 +71,35 @@ export class RegisterPage implements OnInit {
     this.apiService.addNewUser(form).subscribe(
       (res) => {
         console.log(res);
-        this.toastService.showToast('Registered Successfully');
+        this.showAlert('Registered Successfully...');
         this.router.navigate(['/login']);
       },
       (error) => {
-        if (error.status == 400 ) {
-          this.toastService.showToast('This email has already been registered');
+        if (error.status == 400) {
+          this.showAlert('This email has already been registered');
         }
         console.log(error);
       }
     );
   }
 
+  async showAlert(message) {
+    const alert = await this.alertController.create({
+      mode: 'ios',
+      message: message,
+    });
+    await alert.present();
+    setTimeout(() => {
+      alert.dismiss();
+    }, 1500);
+  }
+
+
   isInputNumber(event: any) {
-
     const ch = String.fromCharCode(event.which);
-
     if (!(/[0-9]/.test(ch))) {
       event.preventDefault();
     }
-
   }
 
 }

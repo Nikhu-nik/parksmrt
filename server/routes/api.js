@@ -2,13 +2,15 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
-const parking = require("../models/parking-areas");
+const Image = require("../models/parking-areas");
 const passwordResetToken = require("../models/resettoken");
-const crypto = require('crypto');
-const nodemailer = require('nodemailer');
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
+const path = require("path");
+const multer = require("multer");
 const db =
   "mongodb+srv://Abdurrazack:Abdurrazack@cluster0-qfh8b.mongodb.net/ParksmardDB?retryWrites=true&w=majority";
 
@@ -77,33 +79,94 @@ router.post("/login", (req, res) => {
   });
 });
 
- router.put('/updateUser', (req, res) => {
-  var token = req.headers['x-access-token'];
-  if (!token) return res.status(401).send({auth:false, message:'No token provided'});
-  jwt.verify(token, 'secretKey', function(err,decoded){
-    if(err) return res.status(500).send({auth:false, message:'failed to auth token'});
-    User.findByIdAndUpdate({_id: decoded.subject}, req.body, (err, updatedUser) => {
-      if (err){
-        res.send(err);
-      }else{
-        res.json(updatedUser);
+router.put("/updateUser", (req, res) => {
+  var token = req.headers["x-access-token"];
+  if (!token)
+    return res.status(401).send({ auth: false, message: "No token provided" });
+  jwt.verify(token, "secretKey", function(err, decoded) {
+    if (err)
+      return res
+        .status(500)
+        .send({ auth: false, message: "failed to auth token" });
+    User.findByIdAndUpdate(
+      { _id: decoded.subject },
+      req.body,
+      (err, updatedUser) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json(updatedUser);
+        }
       }
-    });
-  })
+    );
+  });
 });
 
-router.post("/parking-area",(req,res) => {
-  var newItem = new parking();
-  newItem.img.data = fs.readFileSync(req.files.userPhoto.path)
-  newItem.img.contentType = 'image/png';
-  newItem.save((err, newImg) => {
-    if (err) {
-      throw err
-    }else{
-      res.status(200).send(newImg);
+let UPLOAD_PATH = "./public/images";
+// Multer Settings for file upload
+var storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, UPLOAD_PATH);
+  },
+  filename: function(req, file, cb) {
+    var filetype = "";
+    if (file.mimetype === "image/gif") {
+      filetype = "gif";
     }
+    if (file.mimetype === "image/png") {
+      filetype = "png";
+    }
+    if (file.mimetype === "image/jpeg") {
+      filetype = "jpg";
+    }
+    cb(null, "image-" + Date.now() + "." + filetype);
+  }
+});
+
+let upload = multer({ storage: storage });
+
+// Upload a new image
+router.post("/upload/image", upload.single("imageFile"), (req, res, next) => {
+   console.log(req.file);
+  if (!req.file) {
+    res.status(422).send('No image found to upload');
+  }
+  res.json({ fileUrl: "http:localhost:3000/images/" + req.file.filename });
+});
+  
+// Get all uploaded images
+router.get("/images", (req, res, next) => {
+  // use lean() to get a plain JS object
+  // remove the version key from the response
+  Image.find({}, "-__v")
+    .lean()
+    .exec((err, images) => {
+      if (err) {
+        res.sendStatus(400);
+      }
+
+      // Manually set the correct URL to each image
+      for (let i = 0; i < images.length; i++) {
+        var img = images[i];
+        img.url = req.protocol + "://" + req.get("host") + "/images/" + img._id;
+      }
+      res.json(images);
+    });
+});
+
+// Get one image by its ID
+router.get("/images/:id", (req, res, next) => {
+  let imgId = req.params.id;
+
+  Image.findById(imgId, (err, image) => {
+    if (err) {
+      res.sendStatus(400);
+    }
+    // stream the image back by loading the file
+    res.setHeader("Content-Type", "image/jpeg");
+    fs.createReadStream(path.join(UPLOAD_PATH, image.filename)).pipe(res);
   });
- });
+});
 
 // Getting user details api
 router.get("/getUserDetails/:email", (req, res) => {
@@ -124,7 +187,7 @@ router.get("/getAllUsers", (req, res) => {
 });
 
 router.delete("/deleteUser/:id", (req, res) => {
-  User. findByIdAndRemove(req.params.id, err => {
+  User.findByIdAndRemove(req.params.id, err => {
     if (err) {
       res.status(500).send();
     }
@@ -132,7 +195,7 @@ router.delete("/deleteUser/:id", (req, res) => {
   });
 });
 
- router.post("/req-reset-password", (req, res) => {
+router.post("/req-reset-password", (req, res) => {
   if (!req.body.email) {
     return res.status(500).json({ message: "Email is required" });
   }
@@ -178,51 +241,57 @@ router.delete("/deleteUser/:id", (req, res) => {
   });
 });
 
-router.post("/valid-password-token", (req, res) =>{
+router.post("/valid-password-token", (req, res) => {
   if (!req.body.resettoken) {
-    return res.status(500).json({ message: 'Token is required' });
-    }
-    const user = passwordResetToken.findOne({
+    return res.status(500).json({ message: "Token is required" });
+  }
+  const user = passwordResetToken.findOne({
     resettoken: req.body.resettoken
-    });
-    if (!user) {
-    return res
-    .status(409)
-    .json({ message: 'Invalid URL' });
-    }
-    User.findOneAndUpdate({ _id: user._userId }).then(() => {
-    res.status(200).json({ message: 'Token verified successfully.' });
-    }).catch((err) => {
-    return res.status(500).send({ msg: err.message });
+  });
+  if (!user) {
+    return res.status(409).json({ message: "Invalid URL" });
+  }
+  User.findOneAndUpdate({ _id: user._userId })
+    .then(() => {
+      res.status(200).json({ message: "Token verified successfully." });
+    })
+    .catch(err => {
+      return res.status(500).send({ msg: err.message });
     });
 });
 
-router.post("/new-password", (req, res) =>{
-  passwordResetToken.findOne({ resettoken: req.body.resettoken}, (err, userToken, next) => {
-    if (!userToken) {
-      return res.status(409).json({ message: 'Token has expired' });
-    }
-    User.findOne({_id: userToken._userId}, (err, userEmail, next) =>{
-      if (!userEmail) {
-        return res.status(409).json({ message: 'User does not exist' });
+router.post("/new-password", (req, res) => {
+  passwordResetToken.findOne(
+    { resettoken: req.body.resettoken },
+    (err, userToken, next) => {
+      if (!userToken) {
+        return res.status(409).json({ message: "Token has expired" });
       }
-      return bcrypt.hash(req.body.newPassword, 10, (err, hash) => {
-        if (err) {
-          return res.status(400).json({ message: 'Error hashing password' });
+      User.findOne({ _id: userToken._userId }, (err, userEmail, next) => {
+        if (!userEmail) {
+          return res.status(409).json({ message: "User does not exist" });
         }
-        userEmail.password = hash;
-        userEmail.save((err) => {
+        return bcrypt.hash(req.body.newPassword, 10, (err, hash) => {
           if (err) {
-            return res.status(400).json({ message: 'Password can not reset.' });
-          } else {
-            userToken.remove();
-            return res.status(201).json({ message: 'Password reset successfully' });
+            return res.status(400).json({ message: "Error hashing password" });
           }
-        })
-        })
-    })
-  })
-  
-})
+          userEmail.password = hash;
+          userEmail.save(err => {
+            if (err) {
+              return res
+                .status(400)
+                .json({ message: "Password can not reset." });
+            } else {
+              userToken.remove();
+              return res
+                .status(201)
+                .json({ message: "Password reset successfully" });
+            }
+          });
+        });
+      });
+    }
+  );
+});
 
 module.exports = router;

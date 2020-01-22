@@ -68,18 +68,18 @@ export class HomePage implements OnInit {
 
   goToMyLocation() {
     const option: MyLocationOptions = {
-      enableHighAccuracy: true,
+      enableHighAccuracy: true
     };
     // Get the location of you
     this.map.getMyLocation(option).then((location: MyLocation) => {
       // Move the map camera to the location with animation
       this.map.animateCamera({
         target: location.latLng,
-        zoom: 13,
+        zoom: 14,
         bearing: 0,
         duration: 1000
       });
-      let mapPin = '../assets/images/marker3.png'
+      const mapPin = '../assets/images/marker3.png';
       const marker: Marker = this.map.addMarkerSync({
         icon: mapPin,
         position: location.latLng,
@@ -91,7 +91,7 @@ export class HomePage implements OnInit {
 
   getCurrentLocation() {
     const option: MyLocationOptions = {
-      enableHighAccuracy: true,
+      enableHighAccuracy: true
     };
     // Get the location of you
     this.map.getMyLocation(option).then((location: MyLocation) => {
@@ -103,7 +103,7 @@ export class HomePage implements OnInit {
         bearing: 0,
         duration: 1000
       });
-      let mapPin = '../assets/images/marker3.png'
+      const mapPin = '../assets/images/marker3.png';
       // add a marker
       const marker: Marker = this.map.addMarkerSync({
         icon: mapPin,
@@ -112,8 +112,8 @@ export class HomePage implements OnInit {
       // show the infoWindow
       marker.showInfoWindow();
     }).catch(err => {
-      this.showToast('Please Turn ON GPS');
-    });
+        this.showToast('Please Turn ON GPS');
+      });
   }
 
   async showToast(message: string) {

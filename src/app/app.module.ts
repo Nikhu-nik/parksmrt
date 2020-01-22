@@ -25,6 +25,7 @@ import { ImagePickerService } from './service/image-picker.service';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+
 @NgModule({
   declarations: [AppComponent,],
   entryComponents: [],

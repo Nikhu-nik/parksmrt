@@ -62,15 +62,16 @@ export class ImagePickerService implements OnInit {
 
   async selectImage() {
     const actionSheet = await this.actionSheetController.create({
+      mode: 'ios',
       header: 'Select Image source',
       buttons: [{
-        text: 'Load from Library',
+        text: 'Load from Gallery',
         handler: () => {
           this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
         }
       },
       {
-        text: 'Use Camera',
+        text: 'Camera',
         handler: () => {
           this.takePicture(this.camera.PictureSourceType.CAMERA);
         }
