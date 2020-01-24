@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
@@ -27,5 +27,10 @@ export class ApiService {
     return this.httpClient.put(environment.baseURL.url + '/updateUser', form, { headers: header });
   }
 
+  uploadImage(file: File): Observable<any> {
+    const formdata = new FormData();
+    formdata.append('file', file);
+    return this.httpClient.post(environment.baseURL.url + '/upload/image', formdata, { reportProgress: true, responseType: 'text' });
+  }
 
 }

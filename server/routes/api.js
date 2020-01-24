@@ -108,18 +108,8 @@ var storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, UPLOAD_PATH);
   },
-  filename: function(req, file, cb) {
-    var filetype = "";
-    if (file.mimetype === "image/gif") {
-      filetype = "gif";
-    }
-    if (file.mimetype === "image/png") {
-      filetype = "png";
-    }
-    if (file.mimetype === "image/jpeg") {
-      filetype = "jpg";
-    }
-    cb(null, "image-" + Date.now() + "." + filetype);
+  filename: (req, file, cb) => {
+    cb(null, file.originalname)
   }
 });
 
@@ -131,7 +121,7 @@ router.post("/upload/image", upload.single("imageFile"), (req, res, next) => {
   if (!req.file) {
     res.status(422).send('No image found to upload');
   }
-  res.json({ fileUrl: "http:localhost:3000/images/" + req.file.filename });
+  res.status(200).send('File uploaded successfully! -> filename = ' + req.file.filename)
 });
   
 // Get all uploaded images

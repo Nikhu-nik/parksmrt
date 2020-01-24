@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ImagePickerService } from '../service/image-picker.service';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, AlertController, LoadingController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-rentspace',
@@ -17,13 +16,14 @@ export class RentspacePage implements OnInit {
   countryList;
   firstFormGroup: FormGroup;
   currentNumber = 1;
-  imageData: any;
+  base64Image: string;
 
   constructor(private httpClient: HttpClient,
               private formBuilder: FormBuilder,
               private actionSheetCtrl: ActionSheetController,
               private camera: Camera,
-              private imagePickerService: ImagePickerService,
+              private alertCtrl: AlertController,
+              private loading: LoadingController,
   ) { }
 
 
@@ -63,13 +63,13 @@ export class RentspacePage implements OnInit {
       buttons: [{
         text: 'Camera',
         handler: () => {
-          this.openCamera();
+          this.pickImage(this.camera.PictureSourceType.CAMERA);
         }
       },
       {
         text: 'Load from Gallery',
         handler: () => {
-          //  this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+          this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
         }
       },
       {
@@ -82,51 +82,61 @@ export class RentspacePage implements OnInit {
   }
 
 
-  openCamera() {
+  pickImage(sourceType) {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: sourceType,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
+      mediaType: this.camera.MediaType.PICTURE
     };
-
     this.camera.getPicture(options).then((imageData) => {
-      this.imageData = imageData;
-      this.image = (<any> window).Ionic.WebView.convertFileSrc(imageData);
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      this.base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.image = 'data:image/jpeg;base64,' + imageData;
+      this.upload(this.base64Image);
     }, (err) => {
-      // Handle error
-      alert('error ' + JSON.stringify(err))
+      alert('error' + JSON.stringify(err));
     });
   }
 
-  upload() {
-    const url = 'http://localhost:3000/api/upload/image';
-    const date = new Date().valueOf();
 
-    // Replace extension according to your media type
-    const imageName = date + '.jpeg';
-    // call method that creates a blob from dataUri
-    const imageBlob = this.dataURItoBlob(this.imageData);
-    const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
+  async upload(file) {
 
-    const postData = new FormData();
-    postData.append('file', imageFile);
+    const formdata = new FormData();
+    formdata.append('imageFile', file);
 
-    const data: Observable<any> = this.httpClient.post(url, postData);
-    data.subscribe((result) => {
-      console.log(result);
+    const loader = await this.loading.create({
+      message: 'Processing please wait…',
     });
-  }
 
-  dataURItoBlob(dataURI) {
-    const byteString = window.atob(dataURI);
-    const arrayBuffer = new ArrayBuffer(byteString.length);
-    const int8Array = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < byteString.length; i++) {
-      int8Array[i] = byteString.charCodeAt(i);
-    }
-    const blob = new Blob([int8Array], { type: 'image/jpeg' });
-    return blob;
+    loader.present().then(() => {
+      this.httpClient.post(environment.baseURL.url + '/upload/image', formdata, {responseType: 'text' })
+        .subscribe(async res => {
+          loader.dismiss();
+          if (res === 'OK') {
+            const alert = await this.alertCtrl.create({
+              message: 'Image uploaded successfully',
+            });
+            alert.present();
+            setTimeout(() => {
+              alert.dismiss();
+            }, 1500);
+          } else {
+            const alert = await this.alertCtrl.create({
+              message: 'Image could not be uploaded',
+              buttons: [
+                {
+                  text: 'Ok',
+                  role: 'cancel',
+                },
+              ]
+            });
+            alert.present();
+          }
+        });
+    });
   }
 
 
